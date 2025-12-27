@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dutil-develop` 子模块类新增。
+  - com.dwarfeng.dutil.develop.resource.Url2RepoResource。
+
 - 插件升级。
   - 升级 `maven-clean-plugin` 插件版本为 `3.1.0`。
 
