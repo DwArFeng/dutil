@@ -210,21 +210,25 @@ class IDMap<T> {
     private int nextID() {
         int[] ids = getAllIDs();
         // 如果没有任何 id 注册，则直接返回 0
-        if (ids.length == 0)
+        if (ids.length == 0) {
             return 0;
+        }
         switch (codingType) {
             case COMPACT:
                 // 如果 id 数组中最小的一个比 0 大，则返回最小的数还要再小的那个。
-                if (ids[0] > 0)
+                if (ids[0] > 0) {
                     return ids[0] - 1;
-                for (int i = 0; i < ids.length - 1; i++) {
-                    if (ids[i + 1] - ids[i] > 1)
-                        return ids[i] + 1;
                 }
                 // 如果数组中间有数不连续，优先返回断掉的数。
-                return ids[ids.length] + 1;
+                for (int i = 0; i < ids.length - 1; i++) {
+                    if (ids[i + 1] - ids[i] > 1) {
+                        return ids[i] + 1;
+                    }
+                }
+                // 返回最大的那个。
+                return ids[ids.length - 1] + 1;
             default:
-                // 返回最大的那个
+                // 返回最大的那个。
                 return ids[ids.length - 1] + 1;
         }
     }

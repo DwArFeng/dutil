@@ -21,7 +21,8 @@
 
 ### Bug 修复
 
-- (无)
+- 修复部分类中的 bug。
+  - com.dwarfeng.dutil.basic.cna.IDMap。
 
 ### 功能移除
 
