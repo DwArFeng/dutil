@@ -6,7 +6,7 @@
 
     <groupId>com.dwarfeng</groupId>
     <artifactId>dutil</artifactId>
-    <version>beta-0.3.2.a</version>
+    <version>0.4.0.a-beta-SNAPSHOT</version>
 
     <name>dutil</name>
     <url>http://maven.apache.org</url>
@@ -62,27 +62,27 @@
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-basic</artifactId>
-                <version>beta-0.3.2.a</version>
+                <version>0.4.0.a-beta-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-demo</artifactId>
-                <version>beta-0.3.2.a</version>
+                <version>0.4.0.a-beta-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-detool</artifactId>
-                <version>beta-0.3.2.a</version>
+                <version>0.4.0.a-beta-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-develop</artifactId>
-                <version>beta-0.3.2.a</version>
+                <version>0.4.0.a-beta-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-struct</artifactId>
-                <version>beta-0.3.2.a</version>
+                <version>0.4.0.a-beta-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
