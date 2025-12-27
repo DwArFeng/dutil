@@ -547,7 +547,7 @@ public final class ArrayUtil {
      * @param target 指定的 char 数组。
      * @return 打包后得到的封包数组。
      * @see #pack(char[])
-     * @deprecated 由于该方法不符合命名规范，已经用 {@link #Pack(char[])} 代替。
+     * @deprecated 由于该方法不符合命名规范，已经用 {@link #pack(char[])} 代替。
      */
     @Deprecated
     public static Character[] Pack(char[] target) {

@@ -27,6 +27,9 @@
 
 ### Bug 修复
 
+- 修复部分类中错误的 javadoc。
+  - com.dwarfeng.dutil.basic.cna.ArrayUtil。
+
 - 修复部分类中的 bug。
   - com.dwarfeng.dutil.basic.cna.IDMap。
 
