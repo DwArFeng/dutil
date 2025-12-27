@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dutil-develop` 子模块类废弃。
+  - com.dwarfeng.dutil.develop.resource.Url2RepoRresource。
+
 - `dutil-develop` 子模块类新增。
   - com.dwarfeng.dutil.develop.resource.Url2RepoResource。
 

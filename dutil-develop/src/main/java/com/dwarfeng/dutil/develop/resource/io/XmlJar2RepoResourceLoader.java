@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
 import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.develop.resource.ResourceHandler;
-import com.dwarfeng.dutil.develop.resource.Url2RepoRresource;
+import com.dwarfeng.dutil.develop.resource.Url2RepoResource;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
@@ -21,7 +21,7 @@ import java.util.Set;
  * XML jar 包资源仓库读取器。
  *
  * <p>
- * 该读取器会读取指定的 XML 文件，并且将其中的每一条内容解析成 {@link Url2RepoRresource}。
+ * 该读取器会读取指定的 XML 文件，并且将其中的每一条内容解析成 {@link Url2RepoResource}。
  *
  * <p>
  * XML 需要满足以下格式
@@ -150,7 +150,7 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
                             DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
                 }
 
-                Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
+                Url2RepoResource resource = new Url2RepoResource(key, def, repoDir0, classify, fileName);
                 resourceHandler.add(resource);
 
                 if (autoReset && !resource.isValid()) {
@@ -218,7 +218,7 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
                                 DwarfUtil.getExceptionString(ExceptionStringKey.XMLJAR2REPORESOURCELOADER_3));
                     }
 
-                    Url2RepoRresource resource = new Url2RepoRresource(key, def, repoDir0, classify, fileName);
+                    Url2RepoResource resource = new Url2RepoResource(key, def, repoDir0, classify, fileName);
                     resourceHandler.add(resource);
 
                     if (autoReset && !resource.isValid()) {

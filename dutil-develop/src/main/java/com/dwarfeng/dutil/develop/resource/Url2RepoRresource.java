@@ -20,8 +20,12 @@ import java.util.Objects;
  * 文件名称是资源的文件部分，负责存储具体的数据。
  *
  * @author DwArFeng
+ * @see Url2RepoResource
  * @since 0.2.0-beta
+ * @deprecated 由于拼写错误，该类被弃用，请使用正确拼写的 {@link Url2RepoResource} 代替。
  */
+@SuppressWarnings("SpellCheckingInspection")
+@Deprecated
 public class Url2RepoRresource extends AbstractResource {
 
     /**
