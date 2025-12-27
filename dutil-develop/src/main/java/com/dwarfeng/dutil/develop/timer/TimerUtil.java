@@ -196,7 +196,7 @@ public final class TimerUtil {
          */
         @Override
         public Collection<Plan> plans() {
-            return Collections.unmodifiableCollection(plans());
+            return Collections.unmodifiableCollection(delegate.plans());
         }
 
         /**
