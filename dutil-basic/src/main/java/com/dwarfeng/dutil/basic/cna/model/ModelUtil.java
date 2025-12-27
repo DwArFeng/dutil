@@ -2910,7 +2910,7 @@ public final class ModelUtil {
          */
         @Override
         public boolean containsAll(Collection<?> c) {
-            return containsAll(c);
+            return delegate.containsAll(c);
         }
 
         /**
@@ -3214,9 +3214,15 @@ public final class ModelUtil {
          */
         @Override
         public Object[] toArray() {
-            @SuppressWarnings("unchecked")
-            V[] eArray = (V[]) delegate.toArray();
-            return ArrayUtil.readOnlyArray(eArray, generator);
+            Object[] array = delegate.toArray();
+            Object[] targetArray = new Object[array.length];
+            for (int i = 0; i < array.length; i++) {
+                // 由于 delegate 的相关泛型限定为 V，因此这里的强制转换是安全的。
+                @SuppressWarnings("unchecked")
+                V element = (V) array[i];
+                targetArray[i] = generator.readOnly(element);
+            }
+            return targetArray;
         }
 
         /**
@@ -4167,9 +4173,15 @@ public final class ModelUtil {
          */
         @Override
         public Object[] toArray() {
-            @SuppressWarnings("unchecked")
-            V[] eArray = (V[]) delegate.toArray();
-            return ArrayUtil.readOnlyArray(eArray, generator);
+            Object[] array = delegate.toArray();
+            Object[] targetArray = new Object[array.length];
+            for (int i = 0; i < array.length; i++) {
+                // 由于 delegate 的相关泛型限定为 V，因此这里的强制转换是安全的。
+                @SuppressWarnings("unchecked")
+                V element = (V) array[i];
+                targetArray[i] = generator.readOnly(element);
+            }
+            return targetArray;
         }
 
         /**

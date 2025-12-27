@@ -31,6 +31,7 @@
   - com.dwarfeng.dutil.basic.cna.ArrayUtil。
 
 - 修复部分类中的 bug。
+  - com.dwarfeng.dutil.basic.cna.model.ModelUtil。
   - com.dwarfeng.dutil.develop.timer.TimerUtil。
   - com.dwarfeng.dutil.basic.cna.IDMap。
 
