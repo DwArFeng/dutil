@@ -9,5 +9,4 @@ package com.dwarfeng.dutil.develop.cfg;
  * 代替。
  */
 public interface ConfigObserver extends com.dwarfeng.dutil.develop.cfg.obs.ConfigObserver {
-
 }

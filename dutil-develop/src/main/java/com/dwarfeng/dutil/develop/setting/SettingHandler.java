@@ -71,15 +71,16 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
          * 判断该入口是否与其它对象相等。
          *
          * <p>
-         * 对于入口A，如果有对象B也属于入口，且同时满足：
+         * 对于入口 A，如果有对象 B 也属于入口，且同时满足：
          *
          * <pre>
          * <code>Objects.equals(A.getName(), B.getName())</code>
          * <code>Objects.equals(A.getSettingInfo(), B.getSettingInfo())</code>
          * <code>Objects.equals(A.getCurrentValue(), B.getCurrentValue())</code>
          * </pre>
+         *
          * <p>
-         * 则可认为 入口A 与对象B 相等。
+         * 则可认为 入口 A 与对象 B 相等。
          *
          * @param obj 指定的对象。
          * @return 该入口是否与指定的对象相等。
@@ -241,6 +242,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 判断一个值对于该处理器来说是否合法。
+     *
      * <p>
      * 如果指定的键为 <code>null</code>，或者该处理器中不存在指定的配置键，则返回 <code>false</code>。 <br>
      * 如果指定的 value 为 <code>null</code>，则返回 <code>false</code>。
@@ -253,6 +255,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 判断一个值对于该处理器来说是否合法。
+     *
      * <p>
      * 如果指定的键为 <code>null</code>，或者该处理器中不存在指定的配置键，则返回 <code>false</code>。 <br>
      * 如果指定的 value 为 <code>null</code>，则返回 <code>false</code>。
@@ -265,8 +268,10 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取一个配置键的合法的值。
+     *
      * <p>
      * 如果指定的配置键在该处理器中存在，则查看该配置键的当前值是否合法， 如果合法，则返回当前值；如果不合法，则返回默认值。
+     *
      * <p>
      * 如果指定的配置键在该处理器中不存在，则返回 <code>null</code>
      *
@@ -277,8 +282,10 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取一个配置键的合法的值。
+     *
      * <p>
      * 如果指定的配置键在该处理器中存在，则查看该配置键的当前值是否合法， 如果合法，则返回当前值；如果不合法，则返回默认值。
+     *
      * <p>
      * 如果指定的配置键在该处理器中不存在，则返回 <code>null</code>
      *
@@ -341,6 +348,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 将一个指定的配置键对应的当前值重置为默认值（可选操作）。
+     *
      * <p>
      * 如果指定的配置键不存在或者为 <code>null</code>，则不进行任何操作。
      *
@@ -352,6 +360,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 将一个指定的配置键对应的当前值重置为默认值（可选操作）。
+     *
      * <p>
      * 如果指定的配置键不存在或者为 <code>null</code>，则不进行任何操作。
      *
@@ -399,6 +408,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取处理器中指定配置键的对应的当前值的解析值。
+     *
      * <p>
      * 该解析值将被转换为指定的类型。
      *
@@ -413,6 +423,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取处理器中指定配置键的对应的当前值的解析值。
+     *
      * <p>
      * 该解析值将被转换为指定的类型。
      *
@@ -445,6 +456,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取处理器中指定配置键的对应的有效值的解析值。
+     *
      * <p>
      * 该解析值将被转换为指定的类型。
      *
@@ -459,6 +471,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 获取处理器中指定配置键的对应的有效值的解析值。
+     *
      * <p>
      * 该解析值将被转换为指定的类型。
      *
@@ -473,6 +486,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 设置处理器中对应的配置键的对应的当前值（可选操作）。
+     *
      * <p>
      * 该方法使用解析器将对象解析为字符串，并将得到的字符串设置为当前值。
      *
@@ -486,6 +500,7 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
 
     /**
      * 设置处理器中对应的配置键的对应的当前值（可选操作）。
+     *
      * <p>
      * 该方法使用解析器将对象解析为字符串，并将得到的字符串设置为当前值。
      *
@@ -514,5 +529,4 @@ public interface SettingHandler extends ObserverSet<SettingObserver> {
      */
     @Override
     int hashCode();
-
 }

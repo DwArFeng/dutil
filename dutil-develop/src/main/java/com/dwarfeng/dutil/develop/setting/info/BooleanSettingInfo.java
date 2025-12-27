@@ -82,5 +82,4 @@ public class BooleanSettingInfo extends AbstractSettingInfo {
             return null;
         return Boolean.toString((boolean) object).toUpperCase();
     }
-
 }

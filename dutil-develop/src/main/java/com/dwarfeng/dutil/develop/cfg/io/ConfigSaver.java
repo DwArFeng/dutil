@@ -6,19 +6,19 @@ import com.dwarfeng.dutil.develop.cfg.CurrentValueContainer;
 
 /**
  * 配置保存器。
+ *
  * <p>
  * 用于保存指定的配置。
- * 
- * @deprecated 该接口由 {@link Saver} 代替。
+ *
  * @author DwArFeng
  * @since 0.0.2-beta
+ * @deprecated 该接口由 {@link Saver} 代替。
  */
 public interface ConfigSaver {
 
-	@Deprecated
-	public void saveConfig(CurrentValueContainer container) throws SaveFailedException;
+    @Deprecated
+    void saveConfig(CurrentValueContainer container) throws SaveFailedException;
 
-	@Deprecated
-	public void save(CurrentValueContainer container) throws SaveFailedException;
-
+    @Deprecated
+    void save(CurrentValueContainer container) throws SaveFailedException;
 }

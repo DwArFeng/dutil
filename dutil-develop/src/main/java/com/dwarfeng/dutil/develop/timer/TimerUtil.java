@@ -11,6 +11,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * 有关计时器的工具包。
+ *
  * <p>
  * 由于是只含有静态方法的工具包，所以该类无法被继承。
  *
@@ -236,7 +237,7 @@ public final class TimerUtil {
      * 生成的计划执在指定的执行期限后便停止执行。
      *
      * @param plan        指定的计划。
-     * @param limitedDate 指定的执行期限限制，其值为1970年1月1日到计划执行期限包含的毫秒数。
+     * @param limitedDate 指定的执行期限限制，其值为 1970 年 1 月 1 日到计划执行期限包含的毫秒数。
      * @return 根据指定的计划生成的具有执行期限的计划。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */

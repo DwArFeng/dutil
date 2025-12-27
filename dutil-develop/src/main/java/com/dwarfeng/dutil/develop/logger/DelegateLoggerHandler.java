@@ -11,6 +11,7 @@ import java.util.*;
 
 /**
  * 代理记录器处理器。
+ *
  * <p>
  * 通过代理一个 <code>KeySetModel</code> 来记录记录器信息，并通过代理一个 <code>Map</code>
  * 来记录使用记录器映射的记录器处理器。
@@ -587,5 +588,4 @@ public final class DelegateLoggerHandler implements LoggerHandler {
             return false;
         }
     }
-
 }

@@ -30,12 +30,11 @@ public abstract class TimerAdapter implements TimerObserver {
     public void firePlanCleared() {
     }
 
-	@Override
-	public void fireShutDown() {
-	}
+    @Override
+    public void fireShutDown() {
+    }
 
-	@Override
-	public void fireTerminated() {
-	}
-
+    @Override
+    public void fireTerminated() {
+    }
 }

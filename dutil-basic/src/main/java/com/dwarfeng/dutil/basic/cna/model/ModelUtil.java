@@ -17,8 +17,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 有关模型的工具包。
+ *
  * <p>
  * 该包中包含模型的常用方法，包括由模型生成线程安全的模型。
+ *
  * <p>
  * 由于是只含有静态方法的工具包，所以该类无法被继承。
  *
@@ -998,7 +1000,7 @@ public final class ModelUtil {
      * @param <E>      集合模型的元素类型。
      * @return 由指定的集合模型生成的线程安全的集合模型。
      * @throws NullPointerException 入口参数为 <code>null</code>。
-     * @deprecated 该方法由于命名错误，已经过时，由 {@link ModelUtil#syncSetModel(SetModel)}代替。
+     * @deprecated 该方法由于命名错误，已经过时，由 {@link ModelUtil#syncSetModel(SetModel)} 替。
      */
     public static <E> SyncSetModel<E> syncSetMdel(SetModel<E> setModel) {
         return syncSetModel(setModel);
@@ -4725,5 +4727,4 @@ public final class ModelUtil {
     // 禁止外部实例化。
     private ModelUtil() {
     }
-
 }

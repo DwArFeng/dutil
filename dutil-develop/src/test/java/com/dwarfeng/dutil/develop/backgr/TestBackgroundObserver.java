@@ -43,5 +43,4 @@ class TestBackgroundObserver implements BackgroundObserver {
     public void fireTerminated() {
         terminated = true;
     }
-
 }

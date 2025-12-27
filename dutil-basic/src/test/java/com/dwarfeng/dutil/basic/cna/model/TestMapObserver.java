@@ -62,5 +62,4 @@ class TestMapObserver implements MapObserver<String, String> {
         removeValueList.clear();
         cleared = 0;
     }
-
 }

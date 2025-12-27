@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<info key="test"/>
-	<info key="test" path="test/hello.txt" default="/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt"/>
+    <info key="test"/>
+    <info key="test" path="test/hello.txt" default="/com/dwarfeng/dutil/resources/test/develop/resource/hello.txt"/>
 </root>

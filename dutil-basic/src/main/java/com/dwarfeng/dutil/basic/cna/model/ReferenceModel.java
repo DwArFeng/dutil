@@ -48,5 +48,4 @@ public interface ReferenceModel<E> extends ObserverSet<ReferenceObserver<E>> {
     default boolean isEmpty() {
         return Objects.isNull(get());
     }
-
 }

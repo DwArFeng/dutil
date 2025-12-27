@@ -13,28 +13,27 @@ class TestPlanObserver extends PlanAdapter {
      */
     @Override
     public void fireRun(int count, long expectedRumTime, long actualRunTime) {
-		runningFlag = true;
-	}
+        runningFlag = true;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void fireFinished(int finishedCount, Throwable throwable) {
-		this.finishedCount = finishedCount;
-		this.throwable = throwable;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void fireFinished(int finishedCount, Throwable throwable) {
+        this.finishedCount = finishedCount;
+        this.throwable = throwable;
+    }
 
-	public boolean isRunningFlag() {
-		return runningFlag;
-	}
+    public boolean isRunningFlag() {
+        return runningFlag;
+    }
 
-	public int getFinishedCount() {
-		return finishedCount;
-	}
+    public int getFinishedCount() {
+        return finishedCount;
+    }
 
-	public Throwable getThrowable() {
-		return throwable;
-	}
-
+    public Throwable getThrowable() {
+        return throwable;
+    }
 }

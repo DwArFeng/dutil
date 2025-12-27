@@ -200,5 +200,4 @@ public abstract class AbstractBackground implements Background {
                 }
         }
     }
-
 }

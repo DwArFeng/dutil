@@ -13,20 +13,19 @@ import java.util.Locale;
  */
 public abstract class I18nAdapter implements I18nObserver {
 
-	@Override
-	public void fireAdded(I18nInfo element) {
-	}
+    @Override
+    public void fireAdded(I18nInfo element) {
+    }
 
-	@Override
-	public void fireRemoved(I18nInfo element) {
-	}
+    @Override
+    public void fireRemoved(I18nInfo element) {
+    }
 
-	@Override
-	public void fireCleared() {
-	}
+    @Override
+    public void fireCleared() {
+    }
 
-	@Override
-	public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
-	}
-
+    @Override
+    public void fireCurrentLocaleChanged(Locale oldLocale, Locale newLocale, I18n newI18n) {
+    }
 }

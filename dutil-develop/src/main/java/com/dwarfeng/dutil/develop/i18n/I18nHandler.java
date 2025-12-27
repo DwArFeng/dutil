@@ -12,11 +12,12 @@ import java.util.Objects;
  *
  * <p>
  * 该接口负责处理国际化信息，本身是一个 {@link KeySetModel}。
+ *
  * <p>
  * 除了 <code>KeySetModel</code> 之外，该接口还实现了一些维护当前国际化的方法：如获得和设置当前的地区。
  *
  * <p>
- * 该接口应该添加的观察器是 {@link I18nObserver}，这个类型的观察器除了可以观察
+ * 该接口应该添加的观察器是 {@link I18nObserver} 这个类型的观察器除了可以观察
  * <code>KeySetModel</code>的一般改变之外，还可以对 <code>I18nHandler</code> 中特有的改变做出观察。
  *
  * <p>
@@ -46,6 +47,7 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
 
     /**
      * 设置当前的语言。
+     *
      * <p>
      * 如果当前的语言设置成功的话，则该国际化处理器的当前多语言接口会立即更新，此时 调用
      * {@link I18nHandler#getCurrentI18n()} 即可返回最新的多语言接口。
@@ -85,6 +87,7 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
      *
      * <p>
      * 如果指定的名称接口为 <code>null</code>， 则返回 <code>null</code>
+     *
      * <p>
      * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>null</code>，否则返回
      * <code>getCurrentI18n().getString(name.getName());</code>
@@ -124,6 +127,7 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
      *
      * <p>
      * 如果指定的名称接口为 <code>null</code>， 则返回 <code>defaultString</code>
+     *
      * <p>
      * 如果该国际化处理器没有正在使用的国际化接口，则返回 <code>defaultString</code>，否则返回
      * <code>getCurrentI18n().getStringOrDefault(name.getName(), defaultString);</code>
@@ -139,5 +143,4 @@ public interface I18nHandler extends KeySetModel<Locale, I18nInfo> {
         }
         return currentI18n.getStringOrDefault(name.getName(), defaultString);
     }
-
 }

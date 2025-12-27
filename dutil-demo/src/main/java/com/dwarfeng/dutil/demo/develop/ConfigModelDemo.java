@@ -15,7 +15,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * {@link ConfigModel}的代码示例。
+ * {@link ConfigModel} 的代码示例。
+ *
  * <p>
  * 该示例将生成一个窗体，这个窗体的外观使用配置来记录。
  *
@@ -33,8 +34,8 @@ public class ConfigModelDemo {
     private enum ApperanceConfig implements ConfigEntry {
 
         /**
-         * 此配置字段表示窗体的高度，为600；该配置值检查器是一个整型数检查器，取值在1到3000之间。
-         * 也就是说，该配置值接受所有1-3000之间的整数。
+         * 此配置字段表示窗体的高度，为 600；该配置值检查器是一个整型数检查器，取值在 1 到 3000 之间。
+         * 也就是说，该配置值接受所有 1-3000 之间的整数。
          */
         APPEARANCE_HEIGHT("appearance.height", "600", new IntegerConfigChecker(1, 3000)),
 
@@ -248,5 +249,4 @@ public class ConfigModelDemo {
     public static void main(String[] args) throws Exception {
         new ConfigModelDemo();
     }
-
 }

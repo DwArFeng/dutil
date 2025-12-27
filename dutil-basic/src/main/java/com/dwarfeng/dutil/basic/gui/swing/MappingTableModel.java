@@ -95,12 +95,12 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
     public @interface TableColumn {
 
         /**
-         * 列值的Getter方法名称。
+         * 列值的 Getter 方法名称。
          *
          * <p>
-         * Getter方法应该是无入口参数，并且返回值类型不能为 <code>void</code>。
+         * Getter 方法应该是无入口参数，并且返回值类型不能为 <code>void</code>。
          *
-         * @return 列值的Getter方法名称。
+         * @return 列值的 Getter 方法名称。
          */
         String columnValueGetterName();
 
@@ -136,7 +136,7 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
          * 列值的 Setter 方法名称。
          *
          * <p>
-         * Setter方法应该有且仅有一个入口参数，入口参数的类型应该为 {@link #columnClass()} 返回的类型或其子类。
+         * Setter 方法应该有且仅有一个入口参数，入口参数的类型应该为 {@link #columnClass()} 返回的类型或其子类。
          *
          * @return 列值的 Setter 方法名称。
          */
@@ -259,7 +259,7 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_7));
         }
 
-        // 遍历clazz类中的所有TableMapping注解，生成tableColumnInfo。
+        // 遍历 clazz 类中的所有 TableMapping 注解，生成 tableColumnInfo。
         try {
             for (TableColumn tableColumn : tableColumns.value()) {
                 tableColumnInfos.add(makeTableColumnInfo(clazz, tableColumn));
@@ -294,7 +294,7 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.MAPPINGTABLEMODEL_8));
         }
 
-        // 遍历clazz类中的所有TableMapping注解，生成tableColumnInfo。
+        // 遍历 clazz 类中的所有 TableMapping 注解，生成 tableColumnInfo。
         try {
             for (TableColumn tableColumn : tableColumns.value()) {
                 tableColumnInfos.add(makeTableColumnInfo(clazz, tableColumn));
@@ -1011,7 +1011,9 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
      * {@code (e1==null ? e2==null :
      * e1.equals(e2))}.) In other words, two lists are defined to be equal if they
      * contain the same elements in the same order.
+     *
      * <p>
+     *
      * <p>
      * This implementation first checks if the specified object is this list. If so,
      * it returns {@code true}; if not, it checks if the specified object is a list.
@@ -1092,5 +1094,4 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
             sb.append(',').append(' ');
         }
     }
-
 }

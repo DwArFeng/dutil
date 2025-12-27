@@ -165,5 +165,4 @@ public class Test_UnmodifiableResourceHandler {
         set.add(TestResource.C);
         assertTrue(set.equals(handler));
     }
-
 }

@@ -259,5 +259,4 @@ public class Test_SyncEntrySet {
         assertTrue(entrySet.containsAll(Arrays.asList(ENTRY_1, ENTRY_2, ENTRY_3, ENTRY_4)));
         assertFalse(entrySet.containsAll(Arrays.asList(ENTRY_1, ENTRY_2, ENTRY_3, ENTRY_4, ENTRY_5)));
     }
-
 }

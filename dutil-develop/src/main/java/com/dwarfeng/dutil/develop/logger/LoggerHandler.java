@@ -17,9 +17,11 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 使用指定的记录器信息。
+     *
      * <p>
-     * 该方法将会调用该记录器信息的 {@link LoggerInfo#newLogger()}方法生成一个新的记录器，
+     * 该方法将会调用该记录器信息的 {@link LoggerInfo#newLogger()} 法生成一个新的记录器，
      * 并持有该记录器，该记录器将会成为 {@link #usedLoggers()} 集合的一个元素。
+     *
      * <p>
      * 当该记录器信息为 <code>null</code>，或该记录器信息不属于此记录器处理器时，处理器将不会执行任何动作。
      *
@@ -30,9 +32,11 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用指定的信息记录器。
+     *
      * <p>
      * 该方法将会使该记录器处理器搜索 {@link #usedLoggers()} 中的每一个记录器，
      * 并且将记录器对应的键与指定记录器信息对应的键比较， 如果两者的键一致， 就从 {@link #usedLoggers()} 中移除该记录器。
+     *
      * <p>
      * 当该记录器信息为 <code>null</code>，或该记录器信息不属于此记录器处理器，或者 {@link #usedLoggers()}
      * 中没有对应键的记录器时，处理器将不会执行任何动作。
@@ -44,10 +48,12 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 使用指定的键对应的记录器信息。
+     *
      * <p>
      * 该方法将在该记录器处理器中搜索指定键对应的记录器信息， 并调用该记录器信息的
-     * {@link LoggerInfo#newLogger()}方法生成一个新的记录器， 并持有该记录器，该记录器将会成为
+     * {@link LoggerInfo#newLogger()} 法生成一个新的记录器， 并持有该记录器，该记录器将会成为
      * {@link #usedLoggers()} 集合的一个元素。
+     *
      * <p>
      * 当该处理器中不包含该键对应的记录器信息， 或对应的键的记录器信息为 <code>null</code>， 或该记录器信息不属于此记录器处理器时，
      * 处理器将不会执行任何动作。
@@ -59,9 +65,11 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用指定的键对应的信息记录器。
+     *
      * <p>
      * 该方法将会使该记录器处理器搜索 {@link #usedLoggers()} 中的每一个记录器，
      * 并且将记录器对应的键与指定记录器信息对应的键比较， 如果两者的键一致， 就从 {@link #usedLoggers()} 中移除该记录器。
+     *
      * <p>
      * 当该处理器中不包含该键对应的记录器信息， 或该记录器信息为 <code>null</code>，或该记录器信息不属于此记录器处理器，或者
      * {@link #usedLoggers()} 中没有对应键的记录器时，处理器将不会执行任何动作。
@@ -83,8 +91,9 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 使用指定集合中的所有记录器信息。
+     *
      * <p>
-     * 该方法将会遍历指定的集合，并尝试对其中所有的记录器信息使用 {@link #use(LoggerInfo)}方法。
+     * 该方法将会遍历指定的集合，并尝试对其中所有的记录器信息使用 {@link #use(LoggerInfo)} 法。
      *
      * @param c 指定的记录器信息集合。
      * @return 该操作是否改变了该记录器处理器。
@@ -94,6 +103,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用指定集合中的所有记录器信息。
+     *
      * <p>
      * 该方法将会遍历 {@link #usedLoggers()}， 并将其中指定的键等于属于指定集合中记录器信息的键的记录器移除。
      *
@@ -105,8 +115,9 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 使用指定集合中的所有键对应的记录器信息。
+     *
      * <p>
-     * 该方法将会遍历指定的集合，并尝试对其中所有的键使用 {@link #useKey(String)}方法。
+     * 该方法将会遍历指定的集合，并尝试对其中所有的键使用 {@link #useKey(String)} 法。
      *
      * @param c 指定的记录器键集合。
      * @return 该操作是否改变了该记录器处理器。
@@ -116,6 +127,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用指定集合中所有的键对应的记录器信息。
+     *
      * <p>
      * 该方法将会遍历 {@link #usedLoggers()}， 并将其中指定的键等于属于指定集合中记录器信息的键的记录器移除。
      *
@@ -127,6 +139,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用除指定集合中的记录器信息以外的所有记录器信息。
+     *
      * <p>
      * 该方法会遍历 {@link #usedLoggers()}， 并将其中指定的键不等于属于指定集合中所有记录器信息的键的记录器移除。
      *
@@ -138,6 +151,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
 
     /**
      * 停止使用除指定集合中的键对应的记录器信息以外的所有记录器信息。
+     *
      * <p>
      * 该方法会遍历 {@link #usedLoggers()}， 并将其中指定的键不等于属于指定集合中所有记录器信息的键的记录器移除。
      *
@@ -276,5 +290,4 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
             }
         });
     }
-
 }

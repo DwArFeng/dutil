@@ -29,5 +29,4 @@ public abstract class SettingAdapter implements SettingObserver {
     @Override
     public void fireCurrentValueChanged(String key, String oldValue, String newValue) {
     }
-
 }

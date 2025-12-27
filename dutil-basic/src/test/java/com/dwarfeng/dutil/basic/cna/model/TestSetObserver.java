@@ -31,5 +31,4 @@ class TestSetObserver<T> implements SetObserver<T> {
         removedList.clear();
         cleared = 0;
     }
-
 }

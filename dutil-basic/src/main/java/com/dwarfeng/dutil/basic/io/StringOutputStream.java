@@ -14,6 +14,7 @@ import java.util.Objects;
 
 /**
  * 字符串构造输出流。
+ *
  * <p>
  * 该输出流将输出的数据存储到字符串构造器中。
  *
@@ -70,7 +71,7 @@ public class StringOutputStream extends OutputStream {
      * 生成一个字符集合指定的字符串构造输出流。
      *
      * @param charset 指定的字符集合。
-     * @throws NullPointerException 入口参数charset 为 <code>null</code>。
+     * @throws NullPointerException 入口参数 charset 为 <code>null</code>。
      */
     public StringOutputStream(Charset charset) {
         this(charset, false);
@@ -91,7 +92,7 @@ public class StringOutputStream extends OutputStream {
      * 生成一个指定字符集，指定是否自动输出，指定字节缓存初始大小和指定读取因子的输出流。
      *
      * <p>
-     * 如果指定的字节缓存初始大小小于0，则缓存大小将设置为0；如果指定的读取因子小于1，则读取因子将设置成1。
+     * 如果指定的字节缓存初始大小小于 0，则缓存大小将设置为 0；如果指定的读取因子小于 1，则读取因子将设置成 1。
      *
      * @param charset         指定的字符集合。
      * @param autoFlush       是否自动刷新。
@@ -131,6 +132,7 @@ public class StringOutputStream extends OutputStream {
 
     /**
      * 将该输出流接收到的数据以字符串的形式返回。
+     *
      * <p>
      * 返回的字符串将包含之前所有被 flush 的数据，但不包括没有被 flush 的数据。
      *
@@ -207,7 +209,7 @@ public class StringOutputStream extends OutputStream {
                 break;
             // 如果字符缓冲被填满了，则扩大字符缓冲的容量，继续解析剩下的字节数据。
             if (cr.isOverflow()) {
-                n = 2 * n + 1; // 加1是为了保证n为0的时候还能继续扩大容量。
+                n = 2 * n + 1; // 加 1 是为了保证 n 为 0 的时候还能继续扩大容量。
                 CharBuffer tempCharBuffer = CharBuffer.allocate(n);
                 charBuffer.flip();
                 tempCharBuffer.put(charBuffer);

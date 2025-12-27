@@ -114,7 +114,7 @@ public abstract class AbstractSettingHandler implements SettingHandler {
     }
 
     /**
-     * 生成一个具有指定的侦听器集合的的抽象Ex配置模型。
+     * 生成一个具有指定的侦听器集合的的抽象Ex 配置模型。
      *
      * @param observers 指定的侦听器集合。
      * @throws NullPointerException 入口参数为 <code>null</code>。
@@ -725,5 +725,4 @@ public abstract class AbstractSettingHandler implements SettingHandler {
                 }
         }
     }
-
 }

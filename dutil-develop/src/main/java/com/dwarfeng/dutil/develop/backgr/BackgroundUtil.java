@@ -16,8 +16,10 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * 有关后台的工具包。
+ *
  * <p>
  * 该包中包含后台的常用方法。
+ *
  * <p>
  * 由于是只含有静态方法的工具包，所以该类无法被继承。
  *
@@ -121,7 +123,8 @@ public final class BackgroundUtil {
      * 通过指定的任务和指定的阻塞任务数组生成一个阻塞任务。
      *
      * <p>
-     * 生成的任务会代理指定任务的 {@link Task#getException()} 和 {@link Task#getThrowable()}等结果性质的方法。
+     * 生成的任务会代理指定任务的 {@link Task#getException()} 和 {@link Task#getThrowable()} 结果性质的方法。
+     *
      * <p>
      * 关于任务的阻塞<br>
      * 在该任务执行时，只有所有参与阻塞的任务完成后，才开始执行任务中的功能语句。 <br>
@@ -146,7 +149,8 @@ public final class BackgroundUtil {
      * 通过指定的任务和指定的阻塞任务数组生成一个阻塞任务。
      *
      * <p>
-     * 生成的任务会代理指定任务的 {@link Task#getException()} 和 {@link Task#getThrowable()}等结果性质的方法。
+     * 生成的任务会代理指定任务的 {@link Task#getException()} 和 {@link Task#getThrowable()} 结果性质的方法。
+     *
      * <p>
      * 关于任务的阻塞<br>
      * 在该任务执行时，只有所有参与阻塞的任务完成后，才开始执行任务中的功能语句。 <br>

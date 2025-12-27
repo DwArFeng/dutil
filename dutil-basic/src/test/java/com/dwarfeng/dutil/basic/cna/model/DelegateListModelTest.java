@@ -278,5 +278,4 @@ public class DelegateListModelTest {
         model.removeObserver(obv);
         assertEquals(0, model.getObservers().size());
     }
-
 }

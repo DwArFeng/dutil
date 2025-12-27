@@ -13,8 +13,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 有关国际化的工具包。
+ *
  * <p>
  * 该包中包含关于对资源管理器进行操作的常用方法。
+ *
  * <p>
  * 由于是只含有静态方法的工具包，所以该类无法被继承。
  *

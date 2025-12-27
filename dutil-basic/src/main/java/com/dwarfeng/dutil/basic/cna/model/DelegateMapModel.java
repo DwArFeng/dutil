@@ -891,5 +891,4 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
     public String toString() {
         return delegate.toString();
     }
-
 }

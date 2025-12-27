@@ -38,7 +38,9 @@ public interface ListObserver<E> extends Observer {
 
     /**
      * 通知模型被清空。
-     * <p> 该方法为了提高效率而定义的，故在模型执行 {@link ListModel#clear()} 方法的时候，
+     *
+     * <p>
+     * 该方法为了提高效率而定义的，故在模型执行 {@link ListModel#clear()} 方法的时候，
      * 会触发该通知而不是一条条地触发 {@link #fireRemoved(int, Object)}。
      */
     void fireCleared();

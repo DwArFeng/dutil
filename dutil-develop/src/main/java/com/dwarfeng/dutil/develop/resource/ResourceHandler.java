@@ -9,6 +9,7 @@ import java.io.OutputStream;
 
 /**
  * 资源处理器。
+ *
  * <p>
  * 该接口负责处理资源。 <br>
  * 该接口本身是一个 <code>KeySetModel</code>，并没有更多的方法。
@@ -33,7 +34,7 @@ public interface ResourceHandler extends KeySetModel<String, Resource> {
      *
      * @param key 指定的键。
      * @return 指定的键对应资源的输入流。
-     * @throws IOException              IO异常。
+     * @throws IOException              IO 异常。
      * @throws IllegalArgumentException 处理器不存在指定的键。
      */
     default InputStream openInputStream(String key) throws IOException, IllegalArgumentException {
@@ -45,7 +46,7 @@ public interface ResourceHandler extends KeySetModel<String, Resource> {
      *
      * @param key 指定的键对应的名称。
      * @return 指定的键对应资源的输入流。
-     * @throws IOException              IO异常。
+     * @throws IOException              IO 异常。
      * @throws IllegalArgumentException 处理器不存在指定的键。
      */
     default InputStream openInputStream(Name key) throws IOException, IllegalArgumentException {
@@ -57,7 +58,7 @@ public interface ResourceHandler extends KeySetModel<String, Resource> {
      *
      * @param key 指定的键。
      * @return 指定的键对应的资源的输出流。
-     * @throws IOException              IO异常。
+     * @throws IOException              IO 异常。
      * @throws IllegalArgumentException 处理器不存在指定的键。
      */
     default OutputStream openOutputStream(String key) throws IOException, IllegalArgumentException {
@@ -69,7 +70,7 @@ public interface ResourceHandler extends KeySetModel<String, Resource> {
      *
      * @param key 指定的键对应的名称。
      * @return 指定的键对应的资源的输出流。
-     * @throws IOException              IO异常。
+     * @throws IOException              IO 异常。
      * @throws IllegalArgumentException 处理器不存在指定的键。
      */
     default OutputStream openOutputStream(Name key) throws IOException, IllegalArgumentException {
@@ -80,11 +81,10 @@ public interface ResourceHandler extends KeySetModel<String, Resource> {
      * 重置指定的键对应的资源。
      *
      * @param key 指定的资源对应的键。
-     * @throws IOException              IO异常。
+     * @throws IOException              IO 异常。
      * @throws IllegalArgumentException 处理器中不存在指定的键。
      */
     default void reset(String key) throws IOException, IllegalArgumentException {
         get(key).reset();
     }
-
 }

@@ -11,6 +11,7 @@ import java.util.*;
 
 /**
  * 代理集合国际化处理器。
+ *
  * <p>
  * 通过代理一个 <code>KeySetModel</code>来实现的国际化处理器，并且在此基础上增加了国际化处理器的实现。
  *
@@ -422,5 +423,4 @@ public class DelegateI18nHandler implements I18nHandler {
 
         fireCurrentLocaleChanged(oldLocale, currentLocale, currentI18n);
     }
-
 }

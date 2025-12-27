@@ -360,5 +360,4 @@ public class MappingTableModelSubListTest {
         assertEquals(2, tableModelListener.eventList.get(0).getFirstRow());
         assertEquals(2, tableModelListener.eventList.get(0).getLastRow());
     }
-
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<info locale="en_US" name="English"
-		file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/en_US.properties" />
-	<info locale="zh_CN" name="简体中文"
-		file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/zh_CN.properties" />
-	<info locale="zh_CN"
-		file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/zh_CN.properties" />
-	<info locale="ja_JP" name="日本語"
-		file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/ja_JP.properties" />
+    <info locale="en_US" name="English"
+          file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/en_US.properties"/>
+    <info locale="zh_CN" name="简体中文"
+          file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/zh_CN.properties"/>
+    <info locale="zh_CN"
+          file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/zh_CN.properties"/>
+    <info locale="ja_JP" name="日本語"
+          file="target/test-classes/com/dwarfeng/dutil/resources/test/develop/i18n/ja_JP.properties"/>
 </root>

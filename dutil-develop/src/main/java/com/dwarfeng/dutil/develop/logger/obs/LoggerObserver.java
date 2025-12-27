@@ -29,5 +29,4 @@ public interface LoggerObserver extends SetObserver<LoggerInfo> {
      * @param logger     使用的记录器。
      */
     void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger);
-
 }

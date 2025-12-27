@@ -19,19 +19,18 @@ public abstract class BackgroundAdapter implements BackgroundObserver {
     }
 
     @Override
-	public void fireTaskFinished(Task task) {
-	}
+    public void fireTaskFinished(Task task) {
+    }
 
-	@Override
-	public void fireTaskRemoved(Task task) {
-	}
+    @Override
+    public void fireTaskRemoved(Task task) {
+    }
 
-	@Override
-	public void fireShutDown() {
-	}
+    @Override
+    public void fireShutDown() {
+    }
 
-	@Override
-	public void fireTerminated() {
-	}
-
+    @Override
+    public void fireTerminated() {
+    }
 }

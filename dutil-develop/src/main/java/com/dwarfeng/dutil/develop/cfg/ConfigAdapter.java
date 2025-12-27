@@ -8,5 +8,4 @@ package com.dwarfeng.dutil.develop.cfg;
  * @deprecated 该类被 {@link com.dwarfeng.dutil.develop.cfg.obs.ConfigAdapter} 代替。
  */
 public abstract class ConfigAdapter extends com.dwarfeng.dutil.develop.cfg.obs.ConfigAdapter {
-
 }

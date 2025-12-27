@@ -13,6 +13,7 @@ import java.util.Set;
 
 /**
  * 代理资源管理器。
+ *
  * <p>
  * 通过代理一个 {@link KeySetModel} 来实现具体功能的资源管理器。
  *
@@ -243,5 +244,4 @@ public class DelegateResourceHandler implements ResourceHandler {
     public int hashCode() {
         return delegate.hashCode();
     }
-
 }

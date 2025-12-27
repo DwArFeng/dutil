@@ -223,5 +223,4 @@ public class Test_SyncKeySet {
         assertTrue(keySet.containsAll(Arrays.asList(ENTRY_1, ENTRY_2, ENTRY_3, ENTRY_4)));
         assertFalse(keySet.containsAll(Arrays.asList(ENTRY_1, ENTRY_2, ENTRY_3, ENTRY_4, ENTRY_5)));
     }
-
 }

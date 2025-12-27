@@ -36,5 +36,4 @@ public class TestReferenceObserver<E> implements ReferenceObserver<E> {
         newValue = null;
         clearFlag = false;
     }
-
 }

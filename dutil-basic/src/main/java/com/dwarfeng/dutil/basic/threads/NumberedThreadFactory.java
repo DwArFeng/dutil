@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 编号线程工厂。
+ *
  * <p>
  * 该线程工厂提供流水编号的线程，其内部维护着一个编号。 当新的线程被请求时，该工厂返回的线程的名称由编号和前缀组成。
  *
@@ -27,6 +28,7 @@ public class NumberedThreadFactory implements ThreadFactory {
 
     /**
      * 生成一个默认的编号线程。
+     *
      * <p>
      * 线程不是守护线程，且具有标准的优先级。
      *
@@ -66,5 +68,4 @@ public class NumberedThreadFactory implements ThreadFactory {
         t.setPriority(priority);
         return t;
     }
-
 }

@@ -30,5 +30,4 @@ public abstract class ConfigAdapter implements ConfigObserver {
     @Override
     public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue, ConfigFirmProps newValue) {
     }
-
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class DefaultExconfigModelTest {
 
@@ -25,44 +25,44 @@ public class DefaultExconfigModelTest {
         @Override
         public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
             currentValueChangedList.add(configKey);
-		}
+        }
 
-		@Override
-		public void fireConfigKeyCleared() {
-		}
+        @Override
+        public void fireConfigKeyCleared() {
+        }
 
-		@Override
-		public void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
-				String currentValue) {
-			removedList.add(configKey);
-		}
+        @Override
+        public void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+                                         String currentValue) {
+            removedList.add(configKey);
+        }
 
-		@Override
-		public void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
-				String currentValue) {
-			addedList.add(configKey);
-		}
+        @Override
+        public void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+                                       String currentValue) {
+            addedList.add(configKey);
+        }
 
-		@Override
-		public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
-				ConfigFirmProps newValue) {
-			configFirmPropsChangedList.add(configKey);
-		}
+        @Override
+        public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
+                                               ConfigFirmProps newValue) {
+            configFirmPropsChangedList.add(configKey);
+        }
 
-		@Override
-		public void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
-			valueParserChangedList.add(configKey);
-		}
+        @Override
+        public void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
+            valueParserChangedList.add(configKey);
+        }
 
-		public void reset() {
-			currentValueChangedList.clear();
-			removedList.clear();
-			addedList.clear();
-			configFirmPropsChangedList.clear();
-			valueParserChangedList.clear();
-		}
+        public void reset() {
+            currentValueChangedList.clear();
+            removedList.clear();
+            addedList.clear();
+            configFirmPropsChangedList.clear();
+            valueParserChangedList.clear();
+        }
 
-	}
+    }
 
     private static final class Obs2 implements ExconfigObserver {
 
@@ -75,36 +75,36 @@ public class DefaultExconfigModelTest {
 
         @Override
         public void fireCurrentValueChanged(ConfigKey configKey, String oldValue, String newValue, String validValue) {
-			currentValueChanged++;
-		}
+            currentValueChanged++;
+        }
 
-		@Override
-		public void fireConfigKeyCleared() {
-			cleared++;
-		}
+        @Override
+        public void fireConfigKeyCleared() {
+            cleared++;
+        }
 
-		@Override
-		public void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
-				String currentValue) {
-			removed++;
-		}
+        @Override
+        public void fireConfigKeyRemoved(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+                                         String currentValue) {
+            removed++;
+        }
 
-		@Override
-		public void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
-				String currentValue) {
-			added++;
-		}
+        @Override
+        public void fireConfigKeyAdded(ConfigKey configKey, ConfigFirmProps configFirmProps, ValueParser valueParser,
+                                       String currentValue) {
+            added++;
+        }
 
-		@Override
-		public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
-				ConfigFirmProps newValue) {
-			configFirmProps++;
-		}
+        @Override
+        public void fireConfigFirmPropsChanged(ConfigKey configKey, ConfigFirmProps oldValue,
+                                               ConfigFirmProps newValue) {
+            configFirmProps++;
+        }
 
-		@Override
-		public void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
-			valueParser++;
-		}
+        @Override
+        public void fireValueParserChanged(ConfigKey configKey, ValueParser oldValue, ValueParser newValue) {
+            valueParser++;
+        }
 
         public void reset() {
             currentValueChanged = 0;
@@ -131,50 +131,50 @@ public class DefaultExconfigModelTest {
         model.addObserver(obs2);
     }
 
-	@Test
-	public final void testConstructors() {
-		ExconfigModel foo = new DefaultExconfigModel(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(4, foo.size());
-	}
+    @Test
+    public final void testConstructors() {
+        ExconfigModel foo = new DefaultExconfigModel(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals(4, foo.size());
+    }
 
-	@Test
-	public final void testClear() {
-		model.add(TestExconfigEntries.SUCC_0);
-		model.clear();
+    @Test
+    public final void testClear() {
+        model.add(TestExconfigEntries.SUCC_0);
+        model.clear();
         assertEquals(0, model.size());
         assertEquals(1, obs2.cleared);
-	}
+    }
 
-	@Test
-	public final void testContainsKey() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals(false, model.containsKey(TestExconfigEntries.FAIL_2.getConfigKey()));
-	}
+    @Test
+    public final void testContainsKey() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.FAIL_2.getConfigKey()));
+    }
 
-	@Test
-	public final void testGetCurrentValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals("12450", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals("false", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals("NAN", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
-	}
+    @Test
+    public final void testGetCurrentValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals("12450", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals("false", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertEquals("NAN", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
+    }
 
-	@Test
-	public final void testGetAllCurrentValue() {
+    @Test
+    public final void testGetAllCurrentValue() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
         Map<ConfigKey, String> map = model.getAllCurrentValue();
 
-        assertEquals(true, map.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, map.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, map.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(true, map.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
-        assertEquals(false, map.containsKey(TestExconfigEntries.FAIL_2.getConfigKey()));
+        assertTrue(map.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(map.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(map.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(map.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertFalse(map.containsKey(TestExconfigEntries.FAIL_2.getConfigKey()));
 
-        assertEquals(true, map.containsValue("12450"));
-        assertEquals(true, map.containsValue("false"));
-        assertEquals(true, map.containsValue("NAN"));
-        assertEquals(false, map.containsValue("power overwhelming"));
+        assertTrue(map.containsValue("12450"));
+        assertTrue(map.containsValue("false"));
+        assertTrue(map.containsValue("NAN"));
+        assertFalse(map.containsValue("power overwhelming"));
 
         assertEquals("12450", map.get(TestExconfigEntries.SUCC_0.getConfigKey()));
         assertEquals("false", map.get(TestExconfigEntries.SUCC_1.getConfigKey()));
@@ -182,124 +182,124 @@ public class DefaultExconfigModelTest {
         assertEquals("NAN", map.get(TestExconfigEntries.SUCC_3.getConfigKey()));
     }
 
-	@Test
-	public final void testIsEmpty() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(false, model.isEmpty());
-		model.clear();
-		assertEquals(true, model.isEmpty());
-	}
-
-	@Test
-	public final void testKeySet() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		Set<ConfigKey> keySet = model.keySet();
-
-		assertEquals(true, keySet.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals(true, keySet.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals(true, keySet.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-		assertEquals(true, keySet.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
-		assertEquals(false, keySet.contains(TestExconfigEntries.FAIL_2.getConfigKey()));
-	}
-
-	@Test
-	public final void testAdd() {
-		assertEquals(false, model.add(TestExconfigEntries.FAIL_1));
-        assertEquals(true, model.add(TestExconfigEntries.SUCC_1));
-        assertEquals(1, obs2.added);
-	}
-
-	@Test
-	public final void testAddAll() {
+    @Test
+    public final void testIsEmpty() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
-        assertEquals(4, obs2.added);
-        assertEquals(true, obs1.addedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, obs1.addedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, obs1.addedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(true, obs1.addedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertFalse(model.isEmpty());
+        model.clear();
+        assertTrue(model.isEmpty());
     }
 
-	@Test
-	public final void testRemove() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.remove(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(false, model.remove(TestExconfigEntries.FAIL_0.getConfigKey()));
-        assertEquals(1, obs2.removed);
-	}
+    @Test
+    public final void testKeySet() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        Set<ConfigKey> keySet = model.keySet();
 
-	@Test
-	public final void testRemoveAll() {
+        assertTrue(keySet.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(keySet.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(keySet.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(keySet.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertFalse(keySet.contains(TestExconfigEntries.FAIL_2.getConfigKey()));
+    }
+
+    @Test
+    public final void testAdd() {
+        assertFalse(model.add(TestExconfigEntries.FAIL_1));
+        assertTrue(model.add(TestExconfigEntries.SUCC_1));
+        assertEquals(1, obs2.added);
+    }
+
+    @Test
+    public final void testAddAll() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals(4, obs2.added);
+        assertTrue(obs1.addedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(obs1.addedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(obs1.addedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(obs1.addedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+    }
+
+    @Test
+    public final void testRemove() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.remove(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertFalse(model.remove(TestExconfigEntries.FAIL_0.getConfigKey()));
+        assertEquals(1, obs2.removed);
+    }
+
+    @Test
+    public final void testRemoveAll() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
         model.removeAll(
                 Arrays.asList(TestExconfigEntries.SUCC_1.getConfigKey(), TestExconfigEntries.SUCC_2.getConfigKey()));
 
         assertEquals(2, obs2.removed);
-        assertEquals(true, obs1.removedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, obs1.removedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(false, obs1.removedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(false, obs1.removedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertTrue(obs1.removedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(obs1.removedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertFalse(obs1.removedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertFalse(obs1.removedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
 
-        assertEquals(true, model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(false, model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(false, model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(true, model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
 
     }
 
-	@Test
-	public final void testRetainAll() {
+    @Test
+    public final void testRetainAll() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
         model.retainAll(
                 Arrays.asList(TestExconfigEntries.SUCC_1.getConfigKey(), TestExconfigEntries.SUCC_2.getConfigKey()));
 
         assertEquals(2, obs2.removed);
-        assertEquals(false, obs1.removedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(false, obs1.removedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(true, obs1.removedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, obs1.removedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertFalse(obs1.removedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertFalse(obs1.removedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(obs1.removedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(obs1.removedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
 
-        assertEquals(false, model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(false, model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
     }
 
-	@Test
-	public final void testIsValueValid() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
+    @Test
+    public final void testIsValueValid() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
 
-		assertEquals(true, model.isValueValid(TestExconfigEntries.SUCC_0.getConfigKey(), "1"));
-		assertEquals(true, model.isValueValid(TestExconfigEntries.SUCC_0.getConfigKey(), "NAN"));
-		assertEquals(true, model.isValueValid(TestExconfigEntries.SUCC_1.getConfigKey(), "true"));
-		assertEquals(true, model.isValueValid(TestExconfigEntries.SUCC_1.getConfigKey(), "treu"));
-	}
+        assertTrue(model.isValueValid(TestExconfigEntries.SUCC_0.getConfigKey(), "1"));
+        assertTrue(model.isValueValid(TestExconfigEntries.SUCC_0.getConfigKey(), "NAN"));
+        assertTrue(model.isValueValid(TestExconfigEntries.SUCC_1.getConfigKey(), "true"));
+        assertTrue(model.isValueValid(TestExconfigEntries.SUCC_1.getConfigKey(), "treu"));
+    }
 
-	@Test
-	public final void testGetValidValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
+    @Test
+    public final void testGetValidValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
 
-		assertEquals("12450", model.getValidValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals("false", model.getValidValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals("0", model.getValidValue(TestExconfigEntries.SUCC_2.getConfigKey()));
-		assertEquals("0", model.getValidValue(TestExconfigEntries.SUCC_3.getConfigKey()));
-	}
+        assertEquals("12450", model.getValidValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals("false", model.getValidValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertEquals("0", model.getValidValue(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertEquals("0", model.getValidValue(TestExconfigEntries.SUCC_3.getConfigKey()));
+    }
 
-	@Test
-	public final void testGetConfigFirmProps() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_0.getConfigKey()).getDefaultValue());
-		assertEquals("true", model.getConfigFirmProps(TestExconfigEntries.SUCC_1.getConfigKey()).getDefaultValue());
-		assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_2.getConfigKey()).getDefaultValue());
-		assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_3.getConfigKey()).getDefaultValue());
-	}
+    @Test
+    public final void testGetConfigFirmProps() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_0.getConfigKey()).getDefaultValue());
+        assertEquals("true", model.getConfigFirmProps(TestExconfigEntries.SUCC_1.getConfigKey()).getDefaultValue());
+        assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_2.getConfigKey()).getDefaultValue());
+        assertEquals("0", model.getConfigFirmProps(TestExconfigEntries.SUCC_3.getConfigKey()).getDefaultValue());
+    }
 
-	@Test
-	public final void testSetConfigFirmProps() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.setConfigFirmProps(TestExconfigEntries.SUCC_0.getConfigKey(), new ConfigFirmProps() {
+    @Test
+    public final void testSetConfigFirmProps() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.setConfigFirmProps(TestExconfigEntries.SUCC_0.getConfigKey(), new ConfigFirmProps() {
 
-			final BooleanConfigChecker checker = new BooleanConfigChecker();
-			final String defaultValue = "true";
+            final BooleanConfigChecker checker = new BooleanConfigChecker();
+            final String defaultValue = "true";
 
             @Override
             public String getDefaultValue() {
@@ -312,9 +312,9 @@ public class DefaultExconfigModelTest {
             }
         }));
         assertEquals(1, obs2.configFirmProps);
-        assertEquals(true, obs1.configFirmPropsChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(obs1.configFirmPropsChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
         assertEquals("true", model.getConfigFirmProps(TestExconfigEntries.SUCC_0.getConfigKey()).getDefaultValue());
-        assertEquals(false, model.setConfigFirmProps(TestExconfigEntries.SUCC_1.getConfigKey(), new ConfigFirmProps() {
+        assertFalse(model.setConfigFirmProps(TestExconfigEntries.SUCC_1.getConfigKey(), new ConfigFirmProps() {
 
             final BooleanConfigChecker checker = new BooleanConfigChecker();
             final String defaultValue = "0";
@@ -330,116 +330,116 @@ public class DefaultExconfigModelTest {
             }
         }));
         assertEquals(1, obs2.configFirmProps);
-        assertEquals(false, obs1.configFirmPropsChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertFalse(obs1.configFirmPropsChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
     }
 
-	@Test
-	public final void testSetCurrentValue() {
+    @Test
+    public final void testSetCurrentValue() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
-        assertEquals(false, model.setCurrentValue(TestExconfigEntries.FAIL_2.getConfigKey(), "foo"));
-        assertEquals(true, model.setCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey(), "foo"));
-        assertEquals(true, model.setCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey(), "foo"));
-        assertEquals(true, model.setCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey(), "foo"));
+        assertFalse(model.setCurrentValue(TestExconfigEntries.FAIL_2.getConfigKey(), "foo"));
+        assertTrue(model.setCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey(), "foo"));
+        assertTrue(model.setCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey(), "foo"));
+        assertTrue(model.setCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey(), "foo"));
         assertEquals(3, obs2.currentValueChanged);
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
         assertEquals("NAN", model.getCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(false, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertFalse(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
     }
 
-	@Test
-	public final void testSetAllCurrentValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		Map<ConfigKey, String> map = new HashMap<>();
+    @Test
+    public final void testSetAllCurrentValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        Map<ConfigKey, String> map = new HashMap<>();
 
-		map.put(TestExconfigEntries.FAIL_2.getConfigKey(), "foo");
-        assertEquals(false, model.setAllCurrentValue(map));
+        map.put(TestExconfigEntries.FAIL_2.getConfigKey(), "foo");
+        assertFalse(model.setAllCurrentValue(map));
         assertEquals(0, obs2.currentValueChanged);
 
         map.put(TestExconfigEntries.SUCC_0.getConfigKey(), "foo");
         map.put(TestExconfigEntries.SUCC_1.getConfigKey(), "foo");
         map.put(TestExconfigEntries.SUCC_2.getConfigKey(), "foo");
-        assertEquals(true, model.setAllCurrentValue(map));
+        assertTrue(model.setAllCurrentValue(map));
         assertEquals(3, obs2.currentValueChanged);
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
         assertEquals("foo", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
         assertEquals("NAN", model.getCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
-        assertEquals(true, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
-        assertEquals(false, obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertFalse(obs1.currentValueChangedList.contains(TestExconfigEntries.SUCC_3.getConfigKey()));
     }
 
-	@Test
-	public final void testResetCurrentValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.resetCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals(true, model.resetCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals(true, model.resetCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
-		assertEquals(true, model.resetCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
-		assertEquals(true, model.resetCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals("true", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
+    @Test
+    public final void testResetCurrentValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.resetCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(model.resetCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(model.resetCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(model.resetCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
+        assertTrue(model.resetCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals("true", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
         assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
         assertEquals(5, obs2.currentValueChanged);
-	}
+    }
 
-	@Test
-	public final void testResetAllCurrentValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.resetAllCurrentValue());
-		assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals("true", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-		assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
+    @Test
+    public final void testResetAllCurrentValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.resetAllCurrentValue());
+        assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals("true", model.getCurrentValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_2.getConfigKey()));
         assertEquals("0", model.getCurrentValue(TestExconfigEntries.SUCC_3.getConfigKey()));
         assertEquals(4, obs2.currentValueChanged);
-	}
+    }
 
-	@Test
-	public final void testGetValueParser() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(12450, model.getValueParser(TestExconfigEntries.SUCC_0.getConfigKey()).parseValue("12450"));
-		assertEquals(false, model.getValueParser(TestExconfigEntries.SUCC_1.getConfigKey()).parseValue("false"));
-	}
+    @Test
+    public final void testGetValueParser() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals(12450, model.getValueParser(TestExconfigEntries.SUCC_0.getConfigKey()).parseValue("12450"));
+        assertEquals(false, model.getValueParser(TestExconfigEntries.SUCC_1.getConfigKey()).parseValue("false"));
+    }
 
-	@Test
-	public final void testSetValueParser() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(true, model.setValueParser(TestExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
-        assertEquals(true, model.setValueParser(TestExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
+    @Test
+    public final void testSetValueParser() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertTrue(model.setValueParser(TestExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
+        assertTrue(model.setValueParser(TestExconfigEntries.SUCC_0.getConfigKey(), new BooleanValueParser()));
         assertEquals(2, obs2.valueParser);
         assertEquals(false, model.getValueParser(TestExconfigEntries.SUCC_0.getConfigKey()).parseValue("12450"));
-		assertEquals(false, model.getValueParser(TestExconfigEntries.SUCC_0.getConfigKey()).parseValue("false"));
-	}
+        assertEquals(false, model.getValueParser(TestExconfigEntries.SUCC_0.getConfigKey()).parseValue("false"));
+    }
 
-	@Test
-	public final void testGetParsedValueConfigKey() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(12450, model.getParsedValue(TestExconfigEntries.SUCC_0.getConfigKey()));
-		assertEquals(false, model.getParsedValue(TestExconfigEntries.SUCC_1.getConfigKey()));
-	}
+    @Test
+    public final void testGetParsedValueConfigKey() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertEquals(12450, model.getParsedValue(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertEquals(false, model.getParsedValue(TestExconfigEntries.SUCC_1.getConfigKey()));
+    }
 
-	@Test
-	public final void testGetParsedValueConfigKeyClassOfT() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
+    @Test
+    public final void testGetParsedValueConfigKeyClassOfT() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
         assertEquals((Integer) 12450, model.getParsedValue(TestExconfigEntries.SUCC_0.getConfigKey(), Integer.class));
         assertEquals(false, model.getParsedValue(TestExconfigEntries.SUCC_1.getConfigKey(), Boolean.class));
-	}
+    }
 
-	@Test
-	public final void testSetParsedValue() {
-		model.addAll(Arrays.asList(TestExconfigEntries.values()));
-		assertEquals(false, model.setParsedValue(TestExconfigEntries.SUCC_0.getConfigKey(), null));
-		assertEquals(true, model.setParsedValue(TestExconfigEntries.SUCC_0.getConfigKey(), 3306));
+    @Test
+    public final void testSetParsedValue() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        assertFalse(model.setParsedValue(TestExconfigEntries.SUCC_0.getConfigKey(), null));
+        assertTrue(model.setParsedValue(TestExconfigEntries.SUCC_0.getConfigKey(), 3306));
         assertEquals("3306", model.getCurrentValue(TestExconfigEntries.SUCC_0.getConfigKey()));
         assertEquals(TestExconfigEntries.SUCC_0.getConfigKey(), obs1.currentValueChangedList.get(0));
-	}
+    }
 
     @Test
     public final void testRemoveObserver() {
@@ -448,5 +448,4 @@ public class DefaultExconfigModelTest {
         assertEquals(0, obs1.addedList.size());
         assertEquals(4, obs2.added);
     }
-
 }

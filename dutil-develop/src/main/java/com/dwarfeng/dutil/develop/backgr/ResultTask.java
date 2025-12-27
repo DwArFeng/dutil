@@ -11,6 +11,7 @@ import java.util.WeakHashMap;
  *
  * <p>
  * 该任务可以在执行过程中返回一个具体结果，通过方法 {@link #getResult()} 来调用。
+ *
  * <p>
  * 在任务的执行过程中，可以通过调用 {@link #setResult(Object)}
  * 来设置任务的结果。任务结果应该在任务被调用的过程中设置完毕，一旦任务结束后，该结果不应继续改变。对于正在运行的任务，可以先调用
@@ -63,5 +64,4 @@ public abstract class ResultTask<V> extends AbstractTask {
     protected void setResult(V result) {
         this.result = result;
     }
-
 }

@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 后台接口。
+ *
  * <p>
  * 后台用于处理向其中提交的任务，通常来讲，后台拥有自己的线程，因此后台的方法可以与程序前台的方法同步执行。
  * 正是由于后台的多线程性质，所有的后台均是线程安全的，并且实现了外部读写安全接口。
@@ -28,6 +29,7 @@ public interface Background extends ExternalReadWriteThreadSafe, ObserverSet<Bac
 
     /**
      * 向后台中提交指定的任务。
+     *
      * <p>
      * 只有非 <code>null</code> 且还未开始的任务才可提交成功。
      *
@@ -61,6 +63,7 @@ public interface Background extends ExternalReadWriteThreadSafe, ObserverSet<Bac
      *
      * <p>
      * 当后台关闭时，后台会拒绝后续的任务提交，已提交的任务则不受影响。
+     *
      * <p>
      * 当已提交的所有任务执行完毕后，后台则会被终结。
      */
@@ -100,11 +103,11 @@ public interface Background extends ExternalReadWriteThreadSafe, ObserverSet<Bac
 
     /**
      * 获取由后台中所有的任务组成的集合。
+     *
      * <p>
      * 该集合是只读的。
      *
      * @return 由后台中的所有任务组成的集合。
      */
     Set<Task> tasks();
-
 }

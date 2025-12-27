@@ -17,8 +17,10 @@ import java.util.concurrent.locks.Condition;
  *
  * <p>
  * 利用列表实现的计时器。
+ *
  * <p>
  * 请不要用任何手段（比如反射）中止该类实例中的线程，因为这样做会引发不可预料的结果。
+ *
  * <p>
  * 根据计时器的文档，列表计时器中的任务都是单独的，即使该计时器内部由一个 List 维护，也不能向其中添加已经存在的任务。
  *
@@ -343,7 +345,7 @@ public class ListTimer extends AbstractTimer {
                     return;
                 }
 
-                // 取出计划列表中距离执行时间最近的一个计划（第0个计划）
+                // 取出计划列表中距离执行时间最近的一个计划（第 0 个计划）
                 aimPlan = plans.get(0);
             } finally {
                 lock.writeLock().unlock();
@@ -356,8 +358,8 @@ public class ListTimer extends AbstractTimer {
             // 判断系统时间是否大于其下一个执行时间。
             if (systemTime >= aimPlanRunTime) {
                 // 执行当前计划。
-                // 注：根据Plan的协议，在Plan运行完毕后会通知观察器。而 ListTimer 中的侦听
-                // PlanInspect负责判断该计划的进一步动作，是继续运行还是被移除。
+                // 注：根据 Plan 的协议，在 Plan 运行完毕后会通知观察器。而 ListTimer 中的侦听
+                // PlanInspect 负责判断该计划的进一步动作，是继续运行还是被移除。
                 try {
                     aimPlan.run();
                 } catch (Exception e) {
@@ -371,13 +373,13 @@ public class ListTimer extends AbstractTimer {
                         // 移除计划，并查看该计划移除后是否是最后一个计划。
                         removePlan(aimPlan, true);
                         if (plans.isEmpty()) {
-                            // 将终结标识置为true，通知观察器，并唤醒计时器线程，通知 awaitTerminal方法。
+                            // 将终结标识置为 true，通知观察器，并唤醒计时器线程，通知 awaitTerminal 方法。
                             terminateFlag = true;
                             fireTerminated();
                             signalCondition();
                         }
                     } else {
-                        // 判断 nextRunTime是否小于0
+                        // 判断 nextRunTime 是否小于 0
                         if (aimPlan.getNextRunTime() < 0) {
                             // 移除计划。
                             removePlan(aimPlan, true);
@@ -412,23 +414,23 @@ public class ListTimer extends AbstractTimer {
             try {
                 // 检查队列是否为空。
                 if (plans.isEmpty()) {
-                    // 将终结标识置为true，通知观察器，并唤醒计时器线程，通知 awaitTerminal方法。
+                    // 将终结标识置为 true，通知观察器，并唤醒计时器线程，通知 awaitTerminal 方法。
                     terminateFlag = true;
                     fireTerminated();
                     signalCondition();
                     return;
                 }
-                // 判断第0个元素是否正在执行
+                // 判断第 0 个元素是否正在执行
                 if (!plans.get(0).isRunning()) {
                     // 如果不在执行，则直接清除队列中的所有元素。
                     plans.clear();
                     firePlanCleared();
-                    // 将终结标识置为true，通知观察器，并唤醒计时器线程，通知 awaitTerminal方法。
+                    // 将终结标识置为 true，通知观察器，并唤醒计时器线程，通知 awaitTerminal 方法。
                     terminateFlag = true;
                     fireTerminated();
                     signalCondition();
                 } else {
-                    // 删除除了第0个元素之外的所有元素（除了第0个元素之外，剩下的元素一定没有执行。）;
+                    // 删除除了第 0 个元素之外的所有元素（除了第 0 个元素之外，剩下的元素一定没有执行。）;
                     if (plans.size() >= 2) {
                         for (int i = plans.size() - 1; i > 0; i--) {
                             Plan plan = plans.get(i);
@@ -459,5 +461,4 @@ public class ListTimer extends AbstractTimer {
                 firePlanRemoved(plan);
         }
     }
-
 }

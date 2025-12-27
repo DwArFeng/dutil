@@ -8,6 +8,7 @@ import java.util.*;
 
 /**
  * 代理列表模型。
+ *
  * <p>
  * 通过代理一个 {@link List} 实现列表模型。
  *
@@ -155,7 +156,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     public boolean remove(Object o) {
         int index = delegate.indexOf(o);
         if (delegate.remove(o)) {
-            // 只要代理能移除该对象，该对象一定属于类型E，该转换是安全的。
+            // 只要代理能移除该对象，该对象一定属于类型 E，该转换是安全的。
             @SuppressWarnings("unchecked")
             E e = (E) o;
             fireRemoved(index, e);
@@ -552,7 +553,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         public boolean remove(Object o) {
             int index = subDelegate.indexOf(o);
             if (subDelegate.remove(o)) {
-                // 只要代理能移除该对象，该对象一定属于类型E，该转换是安全的。
+                // 只要代理能移除该对象，该对象一定属于类型 E，该转换是安全的。
                 @SuppressWarnings("unchecked")
                 E e = (E) o;
                 fireRemoved(index + offset, e);

@@ -1,18 +1,5 @@
 package com.dwarfeng.dutil.develop.i18n.io;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Supplier;
-
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
 import com.dwarfeng.dutil.basic.DwarfUtil;
 import com.dwarfeng.dutil.basic.ExceptionStringKey;
 import com.dwarfeng.dutil.basic.io.LoadFailedException;
@@ -20,169 +7,175 @@ import com.dwarfeng.dutil.basic.io.StreamLoader;
 import com.dwarfeng.dutil.basic.str.FactoriesByString;
 import com.dwarfeng.dutil.develop.i18n.I18nHandler;
 import com.dwarfeng.dutil.develop.i18n.PropUrlI18nInfo;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
+import java.util.function.Supplier;
 
 /**
- * Xml属性资源国际化读取器。
+ * Xml 属性资源国际化读取器。
+ *
  * <p>
- * 通过Xml文件和 properties 包内资源向国际化处理器中读取数据的读取器。
- * 
+ * 通过 Xml 文件和 properties 包内资源向国际化处理器中读取数据的读取器。
+ *
  * <p>
  * Xml 文件的格式如下：
- * 
+ *
  * <pre>
  * &lt;root&gt;
  * 	 &lt;info-default name="默认" resource="directory/zh_CN.properties"/&gt;
  * 	 &lt;info locale="en_US" name="English" resource="directory/en_US.properties"/&gt;
- *	 &lt;info locale="en_US" name="English" resource="directory/en_US.properties"/&gt;
- *	 &lt;info locale="zh_CN" name="简体中文" resource="directory/zh_CN.properties"/&gt;
- *	 &lt;info locale="ja_JP" name="日本語" resource="directory/ja_JP.properties"/&gt;
+ * 	 &lt;info locale="en_US" name="English" resource="directory/en_US.properties"/&gt;
+ * 	 &lt;info locale="zh_CN" name="简体中文" resource="directory/zh_CN.properties"/&gt;
+ * 	 &lt;info locale="ja_JP" name="日本語" resource="directory/ja_JP.properties"/&gt;
  * &lt;/root&gt;
  * </pre>
- * 
+ *
  * @author DwArFeng
  * @since 0.1.1-beta
  */
 public class XmlPropResourceI18nLoader extends StreamLoader<I18nHandler> {
 
-	protected static final String MARK_INFO_DEFAULT = "info-default";
-	protected static final String MARK_INFO = "info";
+    protected static final String MARK_INFO_DEFAULT = "info-default";
+    protected static final String MARK_INFO = "info";
 
-	protected static final String MARK_LOCALE = "locale";
-	protected static final String MARK_NAME = "name";
-	protected static final String MARK_RESOURCE = "resource";
+    protected static final String MARK_LOCALE = "locale";
+    protected static final String MARK_NAME = "name";
+    protected static final String MARK_RESOURCE = "resource";
 
-	protected static final Supplier<? extends IllegalArgumentException> EXCEPTION_SUPPLIER_LOSSING_PROPERTY = () -> new IllegalArgumentException(
-			DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
+    protected static final Supplier<? extends IllegalArgumentException> EXCEPTION_SUPPLIER_LOSSING_PROPERTY = () -> new IllegalArgumentException(
+            DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_3));
 
-	private boolean readFlag = false;
+    private boolean readFlag = false;
 
-	/**
-	 * 生成一个具有指定输入流的 xml属性资源国际化读取器。
-	 * 
-	 * @param in
-	 *            指定的输入流。
-	 * @throws NullPointerException
-	 *             入口参数为 <code>null</code>。
-	 */
-	public XmlPropResourceI18nLoader(InputStream in) {
-		super(in);
-	}
+    /**
+     * 生成一个具有指定输入流的 xml 属性资源国际化读取器。
+     *
+     * @param in 指定的输入流。
+     * @throws NullPointerException 入口参数为 <code>null</code>。
+     */
+    public XmlPropResourceI18nLoader(InputStream in) {
+        super(in);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void load(I18nHandler i18nHandler) throws LoadFailedException, IllegalStateException {
-		if (readFlag)
-			throw new IllegalStateException(
-					DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void load(I18nHandler i18nHandler) throws LoadFailedException, IllegalStateException {
+        if (readFlag)
+            throw new IllegalStateException(
+                    DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
 
-		Objects.requireNonNull(i18nHandler,
-				DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
+        Objects.requireNonNull(i18nHandler,
+                DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
 
-		try {
-			readFlag = true;
+        try {
+            readFlag = true;
 
-			SAXReader reader = new SAXReader();
-			Element root = reader.read(in).getRootElement();
+            SAXReader reader = new SAXReader();
+            Element root = reader.read(in).getRootElement();
 
-			loadDefaultInfo(i18nHandler, root);
+            loadDefaultInfo(i18nHandler, root);
 
-			/*
-			 * 根据 dom4j 的相关说明，此处转换是安全的。
-			 */
-			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
+            /*
+             * 根据 dom4j 的相关说明，此处转换是安全的。
+             */
+            @SuppressWarnings("unchecked")
+            List<Element> infos = root.elements(MARK_INFO);
 
-			for (Element info : infos) {
-				loadInfo(i18nHandler, info);
-			}
+            for (Element info : infos) {
+                loadInfo(i18nHandler, info);
+            }
 
-		} catch (Exception e) {
-			throw new LoadFailedException(DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2));
-		}
-	}
+        } catch (Exception e) {
+            throw new LoadFailedException(DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2));
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Set<LoadFailedException> countinuousLoad(I18nHandler i18nHandler) throws IllegalStateException {
-		if (readFlag)
-			throw new IllegalStateException(
-					DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<LoadFailedException> countinuousLoad(I18nHandler i18nHandler) throws IllegalStateException {
+        if (readFlag)
+            throw new IllegalStateException(
+                    DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_0));
 
-		Objects.requireNonNull(i18nHandler,
-				DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
+        Objects.requireNonNull(i18nHandler,
+                DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_1));
 
-		final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
-		try {
-			readFlag = true;
+        final Set<LoadFailedException> exceptions = new LinkedHashSet<>();
+        try {
+            readFlag = true;
 
-			SAXReader reader = new SAXReader();
-			Element root = reader.read(in).getRootElement();
+            SAXReader reader = new SAXReader();
+            Element root = reader.read(in).getRootElement();
 
-			try {
-				loadDefaultInfo(i18nHandler, root);
-			} catch (Exception e) {
-				exceptions.add(new LoadFailedException(
-						DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
-			}
+            try {
+                loadDefaultInfo(i18nHandler, root);
+            } catch (Exception e) {
+                exceptions.add(new LoadFailedException(
+                        DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
+            }
 
-			/*
-			 * 根据 dom4j 的相关说明，此处转换是安全的。
-			 */
-			@SuppressWarnings("unchecked")
-			List<Element> infos = (List<Element>) root.elements(MARK_INFO);
+            /*
+             * 根据 dom4j 的相关说明，此处转换是安全的。
+             */
+            @SuppressWarnings("unchecked")
+            List<Element> infos = root.elements(MARK_INFO);
 
-			for (Element info : infos) {
-				try {
-					loadInfo(i18nHandler, info);
-				} catch (Exception e) {
-					exceptions.add(new LoadFailedException(
-							DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
-				}
+            for (Element info : infos) {
+                try {
+                    loadInfo(i18nHandler, info);
+                } catch (Exception e) {
+                    exceptions.add(new LoadFailedException(
+                            DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
+                }
 
-			}
+            }
 
-		} catch (Exception e) {
-			exceptions.add(new LoadFailedException(
-					DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
-		}
+        } catch (Exception e) {
+            exceptions.add(new LoadFailedException(
+                    DwarfUtil.getExceptionString(ExceptionStringKey.XMLPROPRESOURCEI18NLOADER_2), e));
+        }
 
-		return exceptions;
+        return exceptions;
 
-	}
+    }
 
-	private void loadDefaultInfo(I18nHandler i18nHandler, Element root) throws LoadFailedException {
-		Element defaultInfo;
+    private void loadDefaultInfo(I18nHandler i18nHandler, Element root) throws LoadFailedException {
+        Element defaultInfo;
 
-		// 默认信息存在判断。
-		// 由于默认信息不是必须存在的，所以应该首先判断默认信息是否存在，如果存在，执行相应逻辑；如果不存在，直接退出。
-		if (Objects.nonNull(defaultInfo = root.element(MARK_INFO_DEFAULT))) {
-			// 信息存在，执行相应逻辑。
-			String defaultNameString = Optional.ofNullable(defaultInfo.attributeValue(MARK_NAME))
-					.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
-			String defaultResourceString = Optional.ofNullable(defaultInfo.attributeValue(MARK_RESOURCE))
-					.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+        // 默认信息存在判断。
+        // 由于默认信息不是必须存在的，所以应该首先判断默认信息是否存在，如果存在，执行相应逻辑；如果不存在，直接退出。
+        if (Objects.nonNull(defaultInfo = root.element(MARK_INFO_DEFAULT))) {
+            // 信息存在，执行相应逻辑。
+            String defaultNameString = Optional.ofNullable(defaultInfo.attributeValue(MARK_NAME))
+                    .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+            String defaultResourceString = Optional.ofNullable(defaultInfo.attributeValue(MARK_RESOURCE))
+                    .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
 
-			URL defaultUrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
+            URL defaultUrl = XmlPropResourceI18nLoader.class.getResource(defaultResourceString);
 
-			i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
-		}
-	}
+            i18nHandler.add(new PropUrlI18nInfo(null, defaultNameString, defaultUrl));
+        }
+    }
 
-	private void loadInfo(I18nHandler i18nHandler, Element info) throws LoadFailedException {
-		String localeString = Optional.ofNullable(info.attributeValue(MARK_LOCALE))
-				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
-		String nameString = Optional.ofNullable(info.attributeValue(MARK_NAME))
-				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
-		String resourceString = Optional.ofNullable(info.attributeValue(MARK_RESOURCE))
-				.orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+    private void loadInfo(I18nHandler i18nHandler, Element info) throws LoadFailedException {
+        String localeString = Optional.ofNullable(info.attributeValue(MARK_LOCALE))
+                .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+        String nameString = Optional.ofNullable(info.attributeValue(MARK_NAME))
+                .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
+        String resourceString = Optional.ofNullable(info.attributeValue(MARK_RESOURCE))
+                .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
 
-		URL url = XmlPropResourceI18nLoader.class.getResource(resourceString);
-		Locale locale = FactoriesByString.newLocale(localeString);
+        URL url = XmlPropResourceI18nLoader.class.getResource(resourceString);
+        Locale locale = FactoriesByString.newLocale(localeString);
 
-		i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
-	}
+        i18nHandler.add(new PropUrlI18nInfo(locale, nameString, url));
+    }
 }

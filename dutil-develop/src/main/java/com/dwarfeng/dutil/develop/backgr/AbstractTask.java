@@ -13,8 +13,10 @@ import java.util.concurrent.locks.*;
 
 /**
  * 抽象任务。
+ *
  * <p>
  * 任务接口的抽象实现。
+ *
  * <p>
  * 该类良好地定义了 <code>run</code>方法，并且在<code>run</code> 方法中执行<code>todo</code>
  * 方法，<code>todo</code>方法中填写需要实现的具体任务。
@@ -309,6 +311,7 @@ public abstract class AbstractTask implements Task {
 
     /**
      * 抽象任务需要实现的具体任务。
+     *
      * <p>
      * 该方法允许抛出异常，如果抛出异常，任务则会终止，并且调用 {@link AbstractTask#getThrowable()}
      * 方法会返回抛出的异常。
@@ -316,5 +319,4 @@ public abstract class AbstractTask implements Task {
      * @throws Exception 抛出的异常。
      */
     protected abstract void todo() throws Exception;
-
 }

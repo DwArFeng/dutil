@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 任务接口。
+ *
  * <p>
  * 任务接口用于定义一项任务，该任务可用于在后台中执行。
  *
@@ -48,6 +49,7 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObserverSet
 
     /**
      * 获取任务的异常。
+     *
      * <p>
      * 如果没有异常，则返回 <code>null</code>。
      *
@@ -59,6 +61,7 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObserverSet
 
     /**
      * 获取任务的可抛出对象。
+     *
      * <p>
      * 如果任务执行一切顺利，没有异常或者错误，则返回 <code>null</code>。
      *
@@ -68,6 +71,7 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObserverSet
 
     /**
      * 等待该过程执行完毕。
+     *
      * <p>
      * 调用该方法的线程会在过程执行完毕之前一直阻塞。
      *
@@ -85,5 +89,4 @@ public interface Task extends Runnable, ExternalReadWriteThreadSafe, ObserverSet
      * @throws InterruptedException 线程在阻塞的时候被中断。
      */
     boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException;
-
 }

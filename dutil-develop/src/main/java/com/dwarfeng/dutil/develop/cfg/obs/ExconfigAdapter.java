@@ -5,7 +5,7 @@ import com.dwarfeng.dutil.develop.cfg.ConfigKey;
 import com.dwarfeng.dutil.develop.cfg.struct.ValueParser;
 
 /**
- * Ex配置模型适配器。
+ * Ex 配置模型适配器。
  *
  * @author DwArFeng
  * @since 0.1.0-beta

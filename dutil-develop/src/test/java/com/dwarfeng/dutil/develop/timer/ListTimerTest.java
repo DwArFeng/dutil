@@ -209,5 +209,4 @@ public class ListTimerTest {
         assertTrue(plans.contains(plan_2));
         assertTrue(plans.contains(plan_3));
     }
-
 }

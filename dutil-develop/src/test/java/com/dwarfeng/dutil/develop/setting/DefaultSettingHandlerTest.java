@@ -465,5 +465,4 @@ public class DefaultSettingHandlerTest {
                 Test_SettingEnumItem.ENTRY_3, Test_SettingEnumItem.ENTRY_4}, anotherHandler);
         assertTrue(handler.equals(anotherHandler));
     }
-
 }

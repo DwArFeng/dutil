@@ -7,6 +7,7 @@ import com.dwarfeng.dutil.basic.io.StringOutputStream;
 import org.junit.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -77,7 +78,7 @@ public class DelegateLoggerHandlerTest {
         assertTrue(handler.add(loggerInfo1));
         assertTrue(handler.add(loggerInfo2));
         assertFalse(handler.add(loggerInfo1));
-        // 根据DelegateLoggerHandler默认的代理键值集合的性质，是允许
+        // 根据 DelegateLoggerHandler 默认的代理键值集合的性质，是允许
         // null 元素被添加的，但是注意，use(null)是不被允许的。
         assertTrue(handler.add(null));
         assertArrayEquals(new Object[]{loggerInfo1, loggerInfo2, null}, obv.addedList.toArray());
@@ -86,7 +87,7 @@ public class DelegateLoggerHandlerTest {
     @Test
     public void testAddAll() {
         assertTrue(handler.addAll(Arrays.asList(loggerInfo1, loggerInfo1, loggerInfo1)));
-        assertTrue(handler.addAll(Arrays.asList((LoggerInfo) null)));
+        assertTrue(handler.addAll(Collections.singletonList((LoggerInfo) null)));
         assertTrue(handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null)));
         assertFalse(handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null)));
         assertArrayEquals(new Object[]{loggerInfo1, null, loggerInfo2}, obv.addedList.toArray());
@@ -112,8 +113,8 @@ public class DelegateLoggerHandlerTest {
     @Test
     public void testContainsAll() {
         handler.addAll(Arrays.asList(loggerInfo1, null));
-        assertTrue(handler.containsAll(Arrays.asList(loggerInfo1)));
-        assertTrue(handler.containsAll(Arrays.asList((LoggerInfo) null)));
+        assertTrue(handler.containsAll(Collections.singletonList(loggerInfo1)));
+        assertTrue(handler.containsAll(Collections.singletonList((LoggerInfo) null)));
         assertTrue(handler.containsAll(Arrays.asList(loggerInfo1, null)));
         assertFalse(handler.containsAll(Arrays.asList(loggerInfo1, loggerInfo2)));
         assertFalse(handler.containsAll(Arrays.asList(loggerInfo2, null)));
@@ -123,8 +124,8 @@ public class DelegateLoggerHandlerTest {
     @Test
     public void testContainsAllKey() {
         handler.addAll(Arrays.asList(loggerInfo1, null));
-        assertTrue(handler.containsAllKey(Arrays.asList("out1")));
-        assertTrue(handler.containsAllKey(Arrays.asList((LoggerInfo) null)));
+        assertTrue(handler.containsAllKey(Collections.singletonList("out1")));
+        assertTrue(handler.containsAllKey(Collections.singletonList((LoggerInfo) null)));
         assertTrue(handler.containsAllKey(Arrays.asList("out1", null)));
         assertFalse(handler.containsAllKey(Arrays.asList("out1", "out2")));
         assertFalse(handler.containsAllKey(Arrays.asList("out2", null)));
@@ -211,12 +212,10 @@ public class DelegateLoggerHandlerTest {
         assertFalse(iterator.hasNext());
         if (Objects.equals(obj1, loggerInfo1)) {
             assertEquals(obj2, loggerInfo2);
-            return;
         } else if (Objects.equals(obj1, loggerInfo2)) {
             assertEquals(obj2, loggerInfo1);
-            return;
         } else {
-            fail("testIterator方法异常");
+            fail("testIterator 方法异常");
         }
     }
 
@@ -250,11 +249,11 @@ public class DelegateLoggerHandlerTest {
     public void testRemoveAllKey() {
         handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
         handler.useAll();
-        assertTrue(handler.removeAllKey(Arrays.asList("out2")));
-        assertFalse(handler.removeAllKey(Arrays.asList("out2")));
+        assertTrue(handler.removeAllKey(Collections.singletonList("out2")));
+        assertFalse(handler.removeAllKey(Collections.singletonList("out2")));
         assertEquals(1, handler.usedLoggers().size());
-        assertTrue(handler.removeAllKey(Arrays.asList("out1")));
-        assertFalse(handler.removeAllKey(Arrays.asList("out1")));
+        assertTrue(handler.removeAllKey(Collections.singletonList("out1")));
+        assertFalse(handler.removeAllKey(Collections.singletonList("out1")));
         assertEquals(0, handler.usedLoggers().size());
         assertEquals(1, handler.size());
         assertTrue(obv.removedList.contains(loggerInfo1));
@@ -286,8 +285,8 @@ public class DelegateLoggerHandlerTest {
         assertFalse(handler.contains(null));
         assertTrue(handler.contains(loggerInfo1));
         assertTrue(handler.contains(loggerInfo2));
-        assertTrue(handler.retainAll(Arrays.asList(loggerInfo1)));
-        assertFalse(handler.retainAll(Arrays.asList(loggerInfo1)));
+        assertTrue(handler.retainAll(Collections.singletonList(loggerInfo1)));
+        assertFalse(handler.retainAll(Collections.singletonList(loggerInfo1)));
         assertTrue(handler.contains(loggerInfo1));
         assertEquals(1, handler.size());
         assertArrayEquals(new Object[]{null, loggerInfo2}, obv.removedList.toArray());
@@ -301,8 +300,8 @@ public class DelegateLoggerHandlerTest {
         assertFalse(handler.contains(null));
         assertTrue(handler.contains(loggerInfo1));
         assertTrue(handler.contains(loggerInfo2));
-        assertTrue(handler.retainAllKey(Arrays.asList("out1")));
-        assertFalse(handler.retainAllKey(Arrays.asList("out1")));
+        assertTrue(handler.retainAllKey(Collections.singletonList("out1")));
+        assertFalse(handler.retainAllKey(Collections.singletonList("out1")));
         assertTrue(handler.contains(loggerInfo1));
         assertEquals(1, handler.size());
         assertArrayEquals(new Object[]{null, loggerInfo2}, obv.removedList.toArray());
@@ -435,14 +434,14 @@ public class DelegateLoggerHandlerTest {
 
     @Test
     public void testUseKey() {
-        handler.addAll(Arrays.asList(loggerInfo1));
+        handler.addAll(Collections.singletonList(loggerInfo1));
         assertTrue(handler.useKey("out1"));
         assertFalse(handler.useKey("out1"));
         assertFalse(handler.useKey(null));
-        handler.addAll(Arrays.asList((LoggerInfo) null));
+        handler.addAll(Collections.singletonList((LoggerInfo) null));
         assertFalse(handler.useKey(null));
         assertFalse(handler.useKey("out2"));
-        handler.addAll(Arrays.asList(loggerInfo2));
+        handler.addAll(Collections.singletonList(loggerInfo2));
         assertTrue(handler.useKey("out2"));
         assertFalse(handler.useKey("out2"));
     }
@@ -462,10 +461,10 @@ public class DelegateLoggerHandlerTest {
     public void testUnuseAllCollectionOfLoggerInfo() {
         handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
         handler.useAll();
-        assertTrue(handler.unuseAll(Arrays.asList(loggerInfo2)));
-        assertFalse(handler.unuseAll(Arrays.asList(loggerInfo2)));
-        assertTrue(handler.unuseAll(Arrays.asList(loggerInfo1)));
-        assertFalse(handler.unuseAll(Arrays.asList(loggerInfo1)));
+        assertTrue(handler.unuseAll(Collections.singletonList(loggerInfo2)));
+        assertFalse(handler.unuseAll(Collections.singletonList(loggerInfo2)));
+        assertTrue(handler.unuseAll(Collections.singletonList(loggerInfo1)));
+        assertFalse(handler.unuseAll(Collections.singletonList(loggerInfo1)));
         assertArrayEquals(new Object[]{"out2", "out1"}, obv.unusedKeyList.toArray());
     }
 
@@ -484,15 +483,14 @@ public class DelegateLoggerHandlerTest {
     public void testUnuseAllKey() {
         handler.addAll(Arrays.asList(loggerInfo1, loggerInfo2, null));
         handler.useAll();
-        assertTrue(handler.unuseAllKey(Arrays.asList("out2")));
-        assertFalse(handler.unuseAllKey(Arrays.asList("out2")));
-        assertTrue(handler.unuseAllKey(Arrays.asList("out1")));
-        assertFalse(handler.unuseAllKey(Arrays.asList("out1")));
+        assertTrue(handler.unuseAllKey(Collections.singletonList("out2")));
+        assertFalse(handler.unuseAllKey(Collections.singletonList("out2")));
+        assertTrue(handler.unuseAllKey(Collections.singletonList("out1")));
+        assertFalse(handler.unuseAllKey(Collections.singletonList("out1")));
         assertArrayEquals(new Object[]{"out2", "out1"}, obv.unusedKeyList.toArray());
     }
 
     private String cutString(StringOutputStream out) {
         return out.toString().substring(0, out.toString().length() - 2);
     }
-
 }

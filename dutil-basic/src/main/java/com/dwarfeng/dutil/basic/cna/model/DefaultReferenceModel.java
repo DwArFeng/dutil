@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 
 /**
  * 默认引用模型。
+ *
  * <p>
  * 引用模型的默认实现。
  *
@@ -42,7 +43,7 @@ public class DefaultReferenceModel<E> extends AbstractReferenceModel<E> implemen
      *
      * @param initialValue 指定的初始值。
      * @param observers    指定的侦听器集合。
-     * @throws NullPointerException observers为 <code>null</code>。
+     * @throws NullPointerException observers 为 <code>null</code>。
      */
     public DefaultReferenceModel(E initialValue, Set<ReferenceObserver<E>> observers) {
         super(observers);

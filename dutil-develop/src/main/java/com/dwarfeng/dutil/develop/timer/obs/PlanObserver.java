@@ -26,5 +26,4 @@ public interface PlanObserver extends Observer {
      * @param throwable     本次运行抛出的异常，如没有，则为 <code>null</code>。
      */
     void fireFinished(int finishedCount, Throwable throwable);
-
 }

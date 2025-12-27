@@ -30,5 +30,4 @@ public abstract class LoggerAdapter implements LoggerObserver {
     @Override
     public void fireRemoved(LoggerInfo loggerInfo) {
     }
-
 }

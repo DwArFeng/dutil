@@ -27,7 +27,9 @@ public interface SetObserver<E> extends Observer {
 
     /**
      * 通知模型中所有元素被清除。
-     * <p> 该方法是为了优化效率而定义的，因此，在模型执行 {@link SetModel#clear()}的时候，
+     *
+     * <p>
+     * 该方法是为了优化效率而定义的，因此，在模型执行 {@link SetModel#clear()} 时候，
      * 会调用该方法进行通知，而不是 一条条地调用 {@link #fireRemoved(Object)}。
      */
     void fireCleared();

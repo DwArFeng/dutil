@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 计划接口。
+ *
  * <p>
  * 计划接口用于定义一项计划，该计划可以在计时器中周期性地执行。
  *
@@ -24,87 +25,91 @@ import java.util.concurrent.TimeUnit;
  */
 public interface Plan extends Runnable, ExternalReadWriteThreadSafe, ObserverSet<PlanObserver> {
 
-	/**
-	 * 获取该计划是否正在执行中。
-	 *
-	 * @return 该计划是否正在执行中。
-	 */
-	boolean isRunning();
+    /**
+     * 获取该计划是否正在执行中。
+     *
+     * @return 该计划是否正在执行中。
+     */
+    boolean isRunning();
 
-	/**
-	 * 获取该计划本次运行的期望运行时间。
-	 *
-	 * @return 该计划本次运行的期望运行时间。
-	 */
-	long getExpectedRunTime();
+    /**
+     * 获取该计划本次运行的期望运行时间。
+     *
+     * @return 该计划本次运行的期望运行时间。
+     */
+    long getExpectedRunTime();
 
-	/**
-	 * 获取该计划本次运行的实际运行时间。
-	 *
-	 * <p>
-	 * 如果该计划从来没有运行过，则返回 <code>-1</code>。
-	 *
-	 * @return 该计划本次的实际运行时间。
-	 */
-	long getActualRunTime();
+    /**
+     * 获取该计划本次运行的实际运行时间。
+     *
+     * <p>
+     * 如果该计划从来没有运行过，则返回 <code>-1</code>。
+     *
+     * @return 该计划本次的实际运行时间。
+     */
+    long getActualRunTime();
 
-	/**
-	 * 获取该计划的下次运行时间。
-	 *
-	 * <p>
-	 * 注意：在一个运行周期内，反复调用该方法，得到的值应当一致。
-	 * <p>
-	 * 如果返回的时间大于等于0且小于当前的系统时间，那么代表该计划将会立即运行。
-	 * <p>
-	 * 如果返回的时间小于0，那么代表该计划不需要再次运行。
-	 *
-	 * @return 该计划的下次运行时间。
-	 */
-	long getNextRunTime();
+    /**
+     * 获取该计划的下次运行时间。
+     *
+     * <p>
+     * 注意：在一个运行周期内，反复调用该方法，得到的值应当一致。
+     *
+     * <p>
+     * 如果返回的时间大于等于 0 且小于当前的系统时间，那么代表该计划将会立即运行。
+     *
+     * <p>
+     * 如果返回的时间小于 0，那么代表该计划不需要再次运行。
+     *
+     * @return 该计划的下次运行时间。
+     */
+    long getNextRunTime();
 
-	/**
-	 * 获取计划已经执行完毕的次数。
-	 *
-	 * @return 计划已经执行完毕的次数。
-	 */
-	int getFinishedCount();
+    /**
+     * 获取计划已经执行完毕的次数。
+     *
+     * @return 计划已经执行完毕的次数。
+     */
+    int getFinishedCount();
 
-	/**
-	 * 获取计划发生的最后一个异常。
-	 * <p>
-	 * 如果没有异常，则返回 <code>null</code>。
-	 *
-	 * @return 计划发生的最后一个异常。
-	 */
-	Throwable getLastThrowable();
+    /**
+     * 获取计划发生的最后一个异常。
+     *
+     * <p>
+     * 如果没有异常，则返回 <code>null</code>。
+     *
+     * @return 计划发生的最后一个异常。
+     */
+    Throwable getLastThrowable();
 
-	/**
-	 * 获取计划发生最后一个异常的周期。
-	 * <p>
-	 * 当返回值等于 <code>-1</code> 时，代表该计划没有任何异常发生。
-	 *
-	 * @return 计划发生的最后一个异常的周期。
-	 */
-	int getLastThrowableCount();
+    /**
+     * 获取计划发生最后一个异常的周期。
+     *
+     * <p>
+     * 当返回值等于 <code>-1</code> 时，代表该计划没有任何异常发生。
+     *
+     * @return 计划发生的最后一个异常的周期。
+     */
+    int getLastThrowableCount();
 
-	/**
-	 * 等待该过程执行完毕。
-	 * <p>
-	 * 调用该方法的线程会在过程执行完毕之前一直阻塞。
-	 *
-	 * @throws InterruptedException 线程在等待的时候被中断。
-	 */
-	void awaitFinish() throws InterruptedException;
+    /**
+     * 等待该过程执行完毕。
+     *
+     * <p>
+     * 调用该方法的线程会在过程执行完毕之前一直阻塞。
+     *
+     * @throws InterruptedException 线程在等待的时候被中断。
+     */
+    void awaitFinish() throws InterruptedException;
 
-	/**
-	 * 阻塞调用线程，直到任务执行完毕或阻塞时间超过指定时间。
-	 *
-	 * @param timeout 指定的时间数值。
-	 * @param unit    指定的时间单位。
-	 * @return 如果线程是因为任务执行完毕而终止等待，则返回 <code>true</code>；如果是应为超时而结束等待则返回
-	 * <code>false</code>。
-	 * @throws InterruptedException 线程在阻塞的时候被中断。
-	 */
-	boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException;
-
+    /**
+     * 阻塞调用线程，直到任务执行完毕或阻塞时间超过指定时间。
+     *
+     * @param timeout 指定的时间数值。
+     * @param unit    指定的时间单位。
+     * @return 如果线程是因为任务执行完毕而终止等待，则返回 <code>true</code>；如果是应为超时而结束等待则返回
+     * <code>false</code>。
+     * @throws InterruptedException 线程在阻塞的时候被中断。
+     */
+    boolean awaitFinish(long timeout, TimeUnit unit) throws InterruptedException;
 }

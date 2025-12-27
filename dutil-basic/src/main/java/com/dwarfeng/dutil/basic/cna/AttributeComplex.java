@@ -11,16 +11,19 @@ import java.util.Map.Entry;
  * 属性复合体。
  *
  * <p>
- * 属性复合体用来存储一系列<b>数量已知</b>、<b>类型明确</b>的属性，将每一个属性与一个<b>明确的</b>键值对应起来用于查询。
+ * 属性复合体用来存储一系列<b>数量已知</b>、<b>类型明确</b>的属性，将每一个属性与一个 <b>明确的</b> 键值对应起来用于查询。
  * 属性复合体的内部使用字符串-对象映射的方式存储一系列的属性。 同时，属性复合体拥有一个非常简单，易于书写的工厂方法。
+ *
  * <p>
  * 属性复合体可以在需要返回或存储多余一个属性时使用，比如在一个方法需要返回多个参数时使用属性复合体——这样可以替代繁琐、一次性的自定义类结构。
+ *
  * <p>
  * 与 Map 不一样的是，试图返回属性复合体中不存在的键对应的值不会返回
- * <code>null</code>,而是会抛出异常。其原因是该类的使用场合所决定的：一个方法的返回值，即便是有多个，也应该是明确的。
+ * <code>null</code>，而是会抛出异常。其原因是该类的使用场合所决定的：一个方法的返回值，即便是有多个，也应该是明确的。
  * 如果返回键不存在的值，这是不合理的。
+ *
  * <p>
- * 属性复合体不允许使用 <code>null</code>值作为键，该任何尝试使用 <code>null</code>值作为键的行为（比如使用含有
+ * 属性复合体不允许使用 <code>null</code> 值作为键，该任何尝试使用 <code>null</code> 值作为键的行为（比如使用含有
  * <code>null</code>值作为键的工厂方法）都会抛出异常。
  *
  * @author DwArFeng
@@ -32,25 +35,26 @@ public class AttributeComplex {
      * 通过数组生成一个新的属性复合体。
      *
      * <p>
-     * 使用指定格式的数组，快速的生成一个新的属性复合体。 指定的数组需要遵循以下约束：
+     * 使用指定格式的数组，快速的生成一个新的属性复合体。指定的数组需要遵循以下约束：
      *
      * <pre>
      * 1. 数组的元素格式必须是偶数。
      * 2. 数组的偶数下标对应的元素（第奇数个元素）必须是 String 类型的元素。
      * </pre>
+     *
      * <p>
      * 该数组中的元素两个为一对，分别代表属性的键和属性的值。以下为一个例子：
      *
-     * <pre>
+     * <blockquote><pre>
      * void example() {
-     * 	// 第1,3,5元素为属性的键；第2,4,6元素为1,3,5元素键对应的值。
-     * 	Object[] objects = new Object[] { "key.a", true, "key.b", false, "key.c", 12450 };
-     * 	AttributeComplex ac = AttributeComplex.newInstance(objects);
-     * 	CT.tract(ac.get("key.a", Boolean.class));// 输出true。
-     * 	CT.tract(ac.get("key.b"));// 输出false。
-     * 	CT.tract(ac.get("key.c", Integer.class));// 输出12450。
+     *     // 第 1,3,5 元素为属性的键；第 2,4,6 元素为 1,3,5 元素键对应的值。
+     *     Object[] objects = new Object[] { "key.a", true, "key.b", false, "key.c", 12450 };
+     *     AttributeComplex ac = AttributeComplex.newInstance(objects);
+     *     CT.tract(ac.get("key.a", Boolean.class));// 输出 true。
+     *     CT.tract(ac.get("key.b"));// 输出 false。
+     *     CT.tract(ac.get("key.c", Integer.class));// 输出 12450。
      * }
-     * </pre>
+     * </pre></blockquote>
      *
      * @param objects 指定的对象数组。
      * @return 通过指定的对象数组返回的属性复合体。
