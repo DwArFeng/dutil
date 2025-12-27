@@ -23,7 +23,8 @@
 
 ### 功能移除
 
-- (无)
+- 移除没有被使用的内部类。
+  - com.dwarfeng.dutil.basic.gui.swing.PioltLight。
 
 ---
 
