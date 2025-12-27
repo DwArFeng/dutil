@@ -1,10 +1,10 @@
 ﻿# ChangeLog
 
-### Alpha_0.1.0_20161010_build_A
+## Alpha_0.1.0_20161010_build_A
 
 - Boom！
 
-### Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
+## Alpha_0.2.0_20161101_build_A 与之前的版本不兼容
 
 - ** 因为该版本存在时间过短，所有该版本没有留下 release 文件。
 - 删除 infs 包，将其中的接口移动到其它的包中——没有必要为了某些接口设置一个单独的包。
@@ -27,12 +27,12 @@
 - 删除 dutil.basic.cna.IDMap，将会在之后以接口的方式重写。
 - 删除 dtuil.basic.cna.DumplicateIdException 将会在将来以别的方式进行替代。
 
-### Alpha_0.3.0_20161101_build_A
+## Alpha_0.3.0_20161101_build_A
 
 - 更新源文件结构（对于 release 文件来说没有任何影响）。
 - 从这个版本开始，每次 release 都会提供 chm 文件。
 
-### Beta_0.0.0_20161221_build_A
+## Beta_0.0.0_20161221_build_A
 
 - 废弃数个 dutil.basic.cna.ArrayUtil 中的不符合命名规范的方法，用符合规范的新方法代替。
 - 废弃 dutil.basic.cna.CollectionUtil.array2Iterator(T[] array) 方法。
@@ -51,7 +51,7 @@
 - 修改 dutil.demo.com.dwarfeng.dutil.demo.basic.ClassUtilDemo，将其实例子类封闭。
 - 更改工具包中的资源位置，以避免潜在的资源路径冲突。
 
-### Beta_0.0.1_20161227_build_A
+## Beta_0.0.1_20161227_build_A
 
 - 废弃 dutil.develop.cfg.io.ConfigLoader 中 Map<ConfigKey, String> loadConfig() 方法。
   - 将其改为 void loadConfig(ConfigModel)，以对齐同包中 ConfigSaver 的 void saveConfig(ConfigModel)方法。
@@ -60,7 +60,7 @@
 - 更改 dtuil.demo 包中的部分代码。
 - 从现在开始，api 文档的格式将变成 dwarfutil-api-beta-0.0.1.a
 
-### Beta_0.0.2_20170112_build_A
+## Beta_0.0.2_20170112_build_A
 
 - 将 dutil.develop.cfg.io 包中的 ConfigLoader 和 ConfigSaver 中的方法名称更改为符合命名规范的名称。
 - ConfigModel 将禁用值为 null 的配置值。
@@ -68,7 +68,7 @@
 - 新增 LocaleConfigChecker，用于检验一个字符串是否合乎标准国家.地区代码的规定。
 - 修改所有的类中的注释：@since 从 java 版本改为 dwarfutil 版本。
 
-### Beta_0.0.2_20170115_build_B
+## Beta_0.0.2_20170115_build_B
 
 - 为了名称规范，新建 dutil.develop.cfg.ConfigObverser 以代替 ConfigModelObverser。
   - 这可能导致该类与前版不兼容。
@@ -77,7 +77,7 @@
 - 为 dutil.develop.cfg.DefaultConfigModel 增加了默认的构造器方法。
 - 从此版本开始，所有的 release 将加上版本号。
 
-### Beta_0.0.3_20170128_build_A
+## Beta_0.0.3_20170128_build_A
 
 - 新增 dutil.basic.threads.NumberedThreadFactory，用于提供自动编号的线程。
 - 新增 dutil.basic.gui.swing.JExConsole，用于替代老的 JConsole。
@@ -91,7 +91,7 @@
 
 - 新增 protected 域：dutil.basic.gui.swing.JExconsole.popup 用于指示控制台的右键菜单。
 
-### Beta_0.1.0_20170403_build_A
+## Beta_0.1.0_20170403_build_A
 
 - 调整 dutil.basic.prog.Saver 与 Loader
   - 将这两个类移动到更加符合其功能的 dutil.basic.io 包中，并过时 prog 包中的相应接口。
@@ -127,7 +127,7 @@
 - 新增 dutil.develop.backgr 包，提供程序后台的实现
 - 新增 dutil.basic.UnsafeGetter<T> 接口
 
-### Beta_0.1.1_20170410_build_A
+## Beta_0.1.1_20170410_build_A
 
 - 该版本可能与之前的版本有轻微的不兼容。
 - 在接口 dutil.basic.cna.model.KeyListModel 中添加方法 V get(K)。
@@ -140,7 +140,7 @@
 - 新增 dtuil.develop.resource 包，提供资源文件管理工具。
 - 新增 dutil.develop.i18n 包，提供国际化的管理工具。
 
-### Beta_0.1.1_20170413_build_B
+## Beta_0.1.1_20170413_build_B
 
 - 该版本为 Beta_0.1.1_20170410_build_A 的更新版本，修复了其中的众多 bug。
 - 修改了程序的版本标志：
@@ -156,7 +156,7 @@
     ，这样的话，异常可以按照产生的顺序进行迭代。
   - 将 dutil.develop.cfg.io.PropConfigLoadr.countinuousLoad(CurrentValueContainer) 的返回集合改成了 LinkedHashSet，道理同上。
 
-### Beta_0.1.2_20170504_build_A
+## Beta_0.1.2_20170504_build_A
 
 - 命名规范化
   - 新增 dutil.develop.cfg.parser.LocaleValueParser，用于替代不符合命名规范的 LocaleParser。
@@ -174,11 +174,11 @@
     runnable，并等待执行完成。
 - 修复 dutil.develop.backgr.ExecutorServiceBackground 中的一处 bug。
 
-### Beta_0.1.2_20170505_build_B
+## Beta_0.1.2_20170505_build_B
 
 - 修复 dutil.basic.threads.ThreadSafeUtil 中的一系列 bug。
 
-### Beta_0.1.3_20170604_build_A
+## Beta_0.1.3_20170604_build_A
 
 - 修复 bug
   - 修复 develop.cfg.ConfigUtil.SyncExconfigModelImpl.setParsedValue(ConfigKey, Object) 行为不正常的 bug。
@@ -203,7 +203,7 @@
   - develop.resource.ResourceHandler.openOutputStream(String)
   - develop.resource.ResourceHandler.reset(String)
 
-### Beta_0.1.4_20170625_build_A
+## Beta_0.1.4_20170625_build_A
 
 - 修复 bug
   - 修复 develop.i18n.DelegateI18nHandler.setCurrentLocale(null) 时不接受 null 值的 bug 。
@@ -211,7 +211,7 @@
 - 新增只读结构
   - 新增方法 develop.backgr.BackgroundUtil.readOnlyBackground
 
-### Beta_0.1.5_20171020_build_A
+## Beta_0.1.5_20171020_build_A
 
 - 新增引用模型 dutil.basic.cna.model.ReferenceModel<E>，用以监控单一元素。
 - 过时 dutil.basic.cna.model.ModelUtil.unmodifiableKeySetModel(KeySetModel<K, V>, ReadOnlyGenerator<V>)方法。
@@ -237,7 +237,7 @@
 - 新增 dutil.basic.io.ByteBufferOutputStream，用于向一个 ByteBuffer 中写入有关数据。
 - 修复模型广播侦听器如果有一个侦听器抛出了异常，则模型不会广播剩下的侦听器的问题。
 
-### Beta_0.1.5_20171022_build_B
+## Beta_0.1.5_20171022_build_B
 
 - 修复了 basic.gui.swing.JExconsole 的异常行为。
 - 针对 basic.gui.awt.ImageUtil 做出了一系列的修改：
@@ -259,13 +259,13 @@
   - com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NEGATIVE 表示负区间。
   - com.dwarfeng.dutil.basic.num.Interval.INTERVAL_NOT_POSITIVE 表示非正区间。
 
-### Beta_0.1.5_20171203_build_C (maven)
+## Beta_0.1.5_20171203_build_C (maven)
 
 - 将项目重构为 maven 项目。
 - 调整资源和 test 文件位置。
 - 调整了部分 test 的测试方法，以适应 maven。
 
-### Beta_0.2.0_20190602_build_A (maven)
+## Beta_0.2.0_20190602_build_A (maven)
 
 - 注意，该版本不兼容之前的版本！
 - 不兼容的更改：
@@ -365,7 +365,7 @@
 - 新增 com.dwarfeng.dutil.basic.gui.swing.MappingTableModel，实现了实现 List 接口的基于注解配置的 TableModel。
 - 更新了 README.md。
 
-### Beta_0.2.1_20200304_build_A
+## Beta_0.2.1_20200304_build_A
 
 - 针对 com.dwarfeng.dutil.basic.prog 包中的版本机制进行了一系列修改。
   - 过期 com.dwarfeng.dutil.basic.prog.VersionType.SNAPSHOT，因为预览版应该是版本的属性，而不是版本的类型。
@@ -382,11 +382,11 @@
 - 删除 dutil-assembly 模块。
 - 优化 pom.xml 将各模块的版本号分离成属性。
 
-### Beta_0.2.2_20220415_build_A
+## Beta_0.2.2_20220415_build_A
 
 - 升级部分依赖版本，以消除其漏洞。
 
-### Beta_0.3.0_20220622_build_A
+## Beta_0.3.0_20220622_build_A
 
 - 修改观察器类错误的拼写，该变更是非兼容性变更。
 - 修改计划类错误的拼写，该变更是非兼容性变更。
