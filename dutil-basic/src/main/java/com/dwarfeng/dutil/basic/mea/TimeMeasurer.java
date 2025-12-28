@@ -24,6 +24,21 @@ import java.util.concurrent.locks.ReentrantLock;
  * 该计时器线程安全，可以通过任何一个线程启动，并且被任何一个线程终止。但是无论如何，
  * 整个计时器只能启动一次并且在其后只能停止一次 - 也就是说这个计时器是一次性的，一次计时之后，需要新的实例进行下一次计时。
  *
+ * <p>
+ * 示例代码：
+ * <blockquote><pre>
+ * public static void main(String[] args) {
+ *     // 定义并开启计时器。
+ *     TimeMeasurer tm = new TimeMeasurer();
+ *     tm.start();
+ *     // 执行某些任务。
+ *     executeSomeTask();
+ *     // 停止计时器。
+ *     tm.stop();
+ *     // 输出日志。
+ *     System.out.printf("任务完成, 用时 %d 毫秒%n", tm.getTimeMs());
+ * }
+ * </pre></blockquote>
  * @author DwArFeng
  * @since 0.0.2-beta
  */
@@ -36,30 +51,39 @@ public class TimeMeasurer {
      * @since 0.0.2-beta
      */
     protected enum Status {
+
         /**
-         * 没有启动
+         * 没有启动。
          */
+        // 早期拼写错误，部分依赖项目已经使用了此枚举，故保留。
+        @SuppressWarnings("SpellCheckingInspection")
         NOTSTART,
+
         /**
-         * 正在计时
+         * 正在计时。
          */
         TIMING,
+
         /**
-         * 计时结束
+         * 计时结束。
          */
-        STOPED
+        // 早期拼写错误，部分依赖项目已经使用了此枚举，故保留。
+        @SuppressWarnings("SpellCheckingInspection")
+        STOPED,
     }
 
     /**
-     * 计时器的状态
+     * 计时器的状态.
      */
     protected Status status = Status.NOTSTART;
+
     /**
-     * 时间统计(纳秒)
+     * 时间统计(纳秒).
      */
-    private long l;
+    private long timeSpentNanos;
+
     /**
-     * 同步锁
+     * 同步锁.
      */
     protected final Lock lock = new ReentrantLock();
 
@@ -100,8 +124,21 @@ public class TimeMeasurer {
      * 获取计时器是否已经停止计时。
      *
      * @return 计时器是否已经停止计时。
+     * @see #isStopped()
+     * @deprecated 拼写错误，建议使用 {@link #isStopped()} 代替。
      */
+    @SuppressWarnings("SpellCheckingInspection")
+    @Deprecated
     public boolean isStoped() {
+        return status == Status.STOPED;
+    }
+
+    /**
+     * 获取计时器是否已经停止计时。
+     *
+     * @return 计时器是否已经停止计时。
+     */
+    public boolean isStopped() {
         return status == Status.STOPED;
     }
 
@@ -116,7 +153,7 @@ public class TimeMeasurer {
             if (!isNotStart()) {
                 throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_0));
             }
-            l = -System.nanoTime();
+            timeSpentNanos = -System.nanoTime();
             this.status = Status.TIMING;
         } finally {
             lock.unlock();
@@ -134,7 +171,7 @@ public class TimeMeasurer {
             if (!isTiming()) {
                 throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_1));
             }
-            l += System.nanoTime();
+            timeSpentNanos += System.nanoTime();
             this.status = Status.STOPED;
         } finally {
             lock.unlock();
@@ -148,10 +185,10 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public long getTimeNs() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
-        return l;
+        return timeSpentNanos;
     }
 
     /**
@@ -161,10 +198,10 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public long getTimeMs() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
-        return l / 1000000;
+        return timeSpentNanos / 1000000;
     }
 
     /**
@@ -174,10 +211,10 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public long getTimeSec() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
-        return l / 1000000000;
+        return timeSpentNanos / 1000000000;
     }
 
     /**
@@ -187,15 +224,15 @@ public class TimeMeasurer {
      * 等效权重的取值方法为： <code> 86400000000000 / x，其中 x 为 1 指定的单位对应的毫秒数。 </code><br>
      * 有关于时间单位，请参阅 {@link Time} 其中包含了大部分常用的时间单位。
      *
-     * @param valueable 指定的单位的等效权重。
+     * @param valuable 指定的单位的等效权重。
      * @return 该代码计时器的时间。
      * @throws IllegalStateException 计时器还未计时结束。
      */
-    public double getTime(NumberValue valueable) {
-        if (!isStoped()) {
+    public double getTime(NumberValue valuable) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
-        return NumberUtil.unitTrans(l, Time.NS, valueable).doubleValue();
+        return NumberUtil.unitTrans(timeSpentNanos, Time.NS, valuable).doubleValue();
     }
 
     /**
@@ -205,7 +242,7 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public String formatStringNs() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
         return String.format(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_3), getTimeNs());
@@ -218,7 +255,7 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public String formatStringMs() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
         return String.format(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_4), getTimeMs());
@@ -231,18 +268,18 @@ public class TimeMeasurer {
      * @throws IllegalStateException 计时器还未计时结束。
      */
     public String formatStringSec() {
-        if (!isStoped()) {
+        if (!isStopped()) {
             throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_2));
         }
         return String.format(DwarfUtil.getExceptionString(ExceptionStringKey.TIMEMEASURER_5), getTimeSec());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
-        return "TimeMeasure [status = " + status.toString() + ", l = " + l +
-                "]";
+        return "TimeMeasurer{" +
+                "status=" + status +
+                ", timeSpentNanos=" + timeSpentNanos +
+                ", lock=" + lock +
+                '}';
     }
 }

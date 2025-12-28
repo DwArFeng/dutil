@@ -11,42 +11,42 @@ import com.dwarfeng.dutil.basic.num.NumberValue;
 public enum DataSize implements NumberValue {
 
     /**
-     * EIB
+     * EIB。
      */
     EIB(1d),
 
     /**
-     * PIB
+     * PIB。
      */
     PIB(1024d),
 
     /**
-     * TIB
+     * TIB。
      */
     TIB(1048576d),
 
     /**
-     * GIB
+     * GIB。
      */
     GIB(1073741824d),
 
     /**
-     * MIB
+     * MIB。
      */
     MIB(1099511627776d),
 
     /**
-     * KIB
+     * KIB。
      */
     KIB(1125899906842624d),
 
     /**
-     * BYTE
+     * BYTE。
      */
     BYTE(1152921504606846976d),
 
     /**
-     * BITS
+     * BITS。
      */
     BITS(9223372036854775808d);
 

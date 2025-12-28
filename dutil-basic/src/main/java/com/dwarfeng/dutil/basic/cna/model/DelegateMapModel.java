@@ -99,6 +99,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
      */
     @Override
     public V remove(Object key) {
+        // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
         boolean aFlag = delegate.containsKey(key);
         V value = delegate.remove(key);
         if (aFlag) {
@@ -245,6 +247,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          */
         @Override
         public boolean remove(Object o) {
+            // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+            @SuppressWarnings("SuspiciousMethodCalls")
             V value = delegate.get(o);
             if (delegateKeySet.remove(o)) {
                 // 如果能够移除，则 o 一定属于 K，该类型转换是安全的。
@@ -328,10 +332,13 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
             return delegateKeySet.equals(obj);
         }
 
@@ -659,14 +666,14 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
         @Override
         public Object[] toArray() {
             Object[] objs = delegateEntrySet.toArray();
-            Object[] dejavu = new Object[objs.length];
+            Object[] dejaVu = new Object[objs.length];
             for (int i = 0; i < objs.length; i++) {
                 // 该转换是安全的。
                 @SuppressWarnings("unchecked")
                 Map.Entry<K, V> entry = (java.util.Map.Entry<K, V>) objs[i];
-                dejavu[i] = new DelegateEntry(entry);
+                dejaVu[i] = new DelegateEntry(entry);
             }
-            return dejavu;
+            return dejaVu;
         }
 
         /**
@@ -703,6 +710,8 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
                 return false;
             Map.Entry<?, ?> entry = (java.util.Map.Entry<?, ?>) o;
             Object k = entry.getKey();
+            // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+            @SuppressWarnings("SuspiciousMethodCalls")
             V value = delegate.get(k);
             if (delegateEntrySet.remove(entry)) {
                 // 如果能够移除，则 k 一定属于 K，该类型转换是安全的。
@@ -786,10 +795,13 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
             return delegateEntrySet.equals(obj);
         }
 
@@ -847,10 +859,13 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
             /**
              * {@inheritDoc}
              */
+            // 代理方法，忽略所有警告。
+            @SuppressWarnings("EqualsDoesntCheckParameterClass")
             @Override
             public boolean equals(Object obj) {
-                if (obj == this)
+                if (obj == this) {
                     return true;
+                }
                 return delegateEntry.equals(obj);
             }
 
@@ -877,10 +892,13 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
     /**
      * {@inheritDoc}
      */
+    // 代理方法，忽略所有警告。
+    @SuppressWarnings("EqualsDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
-        if (obj == this)
+        if (obj == this) {
             return true;
+        }
         return delegate.equals(obj);
     }
 

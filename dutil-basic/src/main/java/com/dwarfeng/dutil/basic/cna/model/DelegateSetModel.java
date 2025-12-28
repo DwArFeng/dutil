@@ -234,10 +234,13 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
     /**
      * {@inheritDoc}
      */
+    // 代理方法，忽略所有警告。
+    @SuppressWarnings("EqualsDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
-        if (obj == this)
+        if (obj == this) {
             return true;
+        }
         return delegate.equals(obj);
     }
 

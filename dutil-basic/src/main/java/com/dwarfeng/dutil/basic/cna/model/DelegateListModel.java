@@ -142,11 +142,9 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     @Override
     public boolean add(E e) {
         int size = delegate.size();
-        if (delegate.add(e)) {
-            fireAdded(size, e);
-            return true;
-        }
-        return false;
+        delegate.add(e);
+        fireAdded(size, e);
+        return true;
     }
 
     /**
@@ -154,6 +152,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      */
     @Override
     public boolean remove(Object o) {
+        // 此处对 delegate 的调用符合 List 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
         int index = delegate.indexOf(o);
         if (delegate.remove(o)) {
             // 只要代理能移除该对象，该对象一定属于类型 E，该转换是安全的。
@@ -168,6 +168,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     /**
      * {@inheritDoc}
      */
+    // 代理方法，忽略所有警告。
+    @SuppressWarnings("SlowListContainsAll")
     @Override
     public boolean containsAll(Collection<?> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
@@ -182,8 +184,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
         boolean aFlag = false;
         for (E e : c) {
-            if (add(e))
-                aFlag = true;
+            add(e);
+            aFlag = true;
         }
         return aFlag;
     }
@@ -191,6 +193,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
@@ -317,12 +320,12 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
     private class InnerListIterator implements ListIterator<E> {
 
-        private final ListIterator<E> litr;
+        private final ListIterator<E> listIterator;
         private int lastRet = -1;
         private int cursor;
 
-        public InnerListIterator(ListIterator<E> litr, int cursor) {
-            this.litr = litr;
+        public InnerListIterator(ListIterator<E> listIterator, int cursor) {
+            this.listIterator = listIterator;
             this.cursor = cursor;
         }
 
@@ -331,7 +334,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @Override
         public boolean hasNext() {
-            return litr.hasNext();
+            return listIterator.hasNext();
         }
 
         /**
@@ -342,7 +345,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
             int i = cursor;
             cursor++;
             lastRet = i;
-            return litr.next();
+            return listIterator.next();
         }
 
         /**
@@ -350,7 +353,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @Override
         public boolean hasPrevious() {
-            return litr.hasPrevious();
+            return listIterator.hasPrevious();
         }
 
         /**
@@ -361,7 +364,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
             int i = cursor - 1;
             cursor = i;
             lastRet = i;
-            return litr.previous();
+            return listIterator.previous();
         }
 
         /**
@@ -369,7 +372,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @Override
         public int nextIndex() {
-            return litr.nextIndex();
+            return listIterator.nextIndex();
         }
 
         /**
@@ -377,7 +380,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @Override
         public int previousIndex() {
-            return litr.previousIndex();
+            return listIterator.previousIndex();
         }
 
         /**
@@ -390,7 +393,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
             cursor = lastRet;
             E element = delegate.get(lastRet);
-            litr.remove();
+            listIterator.remove();
             fireRemoved(lastRet, element);
             lastRet = -1;
         }
@@ -404,7 +407,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
                 throw new IllegalStateException();
 
             E oldValue = delegate.get(lastRet);
-            litr.set(e);
+            listIterator.set(e);
             fireChanged(lastRet, oldValue, e);
         }
 
@@ -414,7 +417,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         @Override
         public void add(E e) {
             int i = cursor;
-            litr.add(e);
+            listIterator.add(e);
             fireAdded(i, e);
             cursor = i + 1;
             lastRet = -1;
@@ -539,11 +542,9 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         @Override
         public boolean add(E e) {
             int size = subDelegate.size();
-            if (subDelegate.add(e)) {
-                fireAdded(size + offset, e);
-                return true;
-            }
-            return false;
+            subDelegate.add(e);
+            fireAdded(size + offset, e);
+            return true;
         }
 
         /**
@@ -551,6 +552,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @Override
         public boolean remove(Object o) {
+            // 此处对 delegate 的调用符合 List 的规范，故不会出现类型转换异常。
+            @SuppressWarnings("SuspiciousMethodCalls")
             int index = subDelegate.indexOf(o);
             if (subDelegate.remove(o)) {
                 // 只要代理能移除该对象，该对象一定属于类型 E，该转换是安全的。
@@ -579,8 +582,8 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
             Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
             boolean aFlag = false;
             for (E e : c) {
-                if (add(e))
-                    aFlag = true;
+                add(e);
+                aFlag = true;
             }
             return aFlag;
         }
@@ -588,6 +591,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public boolean addAll(int index, Collection<? extends E> c) {
             Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELISTMODEL_1));
@@ -716,12 +720,12 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
         private class SubListIterator implements ListIterator<E> {
 
-            private final ListIterator<E> litr;
+            private final ListIterator<E> listIterator;
             private int lastRet = -1;
             private int cursor;
 
-            public SubListIterator(ListIterator<E> litr, int cursor) {
-                this.litr = litr;
+            public SubListIterator(ListIterator<E> listIterator, int cursor) {
+                this.listIterator = listIterator;
                 this.cursor = cursor;
             }
 
@@ -730,7 +734,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
              */
             @Override
             public boolean hasNext() {
-                return litr.hasNext();
+                return listIterator.hasNext();
             }
 
             /**
@@ -741,7 +745,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
                 int i = cursor;
                 cursor++;
                 lastRet = i;
-                return litr.next();
+                return listIterator.next();
             }
 
             /**
@@ -749,7 +753,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
              */
             @Override
             public boolean hasPrevious() {
-                return litr.hasPrevious();
+                return listIterator.hasPrevious();
             }
 
             /**
@@ -760,7 +764,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
                 int i = cursor - 1;
                 cursor = i;
                 lastRet = i;
-                return litr.previous();
+                return listIterator.previous();
             }
 
             /**
@@ -768,7 +772,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
              */
             @Override
             public int nextIndex() {
-                return litr.nextIndex();
+                return listIterator.nextIndex();
             }
 
             /**
@@ -776,7 +780,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
              */
             @Override
             public int previousIndex() {
-                return litr.previousIndex();
+                return listIterator.previousIndex();
             }
 
             /**
@@ -789,7 +793,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
 
                 cursor = lastRet;
                 E element = subDelegate.get(lastRet);
-                litr.remove();
+                listIterator.remove();
                 fireRemoved(lastRet + offset, element);
                 lastRet = -1;
             }
@@ -803,7 +807,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
                     throw new IllegalStateException();
 
                 E oldValue = subDelegate.get(lastRet);
-                litr.set(e);
+                listIterator.set(e);
                 fireChanged(lastRet + offset, oldValue, e);
             }
 
@@ -813,7 +817,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
             @Override
             public void add(E e) {
                 int i = cursor;
-                litr.add(e);
+                listIterator.add(e);
                 fireAdded(i + offset, e);
                 cursor = i + 1;
                 lastRet = -1;
@@ -840,10 +844,13 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
             return subDelegate.equals(obj);
         }
 
@@ -868,10 +875,13 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     /**
      * {@inheritDoc}
      */
+    // 代理方法，忽略所有警告。
+    @SuppressWarnings("EqualsDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
-        if (obj == this)
+        if (obj == this) {
             return true;
+        }
         return delegate.equals(obj);
     }
 

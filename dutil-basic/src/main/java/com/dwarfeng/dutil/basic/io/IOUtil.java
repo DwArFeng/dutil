@@ -25,10 +25,11 @@ public final class IOUtil {
      * @throws IOException 当数据无法读取或数据无法写入时抛出的异常。
      */
     public static void trans(InputStream in, OutputStream out, int bufferSize) throws IOException {
-        if (in == null || out == null)
+        if (in == null || out == null) {
             throw new NullPointerException("InputStream or OutputStream can't be null");
+        }
         byte[] buffer = new byte[bufferSize];
-        int i = 0;
+        int i;
         while ((i = in.read(buffer, 0, buffer.length)) >= 0) {
             out.write(buffer, 0, i);
         }

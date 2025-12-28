@@ -84,6 +84,8 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
      * @param key   指定的键。
      * @param value 指定的值。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void firePut(K key, V value) {
         for (MapObserver<K, V> observer : observers) {
             if (Objects.nonNull(observer))
@@ -101,6 +103,8 @@ public abstract class AbstractMapModel<K, V> implements MapModel<K, V> {
      * @param key   指定的键。
      * @param value 键对应的值。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireRemoved(K key, V value) {
         for (MapObserver<K, V> observer : observers) {
             if (Objects.nonNull(observer))

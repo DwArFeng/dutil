@@ -53,10 +53,10 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
      */
     @Override
     public boolean containsKey(Object key) {
-        for (Iterator<V> i = delegate.iterator(); i.hasNext(); ) {
-            V value = i.next();
-            if (Objects.equals(key, value == null ? null : value.getKey()))
+        for (V value : delegate) {
+            if (Objects.equals(key, value == null ? null : value.getKey())) {
                 return true;
+            }
         }
         return false;
     }
@@ -67,10 +67,10 @@ public class DelegateKeyListModel<K, V extends WithKey<K>> extends DelegateListM
     @Override
     public boolean containsAllKey(Collection<?> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEKEYLISTMODEL_0));
-        for (Iterator<?> i = c.iterator(); i.hasNext(); ) {
-            Object o = i.next();
-            if (!containsKey(o))
+        for (Object o : c) {
+            if (!containsKey(o)) {
                 return false;
+            }
         }
         return true;
     }

@@ -25,7 +25,7 @@ public final class ClassUtil {
      */
     public static Collection<Class<?>> getSuperClasses(Class<?> cl) {
         Objects.requireNonNull(cl, DwarfUtil.getExceptionString(ExceptionStringKey.CLASSUTIL_0));
-        Collection<Class<?>> collection = new HashSet<Class<?>>();
+        Collection<Class<?>> collection = new HashSet<>();
         Class<?> clas = cl.getSuperclass();
         while (Objects.nonNull(clas)) {
             collection.add(clas);
@@ -80,25 +80,26 @@ public final class ClassUtil {
     public static Collection<Class<?>> getImplInterfaces(Class<?> cl) {
         Objects.requireNonNull(cl, DwarfUtil.getExceptionString(ExceptionStringKey.CLASSUTIL_0));
 
-        Collection<Class<?>> superIntr = new HashSet<Class<?>>();
-        Set<Class<?>> intrPool = new HashSet<Class<?>>();
+        // 将 cl 的所有接口加入到待处理集合中。
+        Set<Class<?>> classInterfaceSet = new HashSet<>(Arrays.asList(cl.getInterfaces()));
 
-        intrPool.addAll(Arrays.asList(cl.getInterfaces()));
+        Set<Class<?>> superInterfaceSet = new HashSet<>();
+
         for (Class<?> clas : getSuperClasses(cl)) {
-            intrPool.addAll(Arrays.asList(clas.getInterfaces()));
+            classInterfaceSet.addAll(Arrays.asList(clas.getInterfaces()));
         }
 
-        while (intrPool.size() > 0) {
-            Class<?> clas = intrPool.iterator().next();
-            intrPool.remove(clas);
+        while (!classInterfaceSet.isEmpty()) {
+            Class<?> clas = classInterfaceSet.iterator().next();
+            classInterfaceSet.remove(clas);
 
             if (clas.isInterface()) {
-                superIntr.add(clas);
+                superInterfaceSet.add(clas);
             }
-            intrPool.addAll(Arrays.asList(clas.getInterfaces()));
+            classInterfaceSet.addAll(Arrays.asList(clas.getInterfaces()));
         }
 
-        return superIntr;
+        return superInterfaceSet;
     }
 
     /**

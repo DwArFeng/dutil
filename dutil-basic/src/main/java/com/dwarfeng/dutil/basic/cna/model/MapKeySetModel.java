@@ -64,7 +64,10 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      */
     @Override
     public boolean contains(Object o) {
-        return map.containsValue(o);
+        // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
+        boolean result = map.containsValue(o);
+        return result;
     }
 
     /**
@@ -237,7 +240,10 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      */
     @Override
     public boolean containsKey(Object key) {
-        return map.containsKey(key);
+        // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
+        boolean result = map.containsKey(key);
+        return result;
     }
 
     /**
@@ -246,7 +252,10 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
     @Override
     public boolean containsAllKey(Collection<?> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.MAPKEYSETMODEL_1));
-        return map.keySet().containsAll(c);
+        // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
+        boolean result = map.keySet().containsAll(c);
+        return result;
     }
 
     /**
@@ -254,8 +263,12 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      */
     @Override
     public boolean removeKey(Object key) {
+        // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+        @SuppressWarnings("SuspiciousMethodCalls")
         boolean aFlag = map.containsKey(key);
         if (aFlag) {
+            // 此处对 delegate 的调用符合 Map 的规范，故不会出现类型转换异常。
+            @SuppressWarnings("SuspiciousMethodCalls")
             V v = map.remove(key);
             fireRemoved(v);
         }
@@ -301,10 +314,13 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
     /**
      * {@inheritDoc}
      */
+    // 代理方法，忽略所有警告。
+    @SuppressWarnings("EqualsDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
-        if (obj == this)
+        if (obj == this) {
             return true;
+        }
         return new HashSet<>(map.values()).equals(obj);
     }
 

@@ -36,7 +36,7 @@ public interface ReferenceModel<E> extends ObserverSet<ReferenceObserver<E>> {
      *
      * <p>
      * 清空元素相当于调用 <code>set(null)</code>，但与之不同的是，
-     * 该方法会广播<code>fireCleared()</code>方法， 而<code>set(null)</code>不会。
+     * 该方法会广播 <code>fireCleared()</code> 方法，而 <code>set(null)</code> 不会。
      */
     void clear();
 

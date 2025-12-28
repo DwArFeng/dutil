@@ -56,8 +56,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
      */
     @Override
     public boolean containsKey(Object key) {
-        for (Iterator<V> i = delegate.iterator(); i.hasNext(); ) {
-            V value = i.next();
+        for (V value : delegate) {
             if (Objects.equals(value == null ? null : value.getKey(), key)) {
                 return true;
             }
@@ -73,8 +72,9 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATEKEYSETMODEL_0));
 
         for (Object obj : c) {
-            if (!containsKey(obj))
+            if (!containsKey(obj)) {
                 return false;
+            }
         }
         return true;
     }
@@ -84,8 +84,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
      */
     @Override
     public boolean removeKey(Object key) {
-        for (Iterator<V> i = delegate.iterator(); i.hasNext(); ) {
-            V value = i.next();
+        for (V value : delegate) {
             if (Objects.equals(value == null ? null : value.getKey(), key)) {
                 if (delegate.remove(value)) {
                     fireRemoved(value);

@@ -72,6 +72,8 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
      * @param index   指定的位置。
      * @param element 指定的的元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireAdded(int index, E element) {
         for (ListObserver<E> observer : observers) {
             if (Objects.nonNull(observer))
@@ -89,6 +91,8 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
      * @param index   指定的位置。
      * @param element 被移除的元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireRemoved(int index, E element) {
         for (ListObserver<E> observer : observers) {
             if (Objects.nonNull(observer))
@@ -107,6 +111,8 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
      * @param oldElement 改变前的旧元素。
      * @param newElement 改变后的新元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireChanged(int index, E oldElement, E newElement) {
         for (ListObserver<E> observer : observers) {
             if (Objects.nonNull(observer))
@@ -121,6 +127,8 @@ public abstract class AbstractListModel<E> implements ListModel<E> {
     /**
      * 通知观察器该模型移除了所有的元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireCleared() {
         for (ListObserver<E> observer : observers) {
             if (Objects.nonNull(observer))

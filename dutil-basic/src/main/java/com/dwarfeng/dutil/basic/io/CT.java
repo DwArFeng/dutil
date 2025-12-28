@@ -23,6 +23,9 @@ import java.util.StringTokenizer;
  */
 public final class CT {
 
+    private static final String FULL_DATE_FORMAT = "[yyyy-MM-dd HH:mm:ss,SSS]";
+    private static final String HALF_DATE_FORMAT = "[HH:mm:ss,SSS]";
+
     /**
      * 输出工具的输出形式。
      *
@@ -305,21 +308,18 @@ public final class CT {
             string = "null";
         }
         string = string.replace("\r", "");
-        if (prefix.length() == 0) {
+
+        // 如果没有前缀，则直接返回文本。
+        if (prefix.isEmpty()) {
             return string;
         }
 
-        /**
-         * 如果有前缀，则需要：<br>
-         * 1. 先判断指定的文本是否是多行文本。<br>
-         * 1.1 如果不是多行文本，则按照单行输出的样式进行输出。<br>
-         * 1.2 如果是多行文本，则按照 mutiLineType 中的样式分类进行输出。<br>
-         */
-
+        // 如果不是多行文本，则按照单行输出的样式进行输出。
         if (!StringUtil.isMultiline(string)) {
             return String.format("%s\t%s", prefix, string);
         }
 
+        // 如果是多行文本，则按照 mutiLineType 中的样式分类进行输出。
         switch (mutiLineType) {
             case TYPE_1:
                 return multiLine1(prefix, string);
@@ -330,7 +330,6 @@ public final class CT {
             default:
                 return String.format("%s\t%s", prefix, string);
         }
-
     }
 
     /**
@@ -341,17 +340,14 @@ public final class CT {
 
         switch (outputType) {
             case FULL_DATE:
-                formatter = new SimpleDateFormat("[yyyy-MM-dd HH:mm:ss,SSS]");
+                formatter = new SimpleDateFormat(FULL_DATE_FORMAT);
                 return formatter.format(new Date());
             case HALF_DATE:
-                formatter = new SimpleDateFormat("[HH:mm:ss,SSS]");
+                formatter = new SimpleDateFormat(HALF_DATE_FORMAT);
                 return formatter.format(new Date());
-            case NO_DATE:
-                return "";
             default:
                 return "";
         }
-
     }
 
     private static String multiLine1(String prefix, String string) {
@@ -360,7 +356,6 @@ public final class CT {
 
         while (st.hasMoreTokens()) {
             String token = st.nextToken();
-            // sb.append(String.format("%s\t%s", prefix, token));
             sb.append(prefix).append("\t").append(token);
 
             if (st.hasMoreTokens()) {
@@ -375,8 +370,6 @@ public final class CT {
         StringTokenizer st = new StringTokenizer(string, "\n");
         StringBuilder sb = new StringBuilder();
 
-        // sb.append(String.format("%s\t%s\n", prefix,
-        // DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)));
         sb.append(prefix).append("\t").append(DwarfUtil.getExceptionString(ExceptionStringKey.CT_0)).append("\n");
 
         while (st.hasMoreTokens()) {
@@ -395,8 +388,6 @@ public final class CT {
         StringTokenizer st = new StringTokenizer(string, "\n");
         StringBuilder sb = new StringBuilder();
 
-        // sb.append(String.format("%s\t%s\n", prefix,
-        // DwarfUtil.getExecptionString(ExceptionStringKey.CT_0)));
         sb.append(prefix).append("\n");
 
         while (st.hasMoreTokens()) {
@@ -411,7 +402,7 @@ public final class CT {
         return sb.toString();
     }
 
-    // 不可见的构造器方法
+    // 不可见的构造器方法。
     private CT() {
     }
 }

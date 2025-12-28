@@ -4,6 +4,31 @@
 
 ### 功能构建
 
+- `dutil-basic` 子模块类优化，完善文档注释，消除警告。
+  - com.dwarfeng.dutil.basic.cls.ClassUtil。
+  - com.dwarfeng.dutil.basic.cna.model.ReferenceModel。
+  - com.dwarfeng.dutil.basic.cna.model.AbstractListModel。
+  - com.dwarfeng.dutil.basic.cna.model.AbstractMapModel。
+  - com.dwarfeng.dutil.basic.cna.model.AbstractReferenceModel。
+  - com.dwarfeng.dutil.basic.cna.model.AbstractSetModel。
+  - com.dwarfeng.dutil.basic.cna.model.DelegateKeyListModel。
+  - com.dwarfeng.dutil.basic.cna.model.DelegateKeySetModel。
+  - com.dwarfeng.dutil.basic.cna.model.DelegateListModel。
+  - com.dwarfeng.dutil.basic.cna.model.DelegateMapModel。
+  - com.dwarfeng.dutil.basic.cna.model.DelegateSetModel。
+  - com.dwarfeng.dutil.basic.cna.model.MapKeySetModel。
+  - com.dwarfeng.dutil.basic.cna.model.ModelUtil。
+  - com.dwarfeng.dutil.basic.io.CT。
+  - com.dwarfeng.dutil.basic.io.FileUtil。
+  - com.dwarfeng.dutil.basic.io.IOUtil。
+  - com.dwarfeng.dutil.basic.io.StringInputStream。
+  - com.dwarfeng.dutil.basic.mea.TimeMeasurer。
+  - com.dwarfeng.dutil.basic.num.NumberUtil。
+  - com.dwarfeng.dutil.basic.num.unit.DataSize。
+  - com.dwarfeng.dutil.basic.num.unit.Time。
+  - com.dwarfeng.dutil.basic.prog.ProcessException。
+  - com.dwarfeng.dutil.basic.str.UUIDUtil。
+
 - `dutil-develop` 子模块类废弃。
   - com.dwarfeng.dutil.develop.resource.Url2RepoRresource。
 

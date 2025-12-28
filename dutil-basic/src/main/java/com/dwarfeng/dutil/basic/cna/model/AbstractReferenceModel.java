@@ -84,6 +84,8 @@ public abstract class AbstractReferenceModel<E> implements ReferenceModel<E> {
      * @param oldValue 旧的值。
      * @param newValue 新的值。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireSet(E oldValue, E newValue) {
         for (ReferenceObserver<E> observer : observers) {
             try {
@@ -97,6 +99,8 @@ public abstract class AbstractReferenceModel<E> implements ReferenceModel<E> {
     /**
      * 通知模型中的元素被清除。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireCleared() {
         for (ReferenceObserver<E> observer : observers) {
             try {

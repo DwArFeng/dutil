@@ -99,6 +99,8 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
      *
      * @param element 指定的元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireRemoved(E element) {
         for (SetObserver<E> observer : observers) {
             if (Objects.nonNull(observer))
@@ -113,6 +115,8 @@ public abstract class AbstractSetModel<E> implements SetModel<E> {
     /**
      * 通知观察器该模型清除了元素。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireCleared() {
         for (SetObserver<E> observer : observers) {
             if (Objects.nonNull(observer))

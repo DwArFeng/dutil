@@ -28,7 +28,7 @@ import java.util.Objects;
  */
 public final class NumberUtil {
 
-    // 不能进行实例化
+    // 不能进行实例化。
     private NumberUtil() {
     }
 
@@ -177,19 +177,21 @@ public final class NumberUtil {
      */
     private static byte[] TrimToSize(byte[] bytes, int length) {
         // 特殊情况：裁剪数组的长度正好为所需的长度。
-        if (bytes.length == length)
+        if (bytes.length == length) {
             return bytes;
+        }
+        // 一般情况：裁剪或者补 0。
         byte[] target = new byte[length];
         if (bytes.length > length) {
             System.arraycopy(bytes, 0, target, 0, length);
-            return target;
         } else {
             System.arraycopy(bytes, 0, target, 0, bytes.length);
             for (int i = bytes.length; i < length; i++) {
                 target[i] = 0;
             }
-            return target;
         }
+        // 返回裁剪后的数组。
+        return target;
     }
 
     /**

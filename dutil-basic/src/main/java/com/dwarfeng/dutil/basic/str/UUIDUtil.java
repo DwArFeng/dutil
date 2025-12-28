@@ -47,7 +47,7 @@ public final class UUIDUtil {
 
         // 使用 Base64 进行编码，得到紧凑型文本。
         String val = Base64.getEncoder().encodeToString(buffer);
-        // 去掉结尾的==号。
+        // 去掉结尾的 == 号。
         return val.substring(0, val.length() - 2);
     }
 

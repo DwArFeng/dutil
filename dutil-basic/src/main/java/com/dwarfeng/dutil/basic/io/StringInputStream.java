@@ -64,7 +64,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int available() throws IOException {
+    public int available() {
         return bytes.length;
     }
 

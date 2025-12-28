@@ -22,6 +22,14 @@ import java.util.Objects;
 public final class FileUtil {
 
     /**
+     * 文件复制时使用的缓冲区大小。
+     *
+     * <p>
+     * 实践中发现，使用 2MB 的缓冲区大小可以获得较好的性能。
+     */
+    private static final int FILE_COPY_BUFFER_SIZE = 2097152;
+
+    /**
      * 将一个文件复制到另一个文件。
      *
      * @param source 需要复制的源文件。
@@ -49,33 +57,33 @@ public final class FileUtil {
 
         // 如果 target 不存在，则创建 target 以及其目录（有必要的话）。
         createFileIfNotExists(target);
-        // 定义 2MB 的缓冲大小
-        int bufferSize = 2097152;
-        int length = 0;
-        // 创建输入输出流
+        // 定义缓冲大小。
+        int bufferSize = FILE_COPY_BUFFER_SIZE;
+        int length;
+        // 创建输入输出流。
         FileInputStream in = new FileInputStream(source);
         FileOutputStream out = new FileOutputStream(target);
-        // 获取通道
-        FileChannel inC = in.getChannel();
-        FileChannel outC = out.getChannel();
-        // 定义字节缓冲
-        ByteBuffer buffer = null;
+        // 获取通道。
+        FileChannel inFileChannel = in.getChannel();
+        FileChannel outFileChannel = out.getChannel();
+        // 定义字节缓冲。
+        ByteBuffer buffer;
         while (true) {
-            // 判断完成
-            if (inC.position() == inC.size()) {
+            // 判断完成。
+            if (inFileChannel.position() == inFileChannel.size()) {
                 in.close();
                 out.close();
-                inC.close();
-                outC.close();
+                inFileChannel.close();
+                outFileChannel.close();
                 return;
             }
-            // 开辟字节缓冲
-            length = (int) (inC.size() - inC.position() < bufferSize ? inC.size() - inC.position() : bufferSize);
+            // 开辟字节缓冲。
+            length = (int) (inFileChannel.size() - inFileChannel.position() < bufferSize ? inFileChannel.size() - inFileChannel.position() : bufferSize);
             buffer = ByteBuffer.allocateDirect(length);
-            // 复制数据
-            inC.read(buffer);
+            // 复制数据。
+            inFileChannel.read(buffer);
             buffer.flip();
-            outC.write(buffer);
+            int ignored = outFileChannel.write(buffer);
         }
     }
 
@@ -88,17 +96,24 @@ public final class FileUtil {
      *
      * @param file 目标文件或文件夹。
      * @return 文件或文件夹是否删除。
+     * @throws NullPointerException  入口参数为 <code>null</code>。
+     * @throws IllegalStateException 如果在删除目录时，目录的子文件列表为 null 时抛出该异常。
      */
     public static boolean deleteFile(File file) {
         Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
         if (file.isDirectory()) {
             String[] children = file.list();
+            // 如果 children 为 null，说明方法逻辑有误。
+            if (Objects.isNull(children)) {
+                throw new IllegalStateException("children should not be null");
+            }
             // 递归删除该目录的子目录文件
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteFile(new File(file, children[i]));
-                if (!success)
+            for (String child : children) {
+                boolean success = deleteFile(new File(file, child));
+                if (!success) {
                     return false;
+                }
             }
         }
         // 目录此时为空，可以删除
@@ -112,19 +127,32 @@ public final class FileUtil {
      * 该方法在建立文件时，会将其根目录一同创建（如果具有根目录的话）。
      *
      * @param file 指定的文件。
-     * @throws IOException          文件无法创建或者通信错误时抛出的异常。
-     * @throws NullPointerException 入口参数为 <code>null</code>。
+     * @throws IOException           文件无法创建或者通信错误时抛出的异常。
+     * @throws NullPointerException  入口参数为 <code>null</code>。
+     * @throws IllegalStateException 父目录创建失败时抛出的异常。
+     * @throws IllegalStateException 文件创建失败时抛出的异常。
      */
     public static void createFileIfNotExists(File file) throws IOException {
         Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
         // 如果文件存在，则什么事也不做。
-        if (file.exists())
+        if (file.exists()) {
             return;
+        }
+        // 获取父目录。
         File parentFile = file.getParentFile();
-        if (parentFile != null && !parentFile.exists())
-            parentFile.mkdirs();
-        file.createNewFile();
+        // 如果父目录不存在，则创建父目录。
+        if (Objects.nonNull(parentFile) && !parentFile.exists()) {
+            boolean flag = parentFile.mkdirs();
+            if (!flag) {
+                throw new IllegalStateException("flag should be true");
+            }
+        }
+        // 创建文件。
+        boolean flag = file.createNewFile();
+        if (!flag) {
+            throw new IllegalStateException("flag should be true");
+        }
     }
 
     /**
@@ -134,15 +162,20 @@ public final class FileUtil {
      * 该方法在建立目录时，会将其根目录一同创建（如果具有根目录的话）。
      *
      * @param file 指定的目录。
-     * @throws IOException 目录无法创建或者通信错误时抛出的异常。
+     * @throws NullPointerException  入口参数为 <code>null</code>。
+     * @throws IllegalStateException 目录创建失败时抛出的异常。
      */
-    public static void createDirIfNotExists(File file) throws IOException {
+    public static void createDirIfNotExists(File file) {
         Objects.requireNonNull(file, DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_0));
 
         // 如果目录存在，则什么事也不做。
-        if (file.exists())
+        if (file.exists()) {
             return;
-        file.mkdirs();
+        }
+        boolean flag = file.mkdirs();
+        if (!flag) {
+            throw new IllegalStateException("flag should be true");
+        }
     }
 
     /**
@@ -189,8 +222,13 @@ public final class FileUtil {
             return;
         }
 
-        File[] currFolder = file.listFiles();
-        for (File currFile : currFolder) {
+        File[] currentFolder = file.listFiles();
+        // 如果 currentFolder 为 null，说明方法逻辑有误。
+        if (Objects.isNull(currentFolder)) {
+            throw new IllegalStateException("currentFolder should not be null");
+        }
+        // 递归扫描子文件夹。
+        for (File currFile : currentFolder) {
             scanFile(currFile, filter, list);
         }
     }

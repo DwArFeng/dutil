@@ -117,6 +117,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return delegate.containsAll(c);
@@ -277,12 +279,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -392,6 +398,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return delegate.containsAll(c);
@@ -552,12 +560,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -760,6 +772,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             lock.readLock().lock();
@@ -838,6 +852,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object o) {
             lock.readLock().lock();
@@ -1002,6 +1018,8 @@ public final class ModelUtil {
      * @throws NullPointerException 入口参数为 <code>null</code>。
      * @deprecated 该方法由于命名错误，已经过时，由 {@link ModelUtil#syncSetModel(SetModel)} 替。
      */
+    // 由于早期命名错误，故保留该方法，忽略拼写检查相关警告。
+    @SuppressWarnings("SpellCheckingInspection")
     public static <E> SyncSetModel<E> syncSetMdel(SetModel<E> setModel) {
         return syncSetModel(setModel);
     }
@@ -1260,6 +1278,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object o) {
             lock.readLock().lock();
@@ -1453,12 +1473,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
-            if (obj == delegate)
+            }
+            if (obj == delegate) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -1648,12 +1672,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -1909,6 +1937,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object o) {
             lock.readLock().lock();
@@ -2095,12 +2125,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -2269,9 +2303,9 @@ public final class ModelUtil {
          */
         @Override
         public Set<Entry<K, V>> entrySet() {
-            return CollectionUtil.readOnlySet(delegate.entrySet(), element -> {
-                return CollectionUtil.readOnlyMapEntry(element, keyGen, valueGen);
-            });
+            return CollectionUtil.readOnlySet(
+                    delegate.entrySet(), element -> CollectionUtil.readOnlyMapEntry(element, keyGen, valueGen)
+            );
         }
 
         /**
@@ -2285,12 +2319,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -2611,6 +2649,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             lock.readLock().lock();
@@ -2689,6 +2729,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object o) {
             lock.readLock().lock();
@@ -2908,6 +2950,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return delegate.containsAll(c);
@@ -3132,12 +3176,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -3254,6 +3302,8 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return delegate.containsAll(c);
@@ -3478,12 +3528,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -3494,7 +3548,6 @@ public final class ModelUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -3830,8 +3883,9 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
-
         public boolean equals(Object o) {
             lock.readLock().lock();
             try {
@@ -3853,7 +3907,6 @@ public final class ModelUtil {
                 lock.readLock().unlock();
             }
         }
-
     }
 
     /**
@@ -4090,12 +4143,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -4106,7 +4163,6 @@ public final class ModelUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -4341,12 +4397,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -4494,12 +4554,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -4606,12 +4670,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
@@ -4717,12 +4785,16 @@ public final class ModelUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("EqualsDoesntCheckParameterClass")
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
             return delegate.equals(obj);
         }
 
