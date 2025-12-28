@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dutil-develop` 子模块测试类优化。
+  - com.dwarfeng.dutil.develop.timer.ListTimerTest。
+
 - `dutil-develop` 子模块类优化，完善文档注释，消除警告。
   - com.dwarfeng.dutil.develop.backgr.AbstractTask。
 

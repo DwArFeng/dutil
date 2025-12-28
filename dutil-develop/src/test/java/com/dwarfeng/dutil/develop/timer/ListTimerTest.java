@@ -90,6 +90,7 @@ public class ListTimerTest {
         assertEquals(0, timer.plans().size());
         assertEquals(3, observer.removedPlan.size());
         assertEquals(plan_2, observer.removedPlan.get(2));
+        Thread.sleep(10);
         assertEquals(0, plan_2.getObservers().size());
 
         assertFalse(timer.remove(plan_3));
