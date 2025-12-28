@@ -73,7 +73,7 @@ public final class TimerUtil {
      * @param timer 指定的计时器。
      * @return 根据指定的计时器生成的不可变更的计时器。
      */
-    public static final Timer unmodifiableTimer(Timer timer) {
+    public static Timer unmodifiableTimer(Timer timer) {
         Objects.requireNonNull(timer, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_2));
         return new UnmodifiableTimer(timer);
     }
@@ -179,7 +179,7 @@ public final class TimerUtil {
          * {@inheritDoc}
          */
         @Override
-        public void awaitTermination() throws InterruptedException {
+        public void awaitTermination() {
             throw new UnsupportedOperationException("awaitTermination");
         }
 
@@ -187,7 +187,7 @@ public final class TimerUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+        public boolean awaitTermination(long timeout, TimeUnit unit) {
             throw new UnsupportedOperationException("awaitTermination");
         }
 
@@ -241,7 +241,7 @@ public final class TimerUtil {
      * @return 根据指定的计划生成的具有执行期限的计划。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
-    public static final Plan dateLimitedPlan(Plan plan, long limitedDate) {
+    public static Plan dateLimitedPlan(Plan plan, long limitedDate) {
         Objects.requireNonNull(plan, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_3));
         return new DateLimitedPlan(plan, limitedDate);
     }
@@ -394,7 +394,7 @@ public final class TimerUtil {
      * @return 根据指定的计划生成的具有执行次数限制的计划。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
-    public static final Plan timesLimitedPlan(Plan plan, int limitedTimes) {
+    public static Plan timesLimitedPlan(Plan plan, int limitedTimes) {
         Objects.requireNonNull(plan, DwarfUtil.getExceptionString(ExceptionStringKey.TIMERUTIL_3));
         return new TimesLimitedPlan(plan, limitedTimes);
     }

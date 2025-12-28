@@ -117,7 +117,7 @@ class TestI18nInfo implements I18nInfo {
      * {@inheritDoc}
      */
     @Override
-    public I18n newI18n() throws Exception {
+    public I18n newI18n() {
         return i18n;
     }
 }

@@ -71,6 +71,7 @@ public class FontSettingInfo extends AbstractSettingInfo {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected boolean isNonNullValid(String value) {
         lock.lock();
@@ -98,6 +99,7 @@ public class FontSettingInfo extends AbstractSettingInfo {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected Object parseValidValue(String value) {
         lock.lock();

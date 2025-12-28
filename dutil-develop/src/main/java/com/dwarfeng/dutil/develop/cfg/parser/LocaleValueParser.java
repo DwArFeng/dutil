@@ -17,6 +17,7 @@ public class LocaleValueParser implements ValueParser {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public Object parseValue(String value) {
         if (Objects.isNull(value))

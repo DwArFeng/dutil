@@ -312,7 +312,7 @@ public class JConsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public synchronized void reset() throws IOException {
+        public synchronized void reset() {
             mark = lastMark;
         }
 
@@ -320,7 +320,7 @@ public class JConsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public int available() throws IOException {
+        public int available() {
             return bytesForString == null ? 0 : Math.max(0, bytesForString.length - mark);
         }
 
@@ -344,7 +344,7 @@ public class JConsole extends JPanel {
     private final class InnerOutputStream extends OutputStream {
 
         private final Lock outLock = new ReentrantLock();
-        private final ArrayList<Byte> byteList = new ArrayList<Byte>();
+        private final ArrayList<Byte> byteList = new ArrayList<>();
 
         /**
          * {@inheritDoc}
@@ -369,7 +369,7 @@ public class JConsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public void write(int b) throws IOException {
+        public void write(int b) {
             outLock.lock();
             try {
                 byteList.add(NumberUtil.cutInt2Byte(b));

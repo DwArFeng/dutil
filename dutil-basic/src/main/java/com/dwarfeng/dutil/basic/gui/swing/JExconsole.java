@@ -12,7 +12,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -195,14 +194,10 @@ public class JExconsole extends JPanel {
                         in.pos = 0;
                         in.readFlag = true;
                         inputCondition.signalAll();
-                        SwingUtilities.invokeLater(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                textField.setVisible(false);
-                                textField.setText(null);
-                                revalidate();
-                            }
+                        SwingUtilities.invokeLater(() -> {
+                            textField.setVisible(false);
+                            textField.setText(null);
+                            revalidate();
                         });
                         rollbackStrings.add(0, str);
                         if (rollbackStrings.size() > JExconsole.this.maxRollback)
@@ -266,13 +261,9 @@ public class JExconsole extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (Objects.isNull(textArea))
                     return;
-                SwingUtilities.invokeLater(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        textArea.requestFocus();
-                        textArea.setText("");
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    textArea.requestFocus();
+                    textArea.setText("");
                 });
             }
         });
@@ -543,7 +534,7 @@ public class JExconsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public int read() throws IOException {
+        public int read() {
             if (disposeFlag.get()) {
                 throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
             }
@@ -552,15 +543,11 @@ public class JExconsole extends JPanel {
             try {
                 while ((!disposeFlag.get()) && !readFlag) {
                     try {
-                        SwingUtilities.invokeLater(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                if (!textField.isVisible()) {
-                                    textField.setVisible(true);
-                                    textField.requestFocus();
-                                    revalidate();
-                                }
+                        SwingUtilities.invokeLater(() -> {
+                            if (!textField.isVisible()) {
+                                textField.setVisible(true);
+                                textField.requestFocus();
+                                revalidate();
                             }
                         });
                         blockFlag = true;
@@ -595,7 +582,7 @@ public class JExconsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public void close() throws IOException {
+        public void close() {
             // Do nothing
         }
 
@@ -619,7 +606,7 @@ public class JExconsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public void write(int b) throws IOException {
+        public void write(int b) {
             if (disposeFlag.get()) {
                 throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
             }
@@ -642,7 +629,7 @@ public class JExconsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public void flush() throws IOException {
+        public void flush() {
             if (disposeFlag.get()) {
                 throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.JEXCONSOLE_0));
             }
@@ -674,7 +661,7 @@ public class JExconsole extends JPanel {
          * {@inheritDoc}
          */
         @Override
-        public void close() throws IOException {
+        public void close() {
             // Do nothing
         }
     }
@@ -693,42 +680,26 @@ public class JExconsole extends JPanel {
                     new JMenuItemAction.Builder().setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.SELECT_ALL)))
                             .setName(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_0, getDefaultLocale()))
                             .setKeyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
-                            .setMnemonic('A').setListener(new ActionListener() {
-
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    if (Objects.isNull(textArea))
-                                        return;
-                                    SwingUtilities.invokeLater(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            textArea.requestFocus();
-                                            textArea.select(0, textArea.getText().length());
-                                        }
-                                    });
-                                }
+                            .setMnemonic('A').setListener(e -> {
+                                if (Objects.isNull(textArea))
+                                    return;
+                                SwingUtilities.invokeLater(() -> {
+                                    textArea.requestFocus();
+                                    textArea.select(0, textArea.getText().length());
+                                });
                             }).build());
 
             cleanScreenMenuItem = add(
                     new JMenuItemAction.Builder().setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.CLEAN_SCREEN)))
                             .setName(DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_1, getDefaultLocale()))
                             .setKeyStorke(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK))
-                            .setMnemonic('E').setListener(new ActionListener() {
-
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    if (Objects.isNull(textArea))
-                                        return;
-                                    SwingUtilities.invokeLater(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            textArea.requestFocus();
-                                            textArea.setText("");
-                                        }
-                                    });
-                                }
+                            .setMnemonic('E').setListener(e -> {
+                                if (Objects.isNull(textArea))
+                                    return;
+                                SwingUtilities.invokeLater(() -> {
+                                    textArea.requestFocus();
+                                    textArea.setText("");
+                                });
                             }).build());
 
             addSeparator();
@@ -737,20 +708,10 @@ public class JExconsole extends JPanel {
                     DwarfUtil.getLabelString(LabelStringKey.JEXCONSOLE_2, getDefaultLocale()));
             lineWrapMenuItem.setIcon(new ImageIcon(DwarfUtil.getImage(ImageKey.LINE_WRAP)));
             lineWrapMenuItem.setMnemonic('W');
-            lineWrapMenuItem.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (Objects.isNull(textArea))
-                        return;
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            textArea.setLineWrap(lineWrapMenuItem.getState());
-                        }
-                    });
-                }
+            lineWrapMenuItem.addActionListener(e -> {
+                if (Objects.isNull(textArea))
+                    return;
+                SwingUtilities.invokeLater(() -> textArea.setLineWrap(lineWrapMenuItem.getState()));
             });
             add(lineWrapMenuItem);
         }
@@ -820,24 +781,12 @@ public class JExconsole extends JPanel {
 
                 if (textArea.getCaretPosition() < textArea.getText().length()) {
                     int pos = textArea.getText().length();
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            textArea.setCaretPosition(pos);
-                        }
-                    });
+                    SwingUtilities.invokeLater(() -> textArea.setCaretPosition(pos));
                 }
 
                 if (textArea.getLineCount() > maxLine) {
                     int pos = getLinePos();
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            textArea.replaceRange(null, 0, pos);
-                        }
-                    });
+                    SwingUtilities.invokeLater(() -> textArea.replaceRange(null, 0, pos));
                 }
 
             }

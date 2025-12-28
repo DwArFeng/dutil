@@ -14,7 +14,7 @@ public class UnmodifiableI18nHandlerTest {
     private TestI18NObserver observer = null;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DelegateI18nHandler(
                 new DelegateKeySetModel<>(new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>())));
         handler.add(TestI18nInfo.CHINESE);

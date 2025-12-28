@@ -36,7 +36,7 @@ public class Test_XmlJar2FileResourceLoader {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         File file = new File("test\\");
         if (file.exists())
             FileUtil.deleteFile(file);

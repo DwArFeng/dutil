@@ -13,15 +13,15 @@ public class DelegateI18nHandlerTest {
     private static TestI18NObserver observer = null;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DelegateI18nHandler(
                 new DelegateKeySetModel<>(new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>())));
         handler.add(TestI18nInfo.DEFAULT);

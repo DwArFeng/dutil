@@ -12,30 +12,26 @@ public class Test_ValueFilteredSettingInfo {
     private static SettingInfo settingInfo;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
-        settingInfo = SettingUtil.valueFilteredSettingInfo(new LocaleSettingInfo("zh_CN"), value -> {
-            return value.startsWith("zh");
-        });
+    public void setUp() {
+        settingInfo = SettingUtil.valueFilteredSettingInfo(new LocaleSettingInfo("zh_CN"), value -> value.startsWith("zh"));
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         settingInfo = null;
     }
 
     @Test(expected = IllegalArgumentException.class)
     public final void testFilteredSettingInfo() {
-        SettingUtil.valueFilteredSettingInfo(new LocaleSettingInfo("en_US"), value -> {
-            return value.startsWith("zh");
-        });
+        SettingUtil.valueFilteredSettingInfo(new LocaleSettingInfo("en_US"), value -> value.startsWith("zh"));
         fail("没有抛出指定的异常");
     }
 

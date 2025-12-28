@@ -15,15 +15,15 @@ public class DefaultSettingHandlerTest {
     private static TestSettingObserver observer;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
                 Collections.newSetFromMap(new WeakHashMap<>()));
         SettingUtil.putEnumItems(new SettingEnumItem[]{Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
@@ -33,7 +33,7 @@ public class DefaultSettingHandlerTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         handler.clearObserver();
         handler = null;
         observer = null;
@@ -172,7 +172,7 @@ public class DefaultSettingHandlerTest {
 
         SettingUtil.putEnumItems(new SettingEnumItem[]{Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
                 Test_SettingEnumItem.ENTRY_3, Test_SettingEnumItem.ENTRY_4}, anotherHandler);
-        assertTrue(handler.hashCode() == anotherHandler.hashCode());
+        assertEquals(handler.hashCode(), anotherHandler.hashCode());
     }
 
     @Test
@@ -227,7 +227,7 @@ public class DefaultSettingHandlerTest {
     public void testContainsAllKey() {
         assertTrue(handler.containsAllKey(Arrays.asList("entry.1", "entry.2", "entry.3", "entry.4")));
         assertFalse(handler.containsAllKey(Arrays.asList("entry.1", "entry.2", "entry.3", "entry.4", "entry.5")));
-        assertFalse(handler.containsAllKey(Arrays.asList("entry.5")));
+        assertFalse(handler.containsAllKey(Collections.singletonList("entry.5")));
         assertTrue(handler.containsAllKey(Arrays.asList("entry.2", "entry.3")));
     }
 
@@ -463,6 +463,6 @@ public class DefaultSettingHandlerTest {
 
         SettingUtil.putEnumItems(new SettingEnumItem[]{Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
                 Test_SettingEnumItem.ENTRY_3, Test_SettingEnumItem.ENTRY_4}, anotherHandler);
-        assertTrue(handler.equals(anotherHandler));
+        assertEquals(handler, anotherHandler);
     }
 }

@@ -89,7 +89,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read() throws IOException {
+    public int read() {
         if (pos >= bytes.length) {
             return -1;
         }
@@ -107,7 +107,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b) throws IOException {
+    public int read(byte[] b) {
         Objects.requireNonNull(b, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
 
         int length = b.length + pos > bytes.length ? bytes.length - pos : b.length;
@@ -127,7 +127,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b, int off, int len) throws IOException {
+    public int read(byte[] b, int off, int len) {
         Objects.requireNonNull(b, DwarfUtil.getExceptionString(ExceptionStringKey.STRINGINPUTSTREAM_3));
 
         if (off < 0 || len < 0 || len > b.length - off) {
@@ -163,7 +163,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public long skip(long n) throws IOException {
+    public long skip(long n) {
         // 如果跳过的长度小于等于 0，什么也不做，直接返回 0。
         if (n <= 0)
             return 0;

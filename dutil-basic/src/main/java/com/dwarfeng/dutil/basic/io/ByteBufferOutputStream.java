@@ -93,7 +93,7 @@ public final class ByteBufferOutputStream extends OutputStream {
      * {@inheritDoc}
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         if (clearFlag) {
             byteBuffer.flip();
         }

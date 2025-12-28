@@ -31,8 +31,7 @@ public abstract class AbstractReusePool<E> implements ReusePool<E> {
      */
     @Override
     public boolean contains(Object object) {
-        for (Iterator<E> iterator = iterator(); iterator.hasNext(); ) {
-            E element = iterator.next();
+        for (E element : this) {
             if (Objects.equals(object, element)) {
                 return true;
             }

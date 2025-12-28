@@ -33,7 +33,7 @@ public class JointIterator<T> implements Iterator<T> {
 
     public static class Builder<T> implements Buildable<JointIterator<T>> {
 
-        private final List<Iterator<T>> iteratorList = CollectionUtil.nonNullList(new ArrayList<Iterator<T>>());
+        private final List<Iterator<T>> iteratorList = CollectionUtil.nonNullList(new ArrayList<>());
 
         /**
          * 向构造器中添加一个迭代器。

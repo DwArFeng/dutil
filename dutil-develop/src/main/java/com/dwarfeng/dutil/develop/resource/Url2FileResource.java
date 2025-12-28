@@ -66,6 +66,7 @@ public class Url2FileResource extends AbstractResource {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void reset() throws IOException {
         FileUtil.createFileIfNotExists(res);

@@ -1314,7 +1314,7 @@ public final class LoggerUtil {
          * {@inheritDoc}
          */
         @Override
-        public Logger newLogger() throws Exception {
+        public Logger newLogger() {
             throw new UnsupportedOperationException("newLogger");
         }
 
@@ -1337,11 +1337,7 @@ public final class LoggerUtil {
      */
     public static LoggerHandler readOnlyLoggerHandler(LoggerHandler loggerHandler) {
         Objects.requireNonNull(loggerHandler, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERUTIL_0));
-        return readOnlyLoggerHandler(loggerHandler, loggerInfo -> {
-            return unmodifiableLoggerInfo(loggerInfo);
-        }, logger -> {
-            return unmodifiableLogger(logger);
-        });
+        return readOnlyLoggerHandler(loggerHandler, LoggerUtil::unmodifiableLoggerInfo, LoggerUtil::unmodifiableLogger);
     }
 
     /**

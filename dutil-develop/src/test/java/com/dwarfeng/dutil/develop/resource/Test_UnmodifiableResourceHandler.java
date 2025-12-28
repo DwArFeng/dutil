@@ -14,7 +14,7 @@ public class Test_UnmodifiableResourceHandler {
     private TestSetObserver<Resource> observer = null;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DelegateResourceHandler(
                 new DelegateKeySetModel<>(new LinkedHashSet<>(), Collections.newSetFromMap(new WeakHashMap<>())));
         observer = new TestSetObserver<>();
@@ -109,17 +109,17 @@ public class Test_UnmodifiableResourceHandler {
 
     @Test(expected = UnsupportedOperationException.class)
     public void testAddAll() {
-        handler.addAll(Arrays.asList(TestResource.B));
+        handler.addAll(Collections.singletonList(TestResource.B));
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testRetainAll() {
-        handler.retainAll(Arrays.asList(TestResource.B));
+        handler.retainAll(Collections.singletonList(TestResource.B));
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testRemoveAll() {
-        handler.removeAll(Arrays.asList(TestResource.B));
+        handler.removeAll(Collections.singletonList(TestResource.B));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -163,6 +163,6 @@ public class Test_UnmodifiableResourceHandler {
         set.add(TestResource.A);
         set.add(TestResource.B);
         set.add(TestResource.C);
-        assertTrue(set.equals(handler));
+        assertEquals(set, handler);
     }
 }

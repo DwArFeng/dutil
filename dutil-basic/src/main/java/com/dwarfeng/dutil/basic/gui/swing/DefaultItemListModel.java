@@ -46,7 +46,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
      * 生成一个使用 {@link ArrayList} 现的默认条目列表模型。
      */
     public DefaultItemListModel() {
-        this(new ArrayList<E>(), new ArrayList<E>());
+        this(new ArrayList<>(), new ArrayList<>());
     }
 
     /**
@@ -792,7 +792,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
          */
         @Override
         public boolean retainAll(Collection<?> c) {
-            Set<E> set = new HashSet<E>();
+            Set<E> set = new HashSet<>();
             for (E e : this) {
                 if (!c.contains(e)) {
                     set.add(e);
@@ -1028,7 +1028,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
          */
         @Override
         public boolean retainAll(Collection<?> c) {
-            Set<E> set = new HashSet<E>();
+            Set<E> set = new HashSet<>();
             for (E e : this) {
                 if (!c.contains(e)) {
                     set.add(e);

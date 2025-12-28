@@ -554,9 +554,7 @@ public final class BackgroundUtil {
     public static Background readOnlyBackground(Background background) {
         Objects.requireNonNull(background, DwarfUtil.getExceptionString(ExceptionStringKey.BACKGROUNDUTIL_2));
 
-        return new ReadOnlyBackground(background, task -> {
-            return unmodifiableTask(task);
-        });
+        return new ReadOnlyBackground(background, BackgroundUtil::unmodifiableTask);
     }
 
     private static final class ReadOnlyBackground implements Background {

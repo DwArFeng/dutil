@@ -50,7 +50,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
         Properties properties = new Properties();
         try {
             properties.load(in);
-            Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
+            Map<ConfigKey, String> configMap = new HashMap<>();
             for (String str : properties.stringPropertyNames()) {
                 configMap.put(new ConfigKey(str), properties.getProperty(str));
             }
@@ -66,6 +66,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     @Deprecated
     public void loadConfig(CurrentValueContainer container) throws LoadFailedException {
@@ -74,7 +75,7 @@ public class PropertiesConfigLoader extends StreamConfigLoader implements Config
         Properties properties = new Properties();
         try {
             properties.load(in);
-            Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
+            Map<ConfigKey, String> configMap = new HashMap<>();
             for (String str : properties.stringPropertyNames()) {
                 configMap.put(new ConfigKey(str), properties.getProperty(str));
             }

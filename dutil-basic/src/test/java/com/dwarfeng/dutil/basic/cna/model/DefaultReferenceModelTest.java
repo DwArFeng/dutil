@@ -11,7 +11,7 @@ public class DefaultReferenceModelTest {
     private final TestReferenceObserver<String> observer = new TestReferenceObserver<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         model.set("A");

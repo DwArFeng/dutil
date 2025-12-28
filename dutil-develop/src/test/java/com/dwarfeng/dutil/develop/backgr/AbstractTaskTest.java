@@ -15,14 +15,14 @@ public class AbstractTaskTest {
     private TestTaskObserver obv;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         obv = new TestTaskObserver();
         task = new TestExceptionTask();
         task.addObserver(obv);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         task.clearObserver();
         task = null;
     }
@@ -35,7 +35,7 @@ public class AbstractTaskTest {
     @Test
     public void testGetObservers() {
         assertEquals(1, task.getObservers().size());
-        assertEquals(true, task.getObservers().contains(obv));
+        assertTrue(task.getObservers().contains(obv));
     }
 
     @Test
@@ -52,21 +52,19 @@ public class AbstractTaskTest {
         TestTaskObserver obv = new TestTaskObserver();
         task.addObserver(obv);
 
-        assertEquals(false, task.isStarted());
-        assertEquals(false, task.isFinished());
+        assertFalse(task.isStarted());
+        assertFalse(task.isFinished());
 
-        Thread thread = new Thread(() -> {
-            task.run();
-        });
+        Thread thread = new Thread(task::run);
         thread.start();
 
         Thread.sleep(50);
-        assertEquals(true, task.isStarted());
-        assertEquals(false, task.isFinished());
+        assertTrue(task.isStarted());
+        assertFalse(task.isFinished());
         assertEquals(1, obv.startCount);
         task.awaitFinish();
-        assertEquals(true, task.isStarted());
-        assertEquals(true, task.isFinished());
+        assertTrue(task.isStarted());
+        assertTrue(task.isFinished());
         assertEquals(1, obv.finishCount);
     }
 
@@ -75,13 +73,11 @@ public class AbstractTaskTest {
         RuntimeException e = new RuntimeException();
         task.setNextException(e);
 
-        Thread thread = new Thread(() -> {
-            task.run();
-        });
+        Thread thread = new Thread(() -> task.run());
         thread.start();
         task.awaitFinish();
-        assertEquals(true, task.isStarted());
-        assertEquals(true, task.isFinished());
+        assertTrue(task.isStarted());
+        assertTrue(task.isFinished());
         assertEquals(1, obv.finishCount);
         assertEquals(e, task.getThrowable());
     }
@@ -105,12 +101,10 @@ public class AbstractTaskTest {
         TimeMeasurer tm = new TimeMeasurer();
 
         tm.start();
-        Thread thread = new Thread(() -> {
-            task.run();
-        });
+        Thread thread = new Thread(task::run);
         thread.start();
-        assertEquals(false, task.awaitFinish(60, TimeUnit.MILLISECONDS));
-        assertEquals(true, task.awaitFinish(100, TimeUnit.MILLISECONDS));
+        assertFalse(task.awaitFinish(60, TimeUnit.MILLISECONDS));
+        assertTrue(task.awaitFinish(100, TimeUnit.MILLISECONDS));
         tm.stop();
 
         assertTrue(tm.getTimeMs() >= 100);

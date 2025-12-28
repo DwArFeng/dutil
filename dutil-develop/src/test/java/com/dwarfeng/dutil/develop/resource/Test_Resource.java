@@ -39,7 +39,7 @@ public class Test_Resource {
          * {@inheritDoc}
          */
         @Override
-        public OutputStream openOutputStream() throws IOException {
+        public OutputStream openOutputStream() {
             throw new UnsupportedOperationException("openOutputStream");
         }
 
@@ -47,7 +47,7 @@ public class Test_Resource {
          * {@inheritDoc}
          */
         @Override
-        public void reset() throws IOException {
+        public void reset() {
             str = "123456";
         }
 
@@ -64,20 +64,20 @@ public class Test_Resource {
     private static TestResource resource;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         resource = new TestResource();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         resource = null;
     }
 

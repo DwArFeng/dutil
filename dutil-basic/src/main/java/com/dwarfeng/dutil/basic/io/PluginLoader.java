@@ -60,12 +60,12 @@ public class PluginLoader<T> {
         // 搜索目录所有后缀名为.jar 的文件并考虑 null 的特殊情况。
         jarFiles = tempJarFiles == null ? new File[0] : tempJarFiles;
         // 批量转化为 url；
-        Set<URL> urls = new HashSet<URL>();
-        for (int i = 0; i < jarFiles.length; i++) {
+        Set<URL> urls = new HashSet<>();
+        for (File jarFile : jarFiles) {
             try {
-                urls.add(jarFiles[i].toURI().toURL());
+                urls.add(jarFile.toURI().toURL());
             } catch (MalformedURLException e) {
-                CT.trace("Exception occured while transform file to url :" + jarFiles[i].getName());
+                CT.trace("Exception occured while transform file to url :" + jarFile.getName());
             }
         }
         // 初始化 loader
@@ -92,8 +92,6 @@ public class PluginLoader<T> {
         try {
             if (isClose) throw new IOException("PluginLoader has already been closed");
             loader.close();
-        } catch (IOException e) {
-            throw e;
         } finally {
             isClose = true;
         }
@@ -110,19 +108,19 @@ public class PluginLoader<T> {
     @SuppressWarnings("unchecked")
     public <U extends T> Collection<Class<U>> loadPluginClass(Class<U> clas) throws IOException {
         if (isClose) throw new IOException("PluginLoader already closed");
-        Collection<Class<U>> classCollection = new HashSet<Class<U>>();
+        Collection<Class<U>> classCollection = new HashSet<>();
         bk0:
-        for (int i = 0; i < jarFiles.length; i++) {
+        for (File jarFile : jarFiles) {
             Enumeration<JarEntry> je = null;
             JarFile jf = null;
 
             try {
                 // 寻找 Entry，出现异常直接放弃整个 jar 包，进行下一个 jar 包的调度。
                 try {
-                    jf = new JarFile(jarFiles[i]);
+                    jf = new JarFile(jarFile);
                     je = jf.entries();
                 } catch (IOException e) {
-                    CT.trace("Exception occured while getting entries : " + jarFiles[i].getName());
+                    CT.trace("Exception occured while getting entries : " + jarFile.getName());
                     continue bk0;
                 }
                 bk1:
@@ -165,7 +163,7 @@ public class PluginLoader<T> {
      * @throws IOException 当该插件加载对象已经被关闭的时候抛出该异常。
      */
     public <U extends T> Collection<U> loadPluginInstance(Class<U> clas) throws IOException {
-        Collection<U> instanceCollection = new HashSet<U>();
+        Collection<U> instanceCollection = new HashSet<>();
         Collection<Class<U>> classCollection = loadPluginClass(clas);
         Iterator<Class<U>> iterator = classCollection.iterator();
         Class<U> next = null;

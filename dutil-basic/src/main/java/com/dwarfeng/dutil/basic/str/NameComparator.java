@@ -16,7 +16,6 @@ public final class NameComparator implements Comparator<Name> {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("deprecation")
     @Override
     public int compare(Name o1, Name o2) {
         return comp.compare(o1, o2);

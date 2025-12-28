@@ -46,7 +46,7 @@ public final class CollectionUtil {
         if (!set.isEmpty()) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
         }
-        return new NonNullSet<T>(set);
+        return new NonNullSet<>(set);
     }
 
     private static final class NonNullSet<E> implements Set<E> {
@@ -196,7 +196,7 @@ public final class CollectionUtil {
         if (!list.isEmpty()) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
         }
-        return new NonNullList<T>(list);
+        return new NonNullList<>(list);
     }
 
     private static final class NonNullList<E> implements List<E> {
@@ -399,7 +399,7 @@ public final class CollectionUtil {
          */
         @Override
         public List<E> subList(int fromIndex, int toIndex) {
-            return new NonNullList<E>(list.subList(fromIndex, toIndex));
+            return new NonNullList<>(list.subList(fromIndex, toIndex));
         }
 
         /**
@@ -434,7 +434,7 @@ public final class CollectionUtil {
         if (!map.isEmpty()) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_8));
         }
-        return new NonNullMap<K, V>(map);
+        return new NonNullMap<>(map);
     }
 
     private static final class NonNullMap<K, V> implements Map<K, V> {
@@ -1784,9 +1784,7 @@ public final class CollectionUtil {
          */
         @Override
         public Set<Entry<K, V>> entrySet() {
-            return readOnlySet(delegate.entrySet(), element -> {
-                return readOnlyMapEntry(element, keyGen, valueGen);
-            });
+            return readOnlySet(delegate.entrySet(), element -> readOnlyMapEntry(element, keyGen, valueGen));
         }
 
         /**

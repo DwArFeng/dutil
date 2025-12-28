@@ -1048,6 +1048,7 @@ public class JAdjustableBorderPanel extends JPanel {
      *
      * @param e 响应的鼠标事件。
      */
+    @SuppressWarnings("DuplicatedCode")
     private void nPanSep_MouseDragged(MouseEvent e) {
         int nmin = northPan == null || !northPan.isVisible() ? 0 : getNorthMinValue();
         int climit = centerPan.getHeight() - centerPan.getMinimumSize().height;
@@ -1068,6 +1069,7 @@ public class JAdjustableBorderPanel extends JPanel {
      *
      * @param e 响应的鼠标事件。
      */
+    @SuppressWarnings("DuplicatedCode")
     private void sPanSep_MouseDragged(MouseEvent e) {
         int smin = southPan == null || !southPan.isVisible() ? 0 : getSouthMinValue();
         int climit = -centerPan.getHeight() + centerPan.getMinimumSize().height;
@@ -1088,6 +1090,7 @@ public class JAdjustableBorderPanel extends JPanel {
      *
      * @param e 响应的鼠标事件。
      */
+    @SuppressWarnings("DuplicatedCode")
     private void ePanSep_MouseDragged(MouseEvent e) {
         int emin = eastPan == null || !eastPan.isVisible() ? 0 : getEastMinValue();
         int climit = -centerPan.getWidth() + centerPan.getMinimumSize().width;
@@ -1108,6 +1111,7 @@ public class JAdjustableBorderPanel extends JPanel {
      *
      * @param e 响应的鼠标事件。
      */
+    @SuppressWarnings("DuplicatedCode")
     private void wPanSep_MouseDragged(MouseEvent e) {
         int wmin = westPan == null || !westPan.isVisible() ? 0 : getWestMinValue();
         int climit = centerPan.getWidth() - centerPan.getMinimumSize().width;

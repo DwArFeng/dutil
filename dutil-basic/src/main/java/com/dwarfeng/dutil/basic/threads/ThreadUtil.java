@@ -118,7 +118,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public void lockInterruptibly() throws InterruptedException {
+        public void lockInterruptibly() {
             throw new UnsupportedOperationException("lockInterruptibly");
         }
 
@@ -134,7 +134,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+        public boolean tryLock(long time, TimeUnit unit) {
             throw new UnsupportedOperationException("tryLock");
         }
 

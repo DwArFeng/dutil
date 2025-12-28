@@ -14,15 +14,15 @@ public class ListTimerTest {
     private static TestTimerObserver observer;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         timer = new ListTimer();
         observer = new TestTimerObserver();
         timer.addObserver(observer);

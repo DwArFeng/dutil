@@ -10,15 +10,15 @@ public class Test_ObjectFilteredSettingInfo {
     private static SettingInfo settingInfo;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         settingInfo = SettingUtil.objectFilteredSettingInfo(new IntegerSettingInfo("12450"), object -> {
             if (!(object instanceof Integer))
                 return false;
@@ -27,7 +27,7 @@ public class Test_ObjectFilteredSettingInfo {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         settingInfo = null;
     }
 

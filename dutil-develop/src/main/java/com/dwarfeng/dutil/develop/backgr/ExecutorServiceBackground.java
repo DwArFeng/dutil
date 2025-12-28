@@ -218,9 +218,7 @@ public class ExecutorServiceBackground extends AbstractBackground {
      */
     @Override
     public Set<Task> tasks() {
-        return CollectionUtil.readOnlySet(tasks, task -> {
-            return BackgroundUtil.unmodifiableTask(task);
-        });
+        return CollectionUtil.readOnlySet(tasks, BackgroundUtil::unmodifiableTask);
     }
 
     private class TaskInspector implements TaskObserver {

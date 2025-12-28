@@ -19,15 +19,15 @@ public class Test_SyncKeySet {
     private static Set<String> keySet;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
                 Collections.newSetFromMap(new WeakHashMap<>())));
         SettingUtil.putEnumItems(new SettingEnumItem[]{Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
@@ -39,7 +39,7 @@ public class Test_SyncKeySet {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         handler.clearObserver();
         keySet = null;
         handler = null;
@@ -193,7 +193,7 @@ public class Test_SyncKeySet {
         anotherkeySet.add(ENTRY_2);
         anotherkeySet.add(ENTRY_3);
         anotherkeySet.add(ENTRY_4);
-        assertTrue(keySet.hashCode() == anotherkeySet.hashCode());
+        assertEquals(keySet.hashCode(), anotherkeySet.hashCode());
     }
 
     @Test
@@ -203,7 +203,7 @@ public class Test_SyncKeySet {
         anotherkeySet.add(ENTRY_2);
         anotherkeySet.add(ENTRY_3);
         anotherkeySet.add(ENTRY_4);
-        assertTrue(keySet.equals(anotherkeySet));
+        assertEquals(keySet, anotherkeySet);
     }
 
     @Test

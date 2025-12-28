@@ -41,6 +41,7 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void load(CurrentValueContainer container) throws LoadFailedException {
         if (readFlag)
@@ -52,7 +53,7 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
         try {
             readFlag = true;
             properties.load(in);
-            Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
+            Map<ConfigKey, String> configMap = new HashMap<>();
             for (String str : properties.stringPropertyNames()) {
                 configMap.put(new ConfigKey(str), properties.getProperty(str));
             }
@@ -66,6 +67,7 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public Set<LoadFailedException> countinuousLoad(CurrentValueContainer container) throws IllegalStateException {
         if (readFlag)
@@ -79,7 +81,7 @@ public class PropConfigLoader extends StreamLoader<CurrentValueContainer> {
         try {
             readFlag = true;
             properties.load(in);
-            Map<ConfigKey, String> configMap = new HashMap<ConfigKey, String>();
+            Map<ConfigKey, String> configMap = new HashMap<>();
             for (String str : properties.stringPropertyNames()) {
                 configMap.put(new ConfigKey(str), properties.getProperty(str));
             }

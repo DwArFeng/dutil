@@ -122,7 +122,7 @@ public class DefaultExconfigModelTest {
     private final DefaultExconfigModel model = new DefaultExconfigModel();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         obs1.reset();

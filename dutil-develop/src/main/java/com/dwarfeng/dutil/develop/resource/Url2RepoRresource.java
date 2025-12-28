@@ -86,6 +86,7 @@ public class Url2RepoRresource extends AbstractResource {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void reset() throws IOException {
         File res = getResourceFile();

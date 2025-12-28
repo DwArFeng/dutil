@@ -707,7 +707,7 @@ public final class I18nUtil {
          * {@inheritDoc}
          */
         @Override
-        public I18n newI18n() throws Exception {
+        public I18n newI18n() {
             throw new UnsupportedOperationException("newI18n");
         }
 
@@ -744,9 +744,7 @@ public final class I18nUtil {
      */
     public static I18nHandler readOnlyI18nHandler(I18nHandler i18nHandler) {
         Objects.requireNonNull(i18nHandler, DwarfUtil.getExceptionString(ExceptionStringKey.I18NUTIL_0));
-        return readOnlyI18nHandler(i18nHandler, i18nInfo -> {
-            return unmodifiableI18nInfo(i18nInfo);
-        });
+        return readOnlyI18nHandler(i18nHandler, I18nUtil::unmodifiableI18nInfo);
     }
 
     /**

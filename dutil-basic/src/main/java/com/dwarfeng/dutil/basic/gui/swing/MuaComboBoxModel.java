@@ -36,7 +36,7 @@ public class MuaComboBoxModel<E> extends AbstractListModel<E> implements ComboBo
      * 生成一个默认的，由 {@link ArrayList} 现的下拉菜单模型。
      */
     public MuaComboBoxModel() {
-        this(new ArrayList<E>());
+        this(new ArrayList<>());
     }
 
     /**
@@ -240,6 +240,7 @@ public class MuaComboBoxModel<E> extends AbstractListModel<E> implements ComboBo
         return batchRemove(c, false);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private boolean batchRemove(Collection<?> c, boolean aFlag) {
         boolean result = false;
 
@@ -635,6 +636,7 @@ public class MuaComboBoxModel<E> extends AbstractListModel<E> implements ComboBo
             return batchRemove(c, false);
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private boolean batchRemove(Collection<?> c, boolean aFlag) {
             boolean result = false;
 

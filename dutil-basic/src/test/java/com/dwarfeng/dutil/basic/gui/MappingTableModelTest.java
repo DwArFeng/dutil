@@ -80,15 +80,15 @@ public class MappingTableModelTest {
     private static final Employee EMPLOYEE_NEWBIE = new Employee(4, "Newbie", 300.0);
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         List<Employee> employees = new ArrayList<>();
         employees.add(EMPLOYEE_DWARFENG);
         employees.add(EMPLOYEE_RAE);
@@ -99,7 +99,7 @@ public class MappingTableModelTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         tableModel = null;
         tableModelListener = null;
     }

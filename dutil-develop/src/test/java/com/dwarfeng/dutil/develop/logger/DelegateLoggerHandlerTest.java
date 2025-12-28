@@ -25,19 +25,19 @@ public class DelegateLoggerHandlerTest {
     private static TestLoggerObserver obv;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
         CT.setOutputType(OutputType.NO_DATE);
         exception = new Exception("测试用异常");
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
         CT.setOutputType(OutputType.HALF_DATE);
         exception = null;
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DelegateLoggerHandler();
         obv = new TestLoggerObserver();
         handler.addObserver(obv);

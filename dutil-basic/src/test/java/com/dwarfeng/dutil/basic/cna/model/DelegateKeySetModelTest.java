@@ -14,7 +14,7 @@ public class DelegateKeySetModelTest {
     private final TestSetObserver<TestWithKey> obv = new TestSetObserver<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         obv.reset();

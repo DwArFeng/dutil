@@ -13,7 +13,7 @@ public class Test_DefaultConfigModel {
     private final ConfigModel model = new DefaultConfigModel();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.addAll(Arrays.asList(TestExconfigEntries.values()));
     }
 

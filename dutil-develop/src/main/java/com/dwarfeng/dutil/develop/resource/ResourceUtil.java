@@ -7,7 +7,6 @@ import com.dwarfeng.dutil.basic.cna.CollectionUtil;
 import com.dwarfeng.dutil.basic.cna.model.obs.SetObserver;
 import com.dwarfeng.dutil.basic.prog.ReadOnlyGenerator;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
@@ -671,7 +670,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public InputStream openInputStream() throws IOException {
+        public InputStream openInputStream() {
             throw new UnsupportedOperationException("openInputStream");
         }
 
@@ -679,7 +678,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public OutputStream openOutputStream() throws IOException {
+        public OutputStream openOutputStream() {
             throw new UnsupportedOperationException("openOutputStream");
         }
 
@@ -687,7 +686,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public void reset() throws IOException {
+        public void reset() {
             throw new UnsupportedOperationException("reset");
         }
 
@@ -736,9 +735,7 @@ public final class ResourceUtil {
      */
     public static ResourceHandler readOnlyResourceHandler(ResourceHandler resourceHandler) {
         Objects.requireNonNull(resourceHandler, DwarfUtil.getExceptionString(ExceptionStringKey.RESOURCEUTIL_0));
-        return readOnlyResourceHandler(resourceHandler, resource -> {
-            return unmodifiableResource(resource);
-        });
+        return readOnlyResourceHandler(resourceHandler, ResourceUtil::unmodifiableResource);
     }
 
     /**
@@ -961,7 +958,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public InputStream openInputStream(String key) throws IOException, IllegalArgumentException {
+        public InputStream openInputStream(String key) throws IllegalArgumentException {
             throw new UnsupportedOperationException("openInputStream");
         }
 
@@ -969,7 +966,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public OutputStream openOutputStream(String key) throws IOException, IllegalArgumentException {
+        public OutputStream openOutputStream(String key) throws IllegalArgumentException {
             throw new UnsupportedOperationException("openOutputStream");
         }
 
@@ -977,7 +974,7 @@ public final class ResourceUtil {
          * {@inheritDoc}
          */
         @Override
-        public void reset(String key) throws IOException, IllegalArgumentException {
+        public void reset(String key) throws IllegalArgumentException {
             throw new UnsupportedOperationException("reset");
         }
 

@@ -462,7 +462,6 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
         return delegate.toArray();
     }
 
-    @SuppressWarnings("SuspiciousToArrayCall")
     @Override
     public <T> T[] toArray(T[] a) {
         return delegate.toArray(a);
@@ -756,7 +755,6 @@ public class MappingTableModel<E> extends AbstractTableModel implements TableMod
             return subDelegate.toArray();
         }
 
-        @SuppressWarnings("SuspiciousToArrayCall")
         @Override
         public <T> T[] toArray(T[] a) {
             return subDelegate.toArray(a);

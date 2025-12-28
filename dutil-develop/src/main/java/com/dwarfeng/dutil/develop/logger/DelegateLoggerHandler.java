@@ -61,12 +61,12 @@ public final class DelegateLoggerHandler implements LoggerHandler {
     /**
      * 被代理的键值集合。
      */
-    protected final KeySetModel<String, LoggerInfo> delegateKeySet;
+    private final KeySetModel<String, LoggerInfo> delegateKeySet;
 
     /**
      * 被代理的映射。
      */
-    protected final Map<LoggerInfo, Logger> delegateMap;
+    private final Map<LoggerInfo, Logger> delegateMap;
 
     /**
      * 生成一个默认的代理记录器处理器。
@@ -469,7 +469,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
      * @param loggerInfo 相关的记录器信息。
      * @param logger     使用的记录器。
      */
-    protected void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
+    private void fireLoggerUsed(String key, LoggerInfo loggerInfo, Logger logger) {
         for (SetObserver<LoggerInfo> observer : delegateKeySet.getObservers()) {
             if (Objects.nonNull(observer) && observer instanceof LoggerObserver) {
                 try {
@@ -488,7 +488,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
      * @param loggerInfo 相关的记录器信息。
      * @param logger     禁用的记录器。
      */
-    protected void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger) {
+    private void fireLoggerUnused(String key, LoggerInfo loggerInfo, Logger logger) {
         for (SetObserver<LoggerInfo> observer : delegateKeySet.getObservers()) {
             if (Objects.nonNull(observer) && observer instanceof LoggerObserver) {
                 try {
@@ -535,9 +535,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
     private boolean batchUnuse(Collection<?> c, boolean aFlag) {
         boolean result = false;
 
-        for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext(); ) {
-            LoggerInfo loggerInfo = i.next();
-
+        for (LoggerInfo loggerInfo : delegateKeySet) {
             if (c.contains(loggerInfo) == aFlag && unuseOne(loggerInfo, true)) {
                 result = true;
             }
@@ -549,9 +547,7 @@ public final class DelegateLoggerHandler implements LoggerHandler {
     private boolean batchUnuseKey(Collection<?> c, boolean aFlag) {
         boolean result = false;
 
-        for (Iterator<LoggerInfo> i = delegateKeySet.iterator(); i.hasNext(); ) {
-            LoggerInfo loggerInfo = i.next();
-
+        for (LoggerInfo loggerInfo : delegateKeySet) {
             if (c.contains(loggerInfo == null ? null : loggerInfo.getKey()) == aFlag && unuseOne(loggerInfo, true)) {
                 result = true;
             }

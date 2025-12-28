@@ -12,21 +12,21 @@ public class Test_DoubleConfigChecker {
     private static DoubleConfigChecker checker1;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         checker0 = new DoubleConfigChecker();
         checker1 = new DoubleConfigChecker(-100, +100);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         checker0 = null;
         checker1 = null;
     }

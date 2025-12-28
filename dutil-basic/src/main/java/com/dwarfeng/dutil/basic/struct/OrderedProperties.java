@@ -12,7 +12,7 @@ public class OrderedProperties extends Properties {
 
     private static final long serialVersionUID = 5604182371001690789L;
 
-    private final LinkedHashSet<Object> keys = new LinkedHashSet<Object>();
+    private final LinkedHashSet<Object> keys = new LinkedHashSet<>();
 
     /**
      * {@inheritDoc}
@@ -44,7 +44,7 @@ public class OrderedProperties extends Properties {
      */
     @Override
     public Set<String> stringPropertyNames() {
-        Set<String> set = new LinkedHashSet<String>();
+        Set<String> set = new LinkedHashSet<>();
 
         for (Object key : this.keys) {
             set.add((String) key);

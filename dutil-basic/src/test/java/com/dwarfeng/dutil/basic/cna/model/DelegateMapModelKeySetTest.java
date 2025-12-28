@@ -15,7 +15,7 @@ public class DelegateMapModelKeySetTest {
     private Set<String> keySet;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         model.put("A", "1");

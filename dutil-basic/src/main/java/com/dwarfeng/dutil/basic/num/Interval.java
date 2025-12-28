@@ -87,6 +87,7 @@ public class Interval implements Filter<NumberValue> {
      * @throws IllegalArgumentException 字符串不符合形式。
      * @throws NullPointerException     入口参数为 <code>null</code>。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static Interval parseInterval(String str) {
         Objects.requireNonNull(str, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_4));
 
@@ -102,8 +103,7 @@ public class Interval implements Filter<NumberValue> {
         final BigDecimal leftValue;
         final BigDecimal rightValue;
 
-        Scanner scanner = new Scanner(str);
-        try {
+        try (Scanner scanner = new Scanner(str)) {
             if (!scanner.hasNext(leftBoundaryPattern)) {
                 throw new IllegalArgumentException(
                         String.format(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_5), str));
@@ -144,8 +144,6 @@ public class Interval implements Filter<NumberValue> {
             }
             String rightBoundary = scanner.next(rightBoundaryPattern);
             rightBoundaryType = rightBoundary.equals("]") ? BoundaryType.CLOSED : BoundaryType.OPENED;
-        } finally {
-            scanner.close();
         }
 
         return new Interval(leftBoundaryType, rightBoundaryType, leftValue, rightValue);

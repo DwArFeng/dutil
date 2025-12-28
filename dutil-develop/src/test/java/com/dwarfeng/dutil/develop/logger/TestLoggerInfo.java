@@ -24,7 +24,7 @@ class TestLoggerInfo implements LoggerInfo {
      * {@inheritDoc}
      */
     @Override
-    public Logger newLogger() throws Exception {
+    public Logger newLogger() {
         return new OutputStreamLogger(out);
     }
 }

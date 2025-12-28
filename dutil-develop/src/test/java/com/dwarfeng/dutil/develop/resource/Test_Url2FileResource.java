@@ -31,7 +31,7 @@ public class Test_Url2FileResource {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         File file = new File("test/");
         if (file.exists())
             FileUtil.deleteFile(file);

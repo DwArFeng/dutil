@@ -20,18 +20,18 @@ public class Test_SysOutLogger {
     private static SysOutLogger logger2;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
         exception = new Exception("测试用异常");
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
         System.setOut(DEFAULT_SYSOUT);
         exception = null;
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         out1 = new StringOutputStream();
         out2 = new StringOutputStream();
         ps1 = new PrintStream(out1, true);
@@ -42,7 +42,7 @@ public class Test_SysOutLogger {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         logger1 = null;
         logger2 = null;
         try {

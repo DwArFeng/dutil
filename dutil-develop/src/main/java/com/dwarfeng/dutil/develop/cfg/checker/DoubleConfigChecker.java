@@ -87,11 +87,8 @@ public class DoubleConfigChecker implements ConfigChecker {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        long temp;
-        temp = Double.doubleToLongBits(maxValue);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(minValue);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + Double.hashCode(maxValue);
+        result = prime * result + Double.hashCode(minValue);
         return result;
     }
 }

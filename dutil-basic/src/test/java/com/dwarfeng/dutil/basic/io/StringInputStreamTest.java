@@ -7,7 +7,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StringInputStreamTest {
 
@@ -76,7 +77,7 @@ public class StringInputStreamTest {
     }
 
     @Test
-    public void testAvailable() throws IOException {
+    public void testAvailable() {
         assertEquals(10, in.available());
     }
 
@@ -110,57 +111,41 @@ public class StringInputStreamTest {
 
     @Test(expected = IOException.class)
     public final void testMarkAndReset1() throws IOException {
-        try {
-            in.skip(3);
-            assertEquals(51, in.read());
-            in.mark(2);
-            in.skip(3);
-        } catch (IOException e) {
-            fail("在意外的地方发生异常。");
-        }
+        in.skip(3);
+        assertEquals(51, in.read());
+        in.mark(2);
+        in.skip(3);
         in.reset();
     }
 
     @Test(expected = IOException.class)
     public final void testMarkAndReset2() throws IOException {
-        try {
-            in.skip(3);
-            assertEquals(51, in.read());
-            in.mark(2);
-            in.read();
-            in.read();
-            in.read();
-        } catch (IOException e) {
-            fail("在意外的地方发生异常。");
-        }
+        in.skip(3);
+        assertEquals(51, in.read());
+        in.mark(2);
+        in.read();
+        in.read();
+        in.read();
         in.reset();
     }
 
     @Test(expected = IOException.class)
     public final void testMarkAndReset3() throws IOException {
-        try {
-            in.skip(3);
-            assertEquals(51, in.read());
-            in.mark(2);
-            byte[] bs = new byte[3];
-            in.read(bs);
-        } catch (IOException e) {
-            fail("在意外的地方发生异常。");
-        }
+        in.skip(3);
+        assertEquals(51, in.read());
+        in.mark(2);
+        byte[] bs = new byte[3];
+        in.read(bs);
         in.reset();
     }
 
     @Test(expected = IOException.class)
     public final void testMarkAndReset4() throws IOException {
-        try {
-            in.skip(3);
-            assertEquals(51, in.read());
-            in.mark(2);
-            byte[] bs = new byte[4];
-            in.read(bs, 1, 3);
-        } catch (IOException e) {
-            fail("在意外的地方发生异常。");
-        }
+        in.skip(3);
+        assertEquals(51, in.read());
+        in.mark(2);
+        byte[] bs = new byte[4];
+        in.read(bs, 1, 3);
         in.reset();
     }
 }

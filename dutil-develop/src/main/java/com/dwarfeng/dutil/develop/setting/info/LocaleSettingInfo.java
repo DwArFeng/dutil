@@ -75,6 +75,7 @@ public class LocaleSettingInfo extends AbstractSettingInfo {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected Object parseValidValue(String value) {
         StringTokenizer tokenizer = new StringTokenizer(value, DELIM);

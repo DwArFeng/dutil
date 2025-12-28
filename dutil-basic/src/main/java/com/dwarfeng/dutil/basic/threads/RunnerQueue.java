@@ -55,7 +55,7 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
      */
     public RunnerQueue(boolean isDaemon) {
         super(THREAD_NAME, isDaemon);
-        queue = new ArrayDeque<T>();
+        queue = new ArrayDeque<>();
         threadLock = new ReentrantLock();
         threadCondition = threadLock.newCondition();
         queueLock = new ReentrantReadWriteLock();
@@ -101,7 +101,7 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
     public Queue<T> getWaitingQueue() {
         queueLock.readLock().lock();
         try {
-            return new ArrayDeque<T>(this.queue);
+            return new ArrayDeque<>(this.queue);
         } finally {
             queueLock.readLock().unlock();
         }

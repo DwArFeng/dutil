@@ -215,9 +215,7 @@ public final class SettingUtil {
          */
         @Override
         public Set<Entry> entrySet() {
-            return CollectionUtil.readOnlySet(delegate.entrySet(), entry -> {
-                return unmodifiableEntry(entry);
-            });
+            return CollectionUtil.readOnlySet(delegate.entrySet(), SettingUtil::unmodifiableEntry);
         }
 
         /**

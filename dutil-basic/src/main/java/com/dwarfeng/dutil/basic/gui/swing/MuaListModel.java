@@ -32,7 +32,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
      * 生成一个默认的，由 {@link ArrayList} 现的列表模型。
      */
     public MuaListModel() {
-        this(new ArrayList<E>());
+        this(new ArrayList<>());
     }
 
     /**
@@ -236,6 +236,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
         return batchRemove(c, false);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private boolean batchRemove(Collection<?> c, boolean aFlag) {
         boolean result = false;
 
@@ -603,6 +604,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public boolean addAll(int index, Collection<? extends E> c) {
             // TODO 此处逻辑有误，虽然结果正确，但是侦听器会触发多次。
@@ -633,6 +635,7 @@ public class MuaListModel<E> extends AbstractListModel<E> implements List<E> {
             return batchRemove(c, false);
         }
 
+        @SuppressWarnings("DuplicatedCode")
         private boolean batchRemove(Collection<?> c, boolean aFlag) {
             boolean result = false;
 

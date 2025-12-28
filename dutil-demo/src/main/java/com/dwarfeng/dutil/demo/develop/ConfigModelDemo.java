@@ -246,7 +246,7 @@ public class ConfigModelDemo {
         testFrame.setVisible(true);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new ConfigModelDemo();
     }
 }

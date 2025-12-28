@@ -13,22 +13,22 @@ public class AbstractPlanTest {
     private TestPlanObserver obv;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         plain = new TestExceptionPlan();
         obv = new TestPlanObserver();
         plain.addObserver(obv);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         plain.clearObserver();
         plain = null;
     }
@@ -45,11 +45,11 @@ public class AbstractPlanTest {
     }
 
     @Test
-    public final void testIsRunning() throws InterruptedException {
+    public final void testIsRunning() {
         Plan myPlan = new AbstractPlan(0) {
 
             @Override
-            protected void todo() throws Exception {
+            protected void todo() {
                 assertTrue(this.isRunning());
             }
 
@@ -128,9 +128,7 @@ public class AbstractPlanTest {
         TimeMeasurer tm = new TimeMeasurer();
         TestBlockPlan plain = new TestBlockPlan(500);
         tm.start();
-        Thread thread = new Thread(() -> {
-            plain.run();
-        });
+        Thread thread = new Thread(plain::run);
         thread.start();
         Thread.sleep(100);
         plain.awaitFinish();
@@ -144,9 +142,7 @@ public class AbstractPlanTest {
         TimeMeasurer tm = new TimeMeasurer();
         TestBlockPlan plain = new TestBlockPlan(500);
         tm.start();
-        Thread thread = new Thread(() -> {
-            plain.run();
-        });
+        Thread thread = new Thread(plain::run);
         thread.start();
         assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));
         assertFalse(plain.awaitFinish(100, TimeUnit.MILLISECONDS));

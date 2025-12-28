@@ -679,6 +679,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public <T> T[] toArray(T[] a) {
             Object[] objs = delegateEntrySet.toArray();

@@ -83,15 +83,15 @@ public class MappingTableModelSubListTest {
     private static final Employee EMPLOYEE_F = new Employee(6, "F", 300.0);
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         List<Employee> employees = new ArrayList<>();
         employees.add(EMPLOYEE_A);
         employees.add(EMPLOYEE_B);
@@ -105,7 +105,7 @@ public class MappingTableModelSubListTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         tableModel = null;
         tableModelListener = null;
         subList.clear();

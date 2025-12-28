@@ -6,7 +6,7 @@ import com.dwarfeng.dutil.develop.timer.plan.FixedTimePlan;
 class TestFixTimePlan extends FixedTimePlan {
 
     public TestFixTimePlan() {
-        this(100l);
+        this(100L);
     }
 
     public TestFixTimePlan(long period) {
@@ -14,7 +14,7 @@ class TestFixTimePlan extends FixedTimePlan {
     }
 
     @Override
-    protected void todo() throws Exception {
+    protected void todo() {
         CT.trace("Timer tools is testing: count = " + (getFinishedCount() + 1));
     }
 }

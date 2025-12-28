@@ -25,7 +25,7 @@ public class EventListenerWeakSet implements Set<EventListener> {
     /**
      * 用于存放侦听的弱引用集合
      */
-    protected final Set<EventListener> set = Collections.newSetFromMap(new WeakHashMap<EventListener, Boolean>());
+    protected final Set<EventListener> set = Collections.newSetFromMap(new WeakHashMap<>());
 
     /**
      * 生成一个新的侦听器弱引用集合。
@@ -44,7 +44,7 @@ public class EventListenerWeakSet implements Set<EventListener> {
      * @return 指定的类或者其子类组成的集合。
      */
     public <T extends EventListener> Set<T> subSet(Class<T> cl) {
-        Set<T> sub = new HashSet<T>(set.size());
+        Set<T> sub = new HashSet<>(set.size());
         for (EventListener listener : set) {
             if (cl.isAssignableFrom(listener.getClass())) {
                 // 由于使用 if 判断是否类型相等或是否是子类的问题，因此在这里不存在转换问题。

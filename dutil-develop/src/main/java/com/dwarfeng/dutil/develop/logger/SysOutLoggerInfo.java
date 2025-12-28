@@ -38,7 +38,7 @@ public class SysOutLoggerInfo extends AbstractLoggerInfo {
      * {@inheritDoc}
      */
     @Override
-    public Logger newLogger() throws Exception {
+    public Logger newLogger() {
         return new SysOutLogger(autoUpdate);
     }
 

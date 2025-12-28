@@ -64,6 +64,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void load(I18nHandler i18nHandler) throws LoadFailedException, IllegalStateException {
         if (readFlag)
@@ -82,7 +83,6 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
             /*
              * 根据 dom4j 的相关说明，此处转换是安全的。
              */
-            @SuppressWarnings("unchecked")
             List<Element> infos = root.elements(MARK_INFO);
 
             for (Element info : infos) {
@@ -122,7 +122,6 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
             /*
              * 根据 dom4j 的相关说明，此处转换是安全的。
              */
-            @SuppressWarnings("unchecked")
             List<Element> infos = root.elements(MARK_INFO);
 
             for (Element info : infos) {
@@ -145,7 +144,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
     }
 
     private void loadDefaultInfo(I18nHandler i18nHandler, Element root)
-            throws LoadFailedException, MalformedURLException {
+            throws MalformedURLException {
         Element defaultInfo;
 
         // 默认信息存在判断。
@@ -163,7 +162,7 @@ public class XmlPropFileI18nLoader extends StreamLoader<I18nHandler> {
         }
     }
 
-    private void loadInfo(I18nHandler i18nHandler, Element info) throws LoadFailedException, MalformedURLException {
+    private void loadInfo(I18nHandler i18nHandler, Element info) throws MalformedURLException {
         String localeString = Optional.ofNullable(info.attributeValue(MARK_LOCALE))
                 .orElseThrow(EXCEPTION_SUPPLIER_LOSSING_PROPERTY);
         String nameString = Optional.ofNullable(info.attributeValue(MARK_NAME))

@@ -317,6 +317,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean isValueValid(ConfigKey configKey, String value) {
         if (Objects.isNull(configKey))
@@ -404,6 +405,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
         Objects.requireNonNull(map, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigModel_3));
@@ -712,6 +714,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public <T> T[] toArray(T[] a) {
             Object[] strArr = toArray();
@@ -888,6 +891,7 @@ public class DefaultExconfigModel extends AbstractExconfigModel {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public <T> T[] toArray(T[] a) {
             Object[] strArr = toArray();

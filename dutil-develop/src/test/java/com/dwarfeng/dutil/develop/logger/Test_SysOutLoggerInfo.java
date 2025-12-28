@@ -11,21 +11,21 @@ public class Test_SysOutLoggerInfo {
     private static SysOutLoggerInfo info2;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         info1 = new SysOutLoggerInfo("info1", true);
         info2 = new SysOutLoggerInfo("info2", false);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         info1 = null;
         info2 = null;
     }

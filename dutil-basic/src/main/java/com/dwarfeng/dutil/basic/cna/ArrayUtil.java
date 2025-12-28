@@ -102,7 +102,7 @@ public final class ArrayUtil {
      * @deprecated 该方法性能太差，应该优先使用 {@link #getNonNull(Object[])};
      */
     public static <T> T[] getNotNull(Object[] objects, T[] t) {
-        ArrayList<Object> col = new ArrayList<Object>(objects.length);
+        ArrayList<Object> col = new ArrayList<>(objects.length);
         if (objects != null) {
             for (Object o : objects) {
                 if (o != null)
@@ -124,7 +124,7 @@ public final class ArrayUtil {
      * @deprecated 该方法性能太差，且不符合 ArrayUtil 工具包的功能。
      */
     public static <T> Collection<T> getNotNull(T[] object) {
-        Collection<T> col = new Vector<T>(object.length);
+        Collection<T> col = new Vector<>(object.length);
         if (object != null) {
             for (T o : object) {
                 if (o != null)
@@ -150,8 +150,7 @@ public final class ArrayUtil {
         Object[] target = new Object[array.length];
         int j = 0;
 
-        for (int i = 0; i < array.length; i++) {
-            T t = array[i];
+        for (T t : array) {
             if (Objects.nonNull(t))
                 target[j++] = t;
         }

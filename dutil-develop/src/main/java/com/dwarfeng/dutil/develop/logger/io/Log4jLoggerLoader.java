@@ -45,6 +45,7 @@ public final class Log4jLoggerLoader extends StreamLoader<LoggerHandler> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void load(LoggerHandler loggerHandler) throws LoadFailedException, IllegalStateException {
         if (readFlag)
@@ -70,6 +71,7 @@ public final class Log4jLoggerLoader extends StreamLoader<LoggerHandler> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public Set<LoadFailedException> countinuousLoad(LoggerHandler loggerHandler) throws IllegalStateException {
         if (readFlag)

@@ -55,7 +55,7 @@ public class ByteBufferInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read() throws IOException {
+    public int read() {
         if (byteBuffer.remaining() == 0)
             return -1;
         return byteBuffer.get();
@@ -91,7 +91,7 @@ public class ByteBufferInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public long skip(long n) throws IOException {
+    public long skip(long n) {
         int skip = (int) (n > byteBuffer.remaining() ? byteBuffer.remaining() : n);
         skip = Math.max(0, skip);
         byteBuffer.position(byteBuffer.position() + skip);
@@ -102,7 +102,7 @@ public class ByteBufferInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int available() throws IOException {
+    public int available() {
         return byteBuffer.remaining();
     }
 
@@ -110,7 +110,7 @@ public class ByteBufferInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         if (this.rewindFlag) {
             byteBuffer.rewind();
         }
@@ -128,7 +128,7 @@ public class ByteBufferInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public synchronized void reset() throws IOException {
+    public synchronized void reset() {
         byteBuffer.reset();
     }
 

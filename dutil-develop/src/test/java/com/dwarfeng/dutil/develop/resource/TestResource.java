@@ -1,6 +1,5 @@
 package com.dwarfeng.dutil.develop.resource;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -15,16 +14,16 @@ public class TestResource extends AbstractResource {
     }
 
     @Override
-    public InputStream openInputStream() throws IOException {
+    public InputStream openInputStream() {
         return null;
     }
 
     @Override
-    public OutputStream openOutputStream() throws IOException {
+    public OutputStream openOutputStream() {
         return null;
     }
 
     @Override
-    public void reset() throws IOException {
+    public void reset() {
     }
 }

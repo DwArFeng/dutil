@@ -13,7 +13,7 @@ public class DelegateKeyListModelTest {
     private final TestListObserver<TestWithKey> obv = new TestListObserver<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         model.add(TestWithKey.ELE_1);

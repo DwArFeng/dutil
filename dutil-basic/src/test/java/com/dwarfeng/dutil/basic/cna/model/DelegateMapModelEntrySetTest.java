@@ -15,7 +15,7 @@ public class DelegateMapModelEntrySetTest {
     private Set<Map.Entry<String, String>> entrySet;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         model.put("A", "1");
@@ -31,7 +31,7 @@ public class DelegateMapModelEntrySetTest {
     @Test
     public void testHashCode() {
         Set<Map.Entry<String, String>> set = new HashSet<>(model.entrySet());
-        assertTrue(set.hashCode() == entrySet.hashCode());
+        assertEquals(set.hashCode(), entrySet.hashCode());
     }
 
     @Test
@@ -60,12 +60,12 @@ public class DelegateMapModelEntrySetTest {
     public void testIterator() {
         Iterator<Map.Entry<String, String>> i = entrySet.iterator();
         Map.Entry<String, String> entry1 = new AbstractMap.SimpleEntry<>("A", "1");
-        assertTrue(entry1.equals(i.next()));
+        assertEquals(entry1, i.next());
         i.remove();
         assertEquals("A", obv.removeKeyList.get(0));
         assertEquals("1", obv.removeValueList.get(0));
         Map.Entry<String, String> entry2 = new AbstractMap.SimpleEntry<>("B", "2");
-        assertTrue(entry2.equals(i.next()));
+        assertEquals(entry2, i.next());
         Map.Entry<String, String> entry3 = i.next();
         entry3.setValue("0");
         assertEquals("C", obv.changedKeyList.get(0));
@@ -180,6 +180,6 @@ public class DelegateMapModelEntrySetTest {
     @Test
     public void testEqualsObject() {
         Set<Map.Entry<String, String>> set = new HashSet<>(model.entrySet());
-        assertTrue(entrySet.equals(set));
+        assertEquals(entrySet, set);
     }
 }

@@ -13,7 +13,7 @@ public class SyncExconfigModelTest {
     private final SyncExconfigModel model = ConfigUtil.syncExconfigModel(new DefaultExconfigModel());
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
     }

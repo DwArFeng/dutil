@@ -12,10 +12,10 @@ public class DelegateSetModelTest {
 
     private final SetModel<String> model = new DelegateSetModel<>(new LinkedHashSet<>(),
             Collections.newSetFromMap(new WeakHashMap<>()));
-    private final TestSetObserver<String> obv = new TestSetObserver<String>();
+    private final TestSetObserver<String> obv = new TestSetObserver<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         obv.reset();

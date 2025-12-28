@@ -252,6 +252,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean isValueValid(ConfigKey configKey, String value) {
         if (Objects.isNull(configKey))
@@ -331,6 +332,7 @@ public class DefaultConfigModel extends AbstractConfigModel {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public boolean setAllCurrentValue(Map<ConfigKey, String> map) {
         Objects.requireNonNull(map, DwarfUtil.getExceptionString(ExceptionStringKey.DefaultConfigModel_3));

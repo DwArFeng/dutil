@@ -86,8 +86,8 @@ public class LongConfigChecker implements ConfigChecker {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (maxValue ^ (maxValue >>> 32));
-        result = prime * result + (int) (minValue ^ (minValue >>> 32));
+        result = prime * result + Long.hashCode(maxValue);
+        result = prime * result + Long.hashCode(minValue);
         return result;
     }
 }

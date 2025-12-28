@@ -10,19 +10,19 @@ import static org.junit.Assert.assertTrue;
 public class BackgroundUtilTest {
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
@@ -30,12 +30,8 @@ public class BackgroundUtilTest {
         Task task_1 = new TestTask(100);
         Task task_2 = BackgroundUtil.blockedTask(new TestTask(1), new Task[]{task_1});
 
-        Thread thread_1 = new Thread(() -> {
-            task_1.run();
-        });
-        Thread thread_2 = new Thread(() -> {
-            task_2.run();
-        });
+        Thread thread_1 = new Thread(task_1::run);
+        Thread thread_2 = new Thread(task_2::run);
 
         thread_2.start();
         thread_1.start();

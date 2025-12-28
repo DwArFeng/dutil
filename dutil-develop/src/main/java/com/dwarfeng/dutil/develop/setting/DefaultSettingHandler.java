@@ -202,6 +202,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public void remove() {
             if (Objects.isNull(currRef)) {
@@ -380,6 +381,7 @@ public class DefaultSettingHandler extends AbstractSettingHandler {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("DuplicatedCode")
         @Override
         public void remove() {
             if (Objects.isNull(currRef)) {

@@ -28,15 +28,15 @@ public class DefaultEntrySetTest {
     private static Set<Entry> entrySet;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
                 Collections.newSetFromMap(new WeakHashMap<>()));
         SettingUtil.putEnumItems(new SettingEnumItem[]{Test_SettingEnumItem.ENTRY_1, Test_SettingEnumItem.ENTRY_2,
@@ -47,7 +47,7 @@ public class DefaultEntrySetTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         handler.clearObserver();
         entrySet = null;
         handler = null;
@@ -228,7 +228,7 @@ public class DefaultEntrySetTest {
         anotherEntrySet.add(ENTRY_2);
         anotherEntrySet.add(ENTRY_3);
         anotherEntrySet.add(ENTRY_4);
-        assertTrue(entrySet.hashCode() == anotherEntrySet.hashCode());
+        assertEquals(entrySet.hashCode(), anotherEntrySet.hashCode());
     }
 
     @Test
@@ -238,7 +238,7 @@ public class DefaultEntrySetTest {
         anotherEntrySet.add(ENTRY_2);
         anotherEntrySet.add(ENTRY_3);
         anotherEntrySet.add(ENTRY_4);
-        assertTrue(entrySet.equals(anotherEntrySet));
+        assertEquals(entrySet, anotherEntrySet);
     }
 
     @Test

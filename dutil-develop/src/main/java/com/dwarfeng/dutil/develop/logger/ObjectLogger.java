@@ -1,7 +1,6 @@
 package com.dwarfeng.dutil.develop.logger;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -96,7 +95,7 @@ public abstract class ObjectLogger implements Logger, Closeable {
      * {@inheritDoc}
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         writer.close();
     }
 

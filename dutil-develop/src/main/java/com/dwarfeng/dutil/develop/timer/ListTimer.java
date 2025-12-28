@@ -41,7 +41,7 @@ public class ListTimer extends AbstractTimer {
     /**
      * 计时器的最小执行间隔。
      */
-    public static final Long MIN_RUN_PERIOD = 1l;
+    public static final Long MIN_RUN_PERIOD = 1L;
 
     /**
      * 计划列表。

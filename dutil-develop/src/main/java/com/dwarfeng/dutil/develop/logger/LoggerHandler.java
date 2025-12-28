@@ -178,9 +178,7 @@ public interface LoggerHandler extends Logger, KeySetModel<String, LoggerInfo> {
     default void trace(String message) {
         Objects.requireNonNull(message, DwarfUtil.getExceptionString(ExceptionStringKey.LOGGERHANDLER_0));
 
-        usedLoggers().forEach(logger -> {
-            logger.trace(message);
-        });
+        usedLoggers().forEach(logger -> logger.trace(message));
     }
 
     /**

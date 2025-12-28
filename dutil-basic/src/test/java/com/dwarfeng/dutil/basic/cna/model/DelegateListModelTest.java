@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class DelegateListModelTest {
 
@@ -14,7 +13,7 @@ public class DelegateListModelTest {
     private final TestListObserver<String> obv = new TestListObserver<>();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         model.clearObserver();
         model.clear();
         model.add("0");
@@ -28,7 +27,7 @@ public class DelegateListModelTest {
     @Test
     public void testHashCode() {
         ArrayList<String> list = new ArrayList<>(Arrays.asList("0", "1", "2", "3"));
-        assertEquals(true, model.hashCode() == list.hashCode());
+        assertTrue(model.hashCode() == list.hashCode());
     }
 
     @Test
@@ -42,18 +41,18 @@ public class DelegateListModelTest {
 
     @Test
     public void testIsEmpty() {
-        assertEquals(false, model.isEmpty());
+        assertFalse(model.isEmpty());
         model.clear();
-        assertEquals(true, model.isEmpty());
+        assertTrue(model.isEmpty());
     }
 
     @Test
     public void testContains() {
-        assertEquals(true, model.contains("0"));
-        assertEquals(true, model.contains("1"));
-        assertEquals(true, model.contains("2"));
-        assertEquals(true, model.contains("3"));
-        assertEquals(false, model.contains("4"));
+        assertTrue(model.contains("0"));
+        assertTrue(model.contains("1"));
+        assertTrue(model.contains("2"));
+        assertTrue(model.contains("3"));
+        assertFalse(model.contains("4"));
     }
 
     @Test
@@ -75,7 +74,7 @@ public class DelegateListModelTest {
         assertEquals(1, model.size());
         assertEquals(new Integer(1), obv.removeIndexes.get(2));
         assertEquals("3", obv.removeElements.get(2));
-        assertEquals(false, i.hasNext());
+        assertFalse(i.hasNext());
     }
 
     @Test
@@ -99,15 +98,15 @@ public class DelegateListModelTest {
 
     @Test
     public void testRemoveObject() {
-        assertEquals(true, model.remove("1"));
+        assertTrue(model.remove("1"));
         assertEquals(new Integer(1), obv.removeIndexes.get(0));
-        assertEquals(true, model.containsAll(Arrays.asList("0", "2", "3")));
+        assertTrue(model.containsAll(Arrays.asList("0", "2", "3")));
     }
 
     @Test
     public void testContainsAll() {
-        assertEquals(true, model.containsAll(Arrays.asList("0", "1", "2", "3")));
-        assertEquals(false, model.containsAll(Arrays.asList("0", "1", "2", "4")));
+        assertTrue(model.containsAll(Arrays.asList("0", "1", "2", "3")));
+        assertFalse(model.containsAll(Arrays.asList("0", "1", "2", "4")));
     }
 
     @Test
@@ -261,16 +260,16 @@ public class DelegateListModelTest {
     @Test
     public void testEqualsObject() {
         List<String> list = new ArrayList<>(Arrays.asList("0", "1", "2", "3"));
-        assertEquals(true, model.equals(list));
-        assertEquals(true, list.equals(model));
+        assertTrue(model.equals(list));
+        assertTrue(list.equals(model));
         list.add("1");
-        assertEquals(false, model.equals(list));
-        assertEquals(false, list.equals(model));
+        assertFalse(model.equals(list));
+        assertFalse(list.equals(model));
     }
 
     @Test
     public void testGetObservers() {
-        assertEquals(true, model.getObservers().contains(obv));
+        assertTrue(model.getObservers().contains(obv));
     }
 
     @Test

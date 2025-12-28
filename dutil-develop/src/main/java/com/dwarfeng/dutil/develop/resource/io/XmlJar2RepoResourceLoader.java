@@ -102,6 +102,7 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void load(ResourceHandler resourceHandler) throws LoadFailedException, IllegalStateException {
         if (readFlag)
@@ -128,7 +129,6 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
             /*
              * 根据 dom4j 的相关说明，此处转换是安全的。
              */
-            @SuppressWarnings("unchecked")
             List<Element> infos = root.elements("info");
 
             for (Element info : infos) {
@@ -168,6 +168,7 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public Set<LoadFailedException> countinuousLoad(ResourceHandler resourceHandler) throws IllegalStateException {
         if (readFlag)
@@ -195,7 +196,6 @@ public class XmlJar2RepoResourceLoader extends StreamLoader<ResourceHandler> {
             /*
              * 根据 dom4j 的相关说明，此处转换是安全的。
              */
-            @SuppressWarnings("unchecked")
             List<Element> infos = root.elements("info");
 
             for (Element info : infos) {

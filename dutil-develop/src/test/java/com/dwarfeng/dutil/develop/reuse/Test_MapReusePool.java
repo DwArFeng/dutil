@@ -67,15 +67,15 @@ public class Test_MapReusePool {
     private static TestCondition CONDITION_E = new TestCondition(4);
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         CONDITION_A = new TestCondition(2);
         CONDITION_B = new TestCondition(2);
         CONDITION_C = new TestCondition(3);
@@ -90,7 +90,7 @@ public class Test_MapReusePool {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         pool = null;
 
         CONDITION_A = null;

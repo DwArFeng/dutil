@@ -61,7 +61,7 @@ class IDMap<T> {
         // 设置编号方式
         setCodingType(codingType);
         // 初始化成员变量
-        this.map = new HashMap<Integer, T>();
+        this.map = new HashMap<>();
     }
 
     /**
@@ -94,7 +94,7 @@ class IDMap<T> {
         Integer[] integers = map.keySet().toArray(new Integer[0]);
         int[] is = new int[integers.length];
         for (int i = 0; i < is.length; i++)
-            is[i] = integers[i].intValue();
+            is[i] = integers[i];
         Arrays.sort(is);
         return is;
     }
@@ -106,7 +106,7 @@ class IDMap<T> {
      * @return 指定 id 指向的元素，如果没有对应的元素，则返回 null。
      */
     public T get(int id) {
-        return map.get(new Integer(id));
+        return map.get(id);
     }
 
     /**
@@ -117,11 +117,9 @@ class IDMap<T> {
      */
     public int serach(T t) {
         Set<Integer> keySet = map.keySet();
-        Iterator<Integer> iterator = keySet.iterator();
-        while (iterator.hasNext()) {
-            Integer id = iterator.next();
+        for (Integer id : keySet) {
             if (map.get(id).equals(t))
-                return id.intValue();
+                return id;
         }
         return -1;
     }
@@ -136,7 +134,7 @@ class IDMap<T> {
         if (serach(t) >= 0)
             return -1;
         int id = nextID();
-        map.put(new Integer(id), t);
+        map.put(id, t);
         return id;
     }
 
@@ -151,9 +149,9 @@ class IDMap<T> {
      * @throws DuplicateIdException 当 ID 号已经存在时抛出的异常。
      */
     public void put(int id, T t) throws DuplicateIdException {
-        if (map.containsKey(new Integer(id)))
+        if (map.containsKey(id))
             throw new DuplicateIdException(id);
-        map.put(new Integer(id), t);
+        map.put(id, t);
     }
 
     /**
@@ -164,8 +162,8 @@ class IDMap<T> {
      * @return 新的映射是否破坏了原有的映射。
      */
     public boolean forcePut(int id, T t) {
-        boolean flag = map.containsKey(new Integer(id));
-        map.put(new Integer(id), t);
+        boolean flag = map.containsKey(id);
+        map.put(id, t);
         return flag;
     }
 
@@ -179,7 +177,7 @@ class IDMap<T> {
      * @return 被删除的元素，如果没有，则返回<code>null</code>。
      */
     public T remove(int id) {
-        return map.remove(new Integer(id));
+        return map.remove(id);
     }
 
     /**
@@ -194,7 +192,7 @@ class IDMap<T> {
     public int remove(T t) {
         int id = serach(t);
         if (id >= 0)
-            map.remove(new Integer(id));
+            map.remove(id);
         return id;
     }
 
