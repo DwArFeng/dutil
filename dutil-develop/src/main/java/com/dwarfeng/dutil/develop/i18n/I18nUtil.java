@@ -857,8 +857,12 @@ public final class I18nUtil {
          */
         @Override
         public Object[] toArray() {
-            I18nInfo[] eArray = (I18nInfo[]) delegate.toArray();
-            return ArrayUtil.readOnlyArray(eArray, generator);
+            Object[] array = delegate.toArray();
+            Object[] targetArray = new Object[array.length];
+            for (int i = 0; i < array.length; i++) {
+                targetArray[i] = generator.readOnly((I18nInfo) array[i]);
+            }
+            return targetArray;
         }
 
         /**
