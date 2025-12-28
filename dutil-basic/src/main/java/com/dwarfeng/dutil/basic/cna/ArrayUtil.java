@@ -711,10 +711,12 @@ public final class ArrayUtil {
         Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.ARRAYUTIL_4));
 
         @SuppressWarnings("unchecked")
-        T[] tarArr = (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), array.length);
+        T[] targetArray = (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), array.length);
 
-        System.arraycopy(array, 0, tarArr, 0, array.length);
+        for (int i = 0; i < array.length; i++) {
+            targetArray[i] = generator.readOnly(array[i]);
+        }
 
-        return tarArr;
+        return targetArray;
     }
 }
