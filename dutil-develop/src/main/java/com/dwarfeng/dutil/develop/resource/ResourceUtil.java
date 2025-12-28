@@ -883,8 +883,12 @@ public final class ResourceUtil {
          */
         @Override
         public Object[] toArray() {
-            Resource[] eArray = (Resource[]) delegate.toArray();
-            return ArrayUtil.readOnlyArray(eArray, generator);
+            Object[] array = delegate.toArray();
+            Resource[] targetArray = new Resource[array.length];
+            for (int i = 0; i < array.length; i++) {
+                targetArray[i] = generator.readOnly((Resource) array[i]);
+            }
+            return targetArray;
         }
 
         /**
