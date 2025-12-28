@@ -59,6 +59,7 @@
   - com.dwarfeng.dutil.basic.cna.ArrayUtil。
 
 - 修复部分类中的 bug。
+  - com.dwarfeng.dutil.develop.timer.ListTimer。
   - com.dwarfeng.dutil.develop.i18n.I18nUtil。
   - com.dwarfeng.dutil.develop.resource.ResourceUtil。
   - com.dwarfeng.dutil.basic.cna.ArrayUtil。

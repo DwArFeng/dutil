@@ -327,6 +327,11 @@ public class ListTimer extends AbstractTimer {
 
             lock.writeLock().lock();
             try {
+                // 对 shutdownFlag 进行双重检查。
+                if (shutdownFlag) {
+                    return;
+                }
+
                 // 遍历所有待移除的计划，将待移除的计划全部移除。
                 for (Plan plan : plans2Remove) {
                     removePlan(plan, false);
