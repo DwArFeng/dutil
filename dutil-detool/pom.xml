@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.dwarfeng</groupId>
         <artifactId>dutil</artifactId>
-        <version>0.4.0.a-beta-SNAPSHOT</version>
+        <version>0.4.0.a-beta</version>
     </parent>
 
     <artifactId>dutil-detool</artifactId>

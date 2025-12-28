@@ -10,7 +10,7 @@
 
     <groupId>com.dwarfeng</groupId>
     <artifactId>dutil</artifactId>
-    <version>0.4.0.a-beta-SNAPSHOT</version>
+    <version>0.4.0.a-beta</version>
 
     <packaging>pom</packaging>
 
@@ -63,27 +63,27 @@
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-basic</artifactId>
-                <version>0.4.0.a-beta-SNAPSHOT</version>
+                <version>0.4.0.a-beta</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-demo</artifactId>
-                <version>0.4.0.a-beta-SNAPSHOT</version>
+                <version>0.4.0.a-beta</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-detool</artifactId>
-                <version>0.4.0.a-beta-SNAPSHOT</version>
+                <version>0.4.0.a-beta</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-develop</artifactId>
-                <version>0.4.0.a-beta-SNAPSHOT</version>
+                <version>0.4.0.a-beta</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-struct</artifactId>
-                <version>0.4.0.a-beta-SNAPSHOT</version>
+                <version>0.4.0.a-beta</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.dwarfeng</groupId>
         <artifactId>dutil</artifactId>
-        <version>0.4.0.a-beta-SNAPSHOT</version>
+        <version>0.4.0.a-beta</version>
     </parent>
 
     <artifactId>dutil-demo</artifactId>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>com.dwarfeng</groupId>
             <artifactId>dutil-develop</artifactId>
-            <version>0.4.0.a-beta-SNAPSHOT</version>
+            <version>0.4.0.a-beta</version>
         </dependency>
     </dependencies>
 
