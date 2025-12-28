@@ -4,6 +4,15 @@
 
 ### 功能构建
 
+- 更新 README.md。
+
+- Wiki 编写。
+  - 构建 wiki 目录结构。
+  - docs/wiki/en-US/Contents.md。
+  - docs/wiki/en-US/Introduction.md。
+  - docs/wiki/zh-CN/Contents.md。
+  - docs/wiki/zh-CN/Introduction.md。
+
 - `dutil-develop` 子模块测试类优化。
   - com.dwarfeng.dutil.develop.timer.ListTimerTest。
 
