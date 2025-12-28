@@ -18,8 +18,8 @@ import java.util.concurrent.locks.*;
  * 任务接口的抽象实现。
  *
  * <p>
- * 该类良好地定义了 <code>run</code>方法，并且在<code>run</code> 方法中执行<code>todo</code>
- * 方法，<code>todo</code>方法中填写需要实现的具体任务。
+ * 该类良好地定义了 <code>run</code>方法，并且在<code>run</code> 方法中执行 <code>todo</code> 方法，
+ * <code>todo</code>方法中填写需要实现的具体任务。
  *
  * @author DwArFeng
  * @since 0.1.0-beta
@@ -266,6 +266,8 @@ public abstract class AbstractTask implements Task {
     /**
      * 通知观察器任务结束。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireFinished() {
         for (TaskObserver observer : observers) {
             if (Objects.nonNull(observer))
@@ -280,6 +282,8 @@ public abstract class AbstractTask implements Task {
     /**
      * 通知观察器任务开始。
      */
+    // 由于早期开发未使用日志框架，故保留 printStackTrace 方法，忽略相关警告。
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void fireStarted() {
         for (TaskObserver observer : observers) {
             if (Objects.nonNull(observer))
@@ -303,9 +307,8 @@ public abstract class AbstractTask implements Task {
     /**
      * 在调用 {@link #todo()} 之后调用，默认不执行任何操作。
      *
-     * @throws Exception 抛出的异常。
      */
-    protected void afterTodo() throws Exception {
+    protected void afterTodo() {
         // 默认不执行任何操作。
     }
 

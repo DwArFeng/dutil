@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `dutil-develop` 子模块类优化，完善文档注释，消除警告。
+  - com.dwarfeng.dutil.develop.backgr.AbstractTask。
+
 - `dutil-basic` 子模块类优化，完善文档注释，消除警告。
   - com.dwarfeng.dutil.basic.cls.ClassUtil。
   - com.dwarfeng.dutil.basic.cna.model.ReferenceModel。
