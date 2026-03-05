@@ -288,7 +288,7 @@ public final class ImageUtil {
      * 要求一个 2D 尺寸必须是一个图片的 2D 尺寸。
      *
      * <p>
-     * 图片2D 尺寸指的是 2D 尺寸的宽度和高度是否均大于0 的尺寸。
+     * 图片 2D 尺寸指的是 2D 尺寸的宽度和高度是否均大于 0 的尺寸。
      *
      * @param size 指定的 2D 尺寸。
      * @throws IllegalArgumentException 当指定的 2D 尺寸不是图片 2D 尺寸时抛出的异常。
@@ -302,7 +302,7 @@ public final class ImageUtil {
      * 要求一个 2D 尺寸必须是一个图片的 2D 尺寸。
      *
      * <p>
-     * 图片2D 尺寸指的是 2D 尺寸的宽度和高度是否均大于0 的尺寸。
+     * 图片 2D 尺寸指的是 2D 尺寸的宽度和高度是否均大于 0 的尺寸。
      *
      * @param size    指定的 2D 尺寸。
      * @param message 指定的异常信息。

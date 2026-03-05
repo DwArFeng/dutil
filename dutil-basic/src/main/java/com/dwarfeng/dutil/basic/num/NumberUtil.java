@@ -198,7 +198,7 @@ public final class NumberUtil {
      * 将一个整型数截取低八位后，输出其 byte 形式。
      *
      * @param b 指定的整型数。
-     * @return 截取低八位后的byte 形式。
+     * @return 截取低八位后的 byte 形式。
      */
     public static byte cutInt2Byte(int b) {
         return (byte) (b & 0xFF);

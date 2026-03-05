@@ -539,7 +539,7 @@ public class DefaultItemListModel<E> extends AbstractListModel<E> implements Ite
      * 在调用者知道列表中不包含任何 null 元素时才能用此方法确定列表长度）。
      *
      * @param a   要在其中存储列表元素的数组（如果它足够大）；否则，为此分配一个具有相同运行时类型的新数组。
-     * @param <T> 泛型T。
+     * @param <T> 泛型 T。
      * @return 包含列表元素的数组。
      */
     public <T> T[] toArray(T[] a) {

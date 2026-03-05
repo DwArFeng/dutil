@@ -47,27 +47,27 @@ public class BigDecimalNumberValue implements NumberValue {
     }
 
     /**
-     * 生成一个由指定int 值确定的默认数字值对象。
+     * 生成一个由指定 int 值确定的默认数字值对象。
      *
-     * @param value 指定的int 值。
+     * @param value 指定的 int 值。
      */
     public BigDecimalNumberValue(int value) {
         this.value = new BigDecimal(value);
     }
 
     /**
-     * 生成一个由指定short 值确定的默认数字值对象。
+     * 生成一个由指定 short 值确定的默认数字值对象。
      *
-     * @param value 指定的short 值。
+     * @param value 指定的 short 值。
      */
     public BigDecimalNumberValue(short value) {
         this.value = new BigDecimal(value);
     }
 
     /**
-     * 生成一个由指定byte 值确定的默认数字值对象。
+     * 生成一个由指定 byte 值确定的默认数字值对象。
      *
-     * @param value 指定的byte 值。
+     * @param value 指定的 byte 值。
      */
     public BigDecimalNumberValue(byte value) {
         this.value = new BigDecimal(value);

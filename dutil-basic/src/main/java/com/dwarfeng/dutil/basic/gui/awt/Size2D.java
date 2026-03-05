@@ -28,36 +28,36 @@ public interface Size2D {
     NumberValue getWidth();
 
     /**
-     * 返回对象高度的int 形式。
+     * 返回对象高度的 int 形式。
      *
-     * @return 对象高度的int 形式。
+     * @return 对象高度的 int 形式。
      */
     default int getIntHeight() {
         return getHeight().intValue();
     }
 
     /**
-     * 返回对象宽度的int 形式。
+     * 返回对象宽度的 int 形式。
      *
-     * @return 对象宽度的int 形式。
+     * @return 对象宽度的 int 形式。
      */
     default int getIntWidth() {
         return getWidth().intValue();
     }
 
     /**
-     * 返回对象高度的double 形式。
+     * 返回对象高度的 double 形式。
      *
-     * @return 对象高度的double 形式。
+     * @return 对象高度的 double 形式。
      */
     default double getDoubleHeight() {
         return getHeight().doubleValue();
     }
 
     /**
-     * 返回对象宽度的double 形式。
+     * 返回对象宽度的 double 形式。
      *
-     * @return 对象宽度的double 形式。
+     * @return 对象宽度的 double 形式。
      */
     default double getDoubleWidth() {
         return getWidth().doubleValue();

@@ -585,9 +585,9 @@ public final class ArrayUtil {
     }
 
     /**
-     * 对boolean 数组进行打包。
+     * 对 boolean 数组进行打包。
      *
-     * @param target 指定的boolean 数组。
+     * @param target 指定的 boolean 数组。
      * @return 打包后得到的封包数组。
      */
     public static Boolean[] pack(boolean[] target) {
@@ -687,7 +687,7 @@ public final class ArrayUtil {
      * 可以将一个数组转化为一个 {@link Iterable} 象，方便某些需要传入可迭代对象的场合。
      *
      * @param array 指定的数组。
-     * @param <T>   泛型T。
+     * @param <T>   泛型 T。
      * @return 由指定的数组转化而成的可迭代对象。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */

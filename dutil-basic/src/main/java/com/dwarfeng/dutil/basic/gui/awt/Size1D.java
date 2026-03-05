@@ -21,18 +21,18 @@ public interface Size1D {
     NumberValue getLength();
 
     /**
-     * 返回对象长度的int 形式。
+     * 返回对象长度的 int 形式。
      *
-     * @return 对象长度的int 形式。
+     * @return 对象长度的 int 形式。
      */
     default int getIntLength() {
         return getLength().intValue();
     }
 
     /**
-     * 返回对象长度的double 形式。
+     * 返回对象长度的 double 形式。
      *
-     * @return 对象长度的double 形式。
+     * @return 对象长度的 double 形式。
      */
     default double getDoubleValue() {
         return getLength().doubleValue();

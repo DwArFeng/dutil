@@ -4,7 +4,17 @@
 
 ### 功能构建
 
-- (无)
+- `dutil-basic` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.dutil.basic.cna.ArrayUtil。
+  - com.dwarfeng.dutil.basic.cna.CollectionUtil。
+  - com.dwarfeng.dutil.basic.gui.awt.Size1D。
+  - com.dwarfeng.dutil.basic.gui.awt.Size2D。
+  - com.dwarfeng.dutil.basic.gui.awt.Size3D。
+  - com.dwarfeng.dutil.basic.gui.awt.ImageUtil。
+  - com.dwarfeng.dutil.basic.gui.swing.DefaultItemListModel。
+  - com.dwarfeng.dutil.basic.gui.swing.JAdjustableBorderPanel。
+  - com.dwarfeng.dutil.basic.num.BigDecimalNumberValue。
+  - com.dwarfeng.dutil.basic.num.NumberUtil。
 
 ### Bug 修复
 

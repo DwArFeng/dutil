@@ -878,7 +878,7 @@ public class JAdjustableBorderPanel extends JPanel {
     /**
      * 设置拖动条的背景颜色。
      *
-     * @param seperatorColor 拖动条的背景颜色，可以指定为null，代表拖动条没有任何颜色。
+     * @param seperatorColor 拖动条的背景颜色，可以指定为 null，代表拖动条没有任何颜色。
      */
     public void setSeperatorColor(Color seperatorColor) {
         this.seperatorColor = seperatorColor;

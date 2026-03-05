@@ -629,7 +629,7 @@ public final class CollectionUtil {
      * 通过指定的 {@link Enumeration} 生成的 {@link Iterator}。
      *
      * @param enumeration 指定的枚举。
-     * @param <T>         泛型T。
+     * @param <T>         泛型 T。
      * @return 通过指定的枚举生成的迭代器。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
@@ -668,7 +668,7 @@ public final class CollectionUtil {
      * 通过指定的 {@link Iterator} 生成的 {@link Enumeration}。
      *
      * @param iterator 指定的迭代器。
-     * @param <T>      泛型T。
+     * @param <T>      泛型 T。
      * @return 通过指定的迭代器生成的枚举。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
@@ -686,7 +686,7 @@ public final class CollectionUtil {
      * 可以将一个数组转化为一个 {@link Iterator} 象，方便某些需要传入迭代器的场合。
      *
      * @param array 指定的数组。
-     * @param <T>   泛型T。
+     * @param <T>   泛型 T。
      * @return 由指定的数组转化而成的迭代器。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      * @deprecated 该方法的功能与该工具包的功能不符，已经停止使用，可以用类似的方法
@@ -707,7 +707,7 @@ public final class CollectionUtil {
      *
      * @param firstIterator  第一个迭代器。
      * @param secondIterator 第二个迭代器。
-     * @param <T>            泛型T。
+     * @param <T>            泛型 T。
      * @return 两个迭代器连接形成的迭代器。
      */
     public static <T> Iterator<T> contactIterator(Iterator<T> firstIterator, Iterator<T> secondIterator) {
@@ -753,7 +753,7 @@ public final class CollectionUtil {
      * 根据指定的迭代器生成一个不可编辑的迭代器。
      *
      * @param iterator 指定的迭代器。
-     * @param <E>      泛型E。
+     * @param <E>      泛型 E。
      * @return 不可编辑的迭代器。
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
