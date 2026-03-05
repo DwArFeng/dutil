@@ -32,28 +32,31 @@ import java.util.concurrent.locks.ReentrantLock;
  * 该控制台是 {@link JConsole} 的升级版，无论是定义的良好性还是输入输出的效率都远远好于前者。<br>
  * 该控制台继承之前的特性：提供大致的行数保证，它允许文本达到一个最大的行数，当文本超过最大的行数时，控制台会按照一定的比例删掉
  * 最早输出的一部分行数，以控制行数不超过最大值。<br>
- * 控制台提供两个流：输入流和输出流，与 {@link JConsole} 同的是，输入流变为阻塞式的，当输入流没有数据时，不会立即返回
- * <code>-1</code>，
- * 而是显示输入栏，等待用于的输入——这个特性与系统输入流完全一致。该控制台的输入再也不需要依赖于事件，您可以完全按照同系统控制台通信的格式
- * 来编写该控制台的通信，同时不必担心无意识的调用流中的 <code>close()</code> 方法——因为该控制台的输入流和输出流的关闭不是通过
- * <code>close()</code> 方法， 而是通过 {@link #dispose()} 法。<br>
+ * 控制台提供两个流：输入流和输出流，与 {@link JConsole} 相同的是，输入流变为阻塞式的，当输入流没有数据时，不会立即返回
+ * <code>-1</code>，而是显示输入栏，等待用于的输入——这个特性与系统输入流完全一致。
+ * 该控制台的输入再也不需要依赖于事件，您可以完全按照同系统控制台通信的格式来编写该控制台的通信，
+ * 同时不必担心无意识的调用流中的 <code>close()</code> 方法——因为该控制台的输入流和输出流的关闭不是通过
+ * <code>close()</code> 方法， 而是通过 {@link #dispose()} 方法。<br>
  * 以下的例子完整的体现了上述的特性。
  *
- * <pre>
+ * <blockquote><pre>
  * JExconsole console = new JExconsole();
  *
- * console.out.println("hello world"); // 就像 System.out.prinln(...)一样
+ * // 就像 System.out.prinln(...)一样。
+ * console.out.println("hello world");
  *
  * Scanner scanner = new Scanner(console.in);
  * try {
- * 	console.out.println(scanner.nextLine());
+ *   console.out.println(scanner.nextLine());
  * } finally {
- * 	scanner.close(); // 不用担心 Scanner 的
- * 						// close()方法调用 console.in.close()方法，因为控制台的输入流不响应该方法。
+ *   // 不用担心 Scanner 的 close() 方法调用 console.in.close() 方法，
+ *   // 因为控制台的输入流不响应该方法。
+ *   scanner.close();
  * }
  *
- * console.dispose(); // 该方法才会真正的关闭控制台的输入输出流。
- * </pre>
+ * // 该方法才会真正的关闭控制台的输入输出流。
+ * console.dispose();
+ * </pre></blockquote>
  *
  * <p>
  * 经优化后，该控制台的效率可以达到 cmd 控制台的 6900%，是一个货真价实的高效控制台。
