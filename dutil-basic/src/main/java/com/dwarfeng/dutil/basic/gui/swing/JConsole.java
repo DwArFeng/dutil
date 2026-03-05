@@ -78,9 +78,6 @@ public class JConsole extends JPanel {
     }
 
     /**
-     * 生成一个拥有最大行数的控制台.
-     */
-    /**
      * 生成一个拥有最大行数的控制台。
      *
      * <p>

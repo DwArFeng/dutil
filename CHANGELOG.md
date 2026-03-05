@@ -9,6 +9,7 @@
   - com.dwarfeng.dutil.develop.setting.info.LongSettingInfo。
 
 - `dutil-basic` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.dutil.basic.gui.swing.JConsole。
   - com.dwarfeng.dutil.basic.cna.ArrayUtil。
   - com.dwarfeng.dutil.basic.cna.CollectionUtil。
   - com.dwarfeng.dutil.basic.gui.awt.Size1D。
