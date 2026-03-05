@@ -81,6 +81,7 @@ public enum ExceptionStringKey implements Name {
     COLLECTIONUTIL_19("CollectionUtil.19"), //
     COLLECTIONUTIL_20("CollectionUtil.20"), //
     COLLECTIONUTIL_21("CollectionUtil.21"), //
+    COLLECTIONUTIL_22("CollectionUtil.22"), //
     NameableComparator_0("NameableComparator.0"), //
     FothValueComparator_0("FothValueComparator.0"), //
     QuickFothVariable_0("QuickFothVariable.0"), //

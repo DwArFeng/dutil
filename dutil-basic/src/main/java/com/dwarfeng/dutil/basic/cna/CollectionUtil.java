@@ -717,15 +717,34 @@ public final class CollectionUtil {
     }
 
     /**
+     * 二分查找搜索器，适用于实现了 {@link RandomAccess} 的列表。
+     */
+    public static final OrderedInsertionSearcher BINARY_ORDERED_INSERTION_SEARCHER =
+            new BinaryOrderedInsertionSearcher();
+
+    /**
+     * 顺序查找搜索器，适用于所有类型的列表。
+     */
+    public static final OrderedInsertionSearcher SEQUENTIAL_ORDERED_INSERTION_SEARCHER =
+            new SequentialOrderedInsertionSearcher();
+
+    /**
+     * 自适应搜索器，对 {@link RandomAccess} 列表使用二分查找，否则使用顺序查找。
+     */
+    public static final OrderedInsertionSearcher ADAPTIVE_ORDERED_INSERTION_SEARCHER =
+            new AdaptiveOrderedInsertionSearcher();
+
+    /**
      * 将指定的对象按照顺序插入到指定的表中。
      *
      * <p>
-     * 该方法将用指定的比较器逐个比较指定的对象与列表中的对象，并将指定的对象插入到列表中<b>第一个</b>大于等于其的元素之前， 并返回插入的位置。
+     * 该方法将用指定的比较器逐个比较指定的对象与列表中的对象，并将指定的对象插入到列表中 <b>第一个</b> 大于等于其的元素之前，
+     * 并返回插入的位置。
      * <br>
      * 如果指定的列表在之前已经按照比较器的顺序排列好，那么调用该方法之后，此列表依然遵循比较器的顺序，
      * 事实上，该方法就是为此设计的——对一个没有排序的列表调用此方法是没有意义的。<br>
-     * 有些列表允许 <code>null</code>元素，有些不允许。对于那些允许 <code>null</code>元素的的列表，请注意：
-     * 指定的比较器也需要支持 <code>null</code>元素。
+     * 有些列表允许 <code>null</code> 元素，有些不允许。对于那些允许 <code>null</code> 元素的的列表，请注意：
+     * 指定的比较器也需要支持 <code>null</code> 元素。
      *
      * @param <T>  列表中的元素的类。
      * @param list 指定的列表。
@@ -734,19 +753,105 @@ public final class CollectionUtil {
      * @return 对象的插入位置。
      */
     public static <T> int insertByOrder(List<T> list, T obj, Comparator<? super T> c) {
+        return insertByOrder(list, obj, c, ADAPTIVE_ORDERED_INSERTION_SEARCHER);
+    }
+
+    /**
+     * 将指定的对象按照顺序插入到指定的表中，使用指定的搜索器查找插入位置。
+     *
+     * <p>
+     * 该方法使用指定的 {@link CollectionUtil.OrderedInsertionSearcher} 查找插入位置，然后将对象插入到该位置。
+     * 若列表实现了 {@link RandomAccess}，建议使用 {@link #BINARY_ORDERED_INSERTION_SEARCHER} 或
+     * {@link #ADAPTIVE_ORDERED_INSERTION_SEARCHER} 以获得更好的搜索效率。
+     *
+     * @param <T>      列表中的元素的类。
+     * @param list     指定的列表。
+     * @param obj      指定的对象，允许为 <code>null</code>，但是需要列表和比较器支持 <code>null</code>元素。
+     * @param c        指定的比较器。
+     * @param searcher 指定的搜索器。
+     * @return 对象的插入位置。
+     * @since 0.4.1-beta
+     */
+    public static <T> int insertByOrder(
+            List<T> list, T obj, Comparator<? super T> c, OrderedInsertionSearcher searcher
+    ) {
         Objects.requireNonNull(list, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_15));
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_16));
+        Objects.requireNonNull(searcher, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_22));
 
-        // TODO 效率不高，换成二分查找。
-        for (int i = 0; i < list.size(); i++) {
-            T t = list.get(i);
-            if (c.compare(obj, t) <= 0) {
-                list.add(i, obj);
-                return i;
+        int index = searcher.searchInsertionIndex(list, obj, c);
+        list.add(index, obj);
+        return index;
+    }
+
+    /**
+     * 有序插入搜索器。
+     *
+     * <p>
+     * 用于在已排序的列表中查找插入位置的策略接口。调用方可将对象插入到该方法返回的索引处，以保持列表的有序性。
+     *
+     * @author DwArFeng
+     * @since 0.4.1-beta
+     */
+    @FunctionalInterface
+    public interface OrderedInsertionSearcher {
+
+        /**
+         * 在指定的已排序列表中搜索指定对象的插入位置。
+         *
+         * <p>
+         * 返回的索引表示：将对象插入到该位置后，列表仍按比较器的顺序排列。即返回第一个大于等于指定对象的元素之前的索引。
+         *
+         * @param <T>  列表中的元素的类。
+         * @param list 指定的已排序列表。
+         * @param obj  待插入的对象。
+         * @param c    指定的比较器。
+         * @return 对象的插入位置，取值范围为 [0, list.size()]。
+         */
+        <T> int searchInsertionIndex(List<T> list, T obj, Comparator<? super T> c);
+    }
+
+    private static class BinaryOrderedInsertionSearcher implements OrderedInsertionSearcher {
+
+        @Override
+        public <T> int searchInsertionIndex(List<T> list, T obj, Comparator<? super T> c) {
+            int low = 0;
+            int high = list.size();
+            while (low < high) {
+                int mid = (low + high) >>> 1;
+                if (c.compare(obj, list.get(mid)) <= 0) {
+                    high = mid;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            return low;
+        }
+    }
+
+    private static class SequentialOrderedInsertionSearcher implements OrderedInsertionSearcher {
+
+        @Override
+        public <T> int searchInsertionIndex(List<T> list, T obj, Comparator<? super T> c) {
+            for (int i = 0; i < list.size(); i++) {
+                if (c.compare(obj, list.get(i)) <= 0) {
+                    return i;
+                }
+            }
+            return list.size();
+        }
+    }
+
+    private static class AdaptiveOrderedInsertionSearcher implements OrderedInsertionSearcher {
+
+        @Override
+        public <T> int searchInsertionIndex(List<T> list, T obj, Comparator<? super T> c) {
+            if (list instanceof RandomAccess) {
+                return BINARY_ORDERED_INSERTION_SEARCHER.searchInsertionIndex(list, obj, c);
+            } else {
+                return SEQUENTIAL_ORDERED_INSERTION_SEARCHER.searchInsertionIndex(list, obj, c);
             }
         }
-        list.add(obj);
-        return list.size() - 1;
     }
 
     /**

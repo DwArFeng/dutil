@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- `dutil-basic` 子模块优化 `CollectionUtil.insertByOrder` 搜索效率。
+  - 对 `RandomAccess` 列表使用二分查找，否则使用顺序查找。
+  - 新增 `CollectionUtil.OrderedInsertionSearcher` 接口及其内部实现。
+  - 新增 `CollectionUtil.insertByOrder` 的重载方法，支持指定搜索器。
+
 - `dutil-basic` 子模块 NumberUtil byte 转换方法 API 规范化。
   - 对 `com.dwarfeng.dutil.basic.num.NumberUtil` 进行修改。
   - 新增 `xxxToBytes`、`bytesToXxx`、`cutIntToByte` 系列方法，统一命名风格。
