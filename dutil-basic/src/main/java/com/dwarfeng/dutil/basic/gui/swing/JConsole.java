@@ -369,7 +369,7 @@ public class JConsole extends JPanel {
         public void write(int b) {
             outLock.lock();
             try {
-                byteList.add(NumberUtil.cutInt2Byte(b));
+                byteList.add(NumberUtil.cutIntToByte(b));
             } finally {
                 outLock.unlock();
             }

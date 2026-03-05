@@ -37,12 +37,25 @@ public final class NumberUtil {
      *
      * @param i 指定的 int 数据类型。
      * @return 转换后的 byte 数组。
+     * @since 0.4.1-beta
      */
-    public static byte[] int2Byte(int i) {
-
+    public static byte[] intToBytes(int i) {
         ByteBuffer buffer = ByteBuffer.allocate(4);
         buffer.putInt(i);
         return buffer.array();
+    }
+
+    /**
+     * 将 int 数据类型转化为 byte 数组。
+     *
+     * @param i 指定的 int 数据类型。
+     * @return 转换后的 byte 数组。
+     * @see #intToBytes(int)
+     * @deprecated 使用 {@link #intToBytes(int)} 代替。
+     */
+    @Deprecated
+    public static byte[] int2Byte(int i) {
+        return intToBytes(i);
     }
 
     /**
@@ -53,11 +66,28 @@ public final class NumberUtil {
      *
      * @param bytes 指定的 byte 数组。
      * @return 转换后的 int 数据类型。
+     * @since 0.4.1-beta
      */
-    public static int byte2Int(byte[] bytes) {
+    public static int bytesToInt(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.allocate(4);
         buffer.put(TrimToSize(bytes, 4)).flip();
         return buffer.getInt();
+    }
+
+    /**
+     * 将指定的 byte 数组转换为 int 数据类型。
+     *
+     * <p>
+     * 指定的 byte 数组将会自动的被裁剪或添加到 4 位。
+     *
+     * @param bytes 指定的 byte 数组。
+     * @return 转换后的 int 数据类型。
+     * @see #bytesToInt(byte[])
+     * @deprecated 使用 {@link #bytesToInt(byte[])} 代替。
+     */
+    @Deprecated
+    public static int byte2Int(byte[] bytes) {
+        return bytesToInt(bytes);
     }
 
     /**
@@ -65,11 +95,25 @@ public final class NumberUtil {
      *
      * @param l 指定的 long 数据类型。
      * @return 转换后的 byte 数组。
+     * @since 0.4.1-beta
      */
-    public static byte[] long2Byte(long l) {
+    public static byte[] longToBytes(long l) {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.putLong(l);
         return buffer.array();
+    }
+
+    /**
+     * 将 long 数据类型转换为 byte 数组。
+     *
+     * @param l 指定的 long 数据类型。
+     * @return 转换后的 byte 数组。
+     * @see #longToBytes(long)
+     * @deprecated 使用 {@link #longToBytes(long)} 代替。
+     */
+    @Deprecated
+    public static byte[] long2Byte(long l) {
+        return longToBytes(l);
     }
 
     /**
@@ -80,11 +124,28 @@ public final class NumberUtil {
      *
      * @param bytes 指定的 byte 数组。
      * @return 转换后的 long 数据类型。
+     * @since 0.4.1-beta
      */
-    public static long byte2Long(byte[] bytes) {
+    public static long bytesToLong(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.put(TrimToSize(bytes, 8)).flip();
         return buffer.getLong();
+    }
+
+    /**
+     * 将 byte 数组转换为 long 数据类型。
+     *
+     * <p>
+     * 指定的 byte 数组将会自动被裁剪或添加到 8 位。
+     *
+     * @param bytes 指定的 byte 数组。
+     * @return 转换后的 long 数据类型。
+     * @see #bytesToLong(byte[])
+     * @deprecated 使用 {@link #bytesToLong(byte[])} 代替。
+     */
+    @Deprecated
+    public static long byte2Long(byte[] bytes) {
+        return bytesToLong(bytes);
     }
 
     /**
@@ -92,11 +153,25 @@ public final class NumberUtil {
      *
      * @param f 指定的 float 数据类型。
      * @return 转换后的 byte 数组。
+     * @since 0.4.1-beta
      */
-    public static byte[] float2Byte(float f) {
+    public static byte[] floatToBytes(float f) {
         ByteBuffer buffer = ByteBuffer.allocate(4);
         buffer.putFloat(f);
         return buffer.array();
+    }
+
+    /**
+     * 将 float 数据类型转换为 byte 数组。
+     *
+     * @param f 指定的 float 数据类型。
+     * @return 转换后的 byte 数组。
+     * @see #floatToBytes(float)
+     * @deprecated 使用 {@link #floatToBytes(float)} 代替。
+     */
+    @Deprecated
+    public static byte[] float2Byte(float f) {
+        return floatToBytes(f);
     }
 
     /**
@@ -107,11 +182,28 @@ public final class NumberUtil {
      *
      * @param bytes 指定的 byte 数组。
      * @return 转换后的 float 数据类型。
+     * @since 0.4.1-beta
      */
-    public static float byte2Float(byte[] bytes) {
+    public static float bytesToFloat(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.allocate(4);
         buffer.put(TrimToSize(bytes, 4)).flip();
         return buffer.getFloat();
+    }
+
+    /**
+     * 将 byte 数组转换为 float 数据类型。
+     *
+     * <p>
+     * 指定的 byte 数组将会自动被裁剪或添加到 4 位。
+     *
+     * @param bytes 指定的 byte 数组。
+     * @return 转换后的 float 数据类型。
+     * @see #bytesToFloat(byte[])
+     * @deprecated 使用 {@link #bytesToFloat(byte[])} 代替。
+     */
+    @Deprecated
+    public static float byte2Float(byte[] bytes) {
+        return bytesToFloat(bytes);
     }
 
     /**
@@ -119,11 +211,25 @@ public final class NumberUtil {
      *
      * @param d 指定的 double 数据类型。
      * @return 转换后的 byte 数组。
+     * @since 0.4.1-beta
      */
-    public static byte[] double2Byte(double d) {
+    public static byte[] doubleToBytes(double d) {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.putDouble(d);
         return buffer.array();
+    }
+
+    /**
+     * 将 double 类型转换为 byte 数组。
+     *
+     * @param d 指定的 double 数据类型。
+     * @return 转换后的 byte 数组。
+     * @see #doubleToBytes(double)
+     * @deprecated 使用 {@link #doubleToBytes(double)} 代替。
+     */
+    @Deprecated
+    public static byte[] double2Byte(double d) {
+        return doubleToBytes(d);
     }
 
     /**
@@ -134,11 +240,28 @@ public final class NumberUtil {
      *
      * @param bytes 指定的 byte 数组。
      * @return 转换后的 double 数据类型。
+     * @since 0.4.1-beta
      */
-    public static double byte2Double(byte[] bytes) {
+    public static double bytesToDouble(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.allocate(8);
         buffer.put(TrimToSize(bytes, 8)).flip();
         return buffer.getDouble();
+    }
+
+    /**
+     * 将 byte 数组转换为 double 数据类型。
+     *
+     * <p>
+     * 指定的 byte 数组将会自动被裁剪或添加到 8 位。
+     *
+     * @param bytes 指定的 byte 数组。
+     * @return 转换后的 double 数据类型。
+     * @see #bytesToDouble(byte[])
+     * @deprecated 使用 {@link #bytesToDouble(byte[])} 代替。
+     */
+    @Deprecated
+    public static double byte2Double(byte[] bytes) {
+        return bytesToDouble(bytes);
     }
 
     /**
@@ -146,11 +269,25 @@ public final class NumberUtil {
      *
      * @param s 指定的 short 数据类型。
      * @return 转换后的 byte 数组。
+     * @since 0.4.1-beta
      */
-    public static byte[] short2Double(short s) {
+    public static byte[] shortToBytes(short s) {
         ByteBuffer buffer = ByteBuffer.allocate(2);
         buffer.putShort(s);
         return buffer.array();
+    }
+
+    /**
+     * 将 short 数据类型转换为 byte 数组。
+     *
+     * @param s 指定的 short 数据类型。
+     * @return 转换后的 byte 数组。
+     * @see #shortToBytes(short)
+     * @deprecated 使用 {@link #shortToBytes(short)} 代替。
+     */
+    @Deprecated
+    public static byte[] short2Double(short s) {
+        return shortToBytes(s);
     }
 
     /**
@@ -161,11 +298,28 @@ public final class NumberUtil {
      *
      * @param bytes 指定的 byte 数组。
      * @return 转换后的 short 数据类型。
+     * @since 0.4.1-beta
      */
-    public static short byte2Short(byte[] bytes) {
+    public static short bytesToShort(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.allocate(2);
         buffer.put(TrimToSize(bytes, 2)).flip();
         return buffer.getShort();
+    }
+
+    /**
+     * 将 byte 数组转换为 short 数据类型。
+     *
+     * <p>
+     * 指定的 byte 数组将会自动的被裁剪或添加到 2 位。
+     *
+     * @param bytes 指定的 byte 数组。
+     * @return 转换后的 short 数据类型。
+     * @see #bytesToShort(byte[])
+     * @deprecated 使用 {@link #bytesToShort(byte[])} 代替。
+     */
+    @Deprecated
+    public static short byte2Short(byte[] bytes) {
+        return bytesToShort(bytes);
     }
 
     /**
@@ -199,9 +353,23 @@ public final class NumberUtil {
      *
      * @param b 指定的整型数。
      * @return 截取低八位后的 byte 形式。
+     * @since 0.4.1-beta
      */
-    public static byte cutInt2Byte(int b) {
+    public static byte cutIntToByte(int b) {
         return (byte) (b & 0xFF);
+    }
+
+    /**
+     * 将一个整型数截取低八位后，输出其 byte 形式。
+     *
+     * @param b 指定的整型数。
+     * @return 截取低八位后的 byte 形式。
+     * @see #cutIntToByte(int)
+     * @deprecated 使用 {@link #cutIntToByte(int)} 代替。
+     */
+    @Deprecated
+    public static byte cutInt2Byte(int b) {
+        return cutIntToByte(b);
     }
 
     /**

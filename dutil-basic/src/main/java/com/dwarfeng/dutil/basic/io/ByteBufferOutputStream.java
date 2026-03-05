@@ -59,7 +59,7 @@ public final class ByteBufferOutputStream extends OutputStream {
     @Override
     public void write(int b) throws IOException {
         try {
-            byteBuffer.put(NumberUtil.int2Byte(b));
+            byteBuffer.put(NumberUtil.intToBytes(b));
         } catch (Exception e) {
             throw new IOException(e);
         }

@@ -167,7 +167,7 @@ public class StringOutputStream extends OutputStream {
     @Override
     public void write(int b) throws IOException {
         ensureRemaining(1);
-        byteBuffer.put(NumberUtil.cutInt2Byte(b));
+        byteBuffer.put(NumberUtil.cutIntToByte(b));
         mayAutoFlushNotEndOfInput();
     }
 

@@ -622,7 +622,7 @@ public class JExconsole extends JPanel {
                     System.arraycopy(dejavu, 0, bs, 0, dejavu.length);
                 }
 
-                bs[pos++] = NumberUtil.cutInt2Byte(b);
+                bs[pos++] = NumberUtil.cutIntToByte(b);
             } finally {
                 outputLock.unlock();
             }

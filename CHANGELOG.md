@@ -4,6 +4,12 @@
 
 ### 功能构建
 
+- `dutil-basic` 子模块 NumberUtil byte 转换方法 API 规范化。
+  - 对 `com.dwarfeng.dutil.basic.num.NumberUtil` 进行修改。
+  - 新增 `xxxToBytes`、`bytesToXxx`、`cutIntToByte` 系列方法，统一命名风格。
+  - 修正 `short2Double` 错误命名，改为 `shortToBytes`。
+  - 旧方法标记 `@Deprecated` 并委托至新方法，项目内调用点迁移。
+
 - `dutil-develop` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.dutil.develop.setting.AbstractSettingHandler。
   - com.dwarfeng.dutil.develop.setting.info.LongSettingInfo。
