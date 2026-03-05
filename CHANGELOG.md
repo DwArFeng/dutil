@@ -4,6 +4,10 @@
 
 ### 功能构建
 
+- `dutil-develop` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.dutil.develop.setting.AbstractSettingHandler。
+  - com.dwarfeng.dutil.develop.setting.info.LongSettingInfo。
+
 - `dutil-basic` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.dutil.basic.cna.ArrayUtil。
   - com.dwarfeng.dutil.basic.cna.CollectionUtil。

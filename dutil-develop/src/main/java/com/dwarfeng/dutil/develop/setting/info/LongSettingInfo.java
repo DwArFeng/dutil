@@ -22,7 +22,7 @@ public class LongSettingInfo extends NumberSettingInfo {
     private final Lock lock = new ReentrantLock();
 
     /**
-     * 生成一个新的Long 配置信息。
+     * 生成一个新的 Long 配置信息。
      *
      * @param defaultValue 指定的默认值。
      * @throws NullPointerException     指定的入口参数为 <code> null </code>。
@@ -33,7 +33,7 @@ public class LongSettingInfo extends NumberSettingInfo {
     }
 
     /**
-     * 生成一个新的Long 配置信息。
+     * 生成一个新的 Long 配置信息。
      *
      * @param defaultValue 指定的默认值。
      * @param interval     指定的区间。
