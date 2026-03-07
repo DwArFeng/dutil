@@ -43,40 +43,60 @@ public class Interval implements Filter<NumberValue> {
     /**
      * 一个表示所有实数的区间，等于 <code>(-∞,+∞)</code>
      */
-    public static final Interval INTERVAL_REALNUMBER = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null,
-            null);
+    public static final Interval INTERVAL_REAL_NUMBER = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null, null);
+
+    /**
+     * 一个表示所有实数的区间，等于 <code>(-∞,+∞)</code>
+     *
+     * @deprecated 拼写不正确，已经由 {@link #INTERVAL_REAL_NUMBER} 替。
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    @Deprecated
+    public static final Interval INTERVAL_REALNUMBER = INTERVAL_REAL_NUMBER;
+
     /**
      * 一个表示所有正实数的区间，等于<code>(0,+∞)</code>
      */
-    public static final Interval INTERVAL_POSITIVE = new Interval(BoundaryType.OPENED, BoundaryType.OPENED,
-            BigDecimal.ZERO, null);
+    public static final Interval INTERVAL_POSITIVE = new Interval(
+            BoundaryType.OPENED, BoundaryType.OPENED, BigDecimal.ZERO, null
+    );
+
+    /**
+     * 一个表示所有非负实数的区间，等于<code>[0,+∞)</code>
+     */
+    public static final Interval INTERVAL_NOT_NEGATIVE = new Interval(
+            BoundaryType.CLOSED, BoundaryType.OPENED, BigDecimal.ZERO, null
+    );
+
     /**
      * 一个表示所有非负实数的区间，等于<code>[0,+∞)</code>
      *
      * @deprecated 拼写不正确，已经由 {@link #INTERVAL_NOT_NEGATIVE} 替。
      */
-    public static final Interval INTERVAL_NOT_NEGETIVE = new Interval(BoundaryType.CLOSED, BoundaryType.OPENED,
-            BigDecimal.ZERO, null);
-    /**
-     * 一个表示所有非负实数的区间，等于<code>[0,+∞)</code>
-     */
-    public static final Interval INTERVAL_NOT_NEGATIVE = INTERVAL_NOT_NEGETIVE;
+    @SuppressWarnings("SpellCheckingInspection")
+    @Deprecated
+    public static final Interval INTERVAL_NOT_NEGETIVE = INTERVAL_NOT_NEGATIVE;
+
     /**
      * 一个表示所有负实数的区间，等于<code>(-∞,0)</code>
      */
-    public static final Interval INTERVAL_NEGATIVE = new Interval(BoundaryType.OPENED, BoundaryType.OPENED, null,
-            BigDecimal.ZERO);
+    public static final Interval INTERVAL_NEGATIVE = new Interval(
+            BoundaryType.OPENED, BoundaryType.OPENED, null, BigDecimal.ZERO
+    );
+
     /**
      * 一个表示所有非正实数的区间，等于<code>(-∞,0]</code>
      */
-    public static final Interval INTERVAL_NOT_POSITIVE = new Interval(BoundaryType.OPENED, BoundaryType.CLOSED, null,
-            BigDecimal.ZERO);
+    public static final Interval INTERVAL_NOT_POSITIVE = new Interval(
+            BoundaryType.OPENED, BoundaryType.CLOSED, null, BigDecimal.ZERO
+    );
 
     /**
      * 将指定的文本值转化为区间。
      *
      * <p>
-     * 文本必须符合类似于<code>[ 0 , 1 )</code>、<code>( -infinity , 0 ]</code>、<code>( -infinity , infinity )</code>这样的格式（<b>不能省略空格</b>）。
+     * 文本必须符合类似于<code>[ 0 , 1 )</code>、
+     * <code>( -infinity , 0 ]</code>、<code>( -infinity , infinity )</code>这样的格式（<b>不能省略空格</b>）。
      * <br>
      * 注意事项有： <blockquote> 1、负无穷只能以 "-infinity"的形式出现在逗号左边，
      * 而正无穷只能以"infinity"的形式出现在逗号右边。<br>
@@ -92,10 +112,10 @@ public class Interval implements Filter<NumberValue> {
         Objects.requireNonNull(str, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_4));
 
         // 常量。
-        final String leftBoundaryPattern = "[\\[|\\(]";
+        final String leftBoundaryPattern = "[\\[|(]";
         final String leftInfinityPattern = "-infinity";
         final String rightInfinityPattern = "infinity";
-        final String rightBoundaryPattern = "[\\]|\\)]";
+        final String rightBoundaryPattern = "[]|)]";
 
         // 属性。
         final BoundaryType leftBoundaryType;
@@ -169,7 +189,7 @@ public class Interval implements Filter<NumberValue> {
         Objects.requireNonNull(leftBoundaryType, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_0));
         Objects.requireNonNull(rightBoundaryType, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_1));
 
-        if ((Objects.nonNull(leftValue) && Objects.nonNull(rightValue)) && leftValue.compareTo(rightValue) == 1) {
+        if ((Objects.nonNull(leftValue) && Objects.nonNull(rightValue)) && leftValue.compareTo(rightValue) > 0) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_2));
         }
 
@@ -196,8 +216,8 @@ public class Interval implements Filter<NumberValue> {
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
     public boolean contains(BigDecimal value) {
-        if ((Objects.isNull(leftValue) || leftValue.compareTo(value) == -1)
-                && (Objects.isNull(rightValue) || rightValue.compareTo(value) == 1))
+        if ((Objects.isNull(leftValue) || leftValue.compareTo(value) < 0)
+                && (Objects.isNull(rightValue) || rightValue.compareTo(value) > 0))
             return true;
         if (Objects.nonNull(leftValue) && leftValue.compareTo(value) == 0)
             return leftBoundaryType == BoundaryType.CLOSED;
@@ -360,12 +380,11 @@ public class Interval implements Filter<NumberValue> {
      */
     @Override
     public String toString() {
-        String sb = (leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ") +
+        return (leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ") +
                 (leftValue == null ? "-∞" : leftValue.toString()) +
                 " , " +
                 (rightValue == null ? "+∞" : rightValue.toString()) +
                 (rightBoundaryType == BoundaryType.CLOSED ? " ]" : " )");
-        return sb;
     }
 
     /**
@@ -379,11 +398,10 @@ public class Interval implements Filter<NumberValue> {
     public String toString(int scale, RoundingMode roundingMode) {
         Objects.requireNonNull(roundingMode, DwarfUtil.getExceptionString(ExceptionStringKey.INTERVAL_3));
 
-        String sb = (leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ") +
+        return (leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ") +
                 (leftValue == null ? "-∞" : leftValue.setScale(scale, roundingMode).toString()) +
                 " , " +
                 (rightValue == null ? "+∞" : rightValue.setScale(scale, roundingMode).toString()) +
                 (rightBoundaryType == BoundaryType.CLOSED ? " ]" : " )");
-        return sb;
     }
 }

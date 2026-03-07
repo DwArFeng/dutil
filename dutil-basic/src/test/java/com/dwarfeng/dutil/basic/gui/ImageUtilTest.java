@@ -33,14 +33,14 @@ public class ImageUtilTest {
         }
     }
 
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Test
     public void testDefaultImage() {
         assertEquals(128, ImageUtil.defaultImage().getWidth(null));
         assertEquals(128, ImageUtil.defaultImage().getHeight(null));
     }
 
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Test
     public void testDefaultImageImageSize() {
         assertEquals(ImageSize.ICON_SMALL.getIntWidth(), ImageUtil.defaultImage(ImageSize.ICON_SMALL).getWidth(null));

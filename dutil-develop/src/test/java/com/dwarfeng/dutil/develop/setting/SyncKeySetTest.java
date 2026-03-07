@@ -6,7 +6,7 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 
-public class DefaultKeySetTest {
+public class SyncKeySetTest {
 
     private static final String ENTRY_1 = "entry.1";
     private static final String ENTRY_2 = "entry.2";
@@ -14,7 +14,7 @@ public class DefaultKeySetTest {
     private static final String ENTRY_4 = "entry.4";
     private static final String ENTRY_5 = "entry.5";
 
-    private static DefaultSettingHandler handler;
+    private static SettingHandler handler;
     private static TestSettingObserver observer;
     private static Set<String> keySet;
 
@@ -28,8 +28,8 @@ public class DefaultKeySetTest {
 
     @Before
     public void setUp() {
-        handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
-                Collections.newSetFromMap(new WeakHashMap<>()));
+        handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
+                Collections.newSetFromMap(new WeakHashMap<>())));
         SettingUtil.putEnumItems(new SettingEnumItem[]{TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
                 TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4}, handler);
         keySet = handler.keySet();

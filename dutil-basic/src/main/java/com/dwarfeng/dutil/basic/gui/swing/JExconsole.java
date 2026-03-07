@@ -141,7 +141,6 @@ public class JExconsole extends JPanel {
      * @param cleanRatio        指定的清除系数。
      * @param maxRollback       指定的额最大回滚数量。
      * @param creatDefaultPopup 是否创建默认的右键菜单。
-     * @param maxRollback       最大的输入回滚数量。
      * @throws IllegalArgumentException 入口参数不符合要求。
      */
     public JExconsole(int maxLine, double cleanRatio, Integer maxRollback, boolean creatDefaultPopup) {
@@ -164,12 +163,6 @@ public class JExconsole extends JPanel {
 
         textArea = new JTextArea();
         // 该方法与控制台的全选冲突。
-        // textArea.addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mousePressed(MouseEvent e) {
-        // textField.requestFocus();
-        // }
-        // });
         textArea.setEditable(false);
         scrollPane.setViewportView(textArea);
 

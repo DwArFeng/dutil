@@ -227,8 +227,9 @@ public abstract class InnerThread implements Name {
                 }
             }
         });
-        if (getName() != null && getName().length() > 0)
+        if (getName() != null && !getName().isEmpty()) {
             t.setName(getName());
+        }
         t.setDaemon(isDaemon);
         return t;
     }

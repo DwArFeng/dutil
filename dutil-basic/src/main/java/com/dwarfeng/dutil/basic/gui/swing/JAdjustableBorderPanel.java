@@ -1054,13 +1054,9 @@ public class JAdjustableBorderPanel extends JPanel {
         int climit = centerPan.getHeight() - centerPan.getMinimumSize().height;
         int nlimit = -northPan.getHeight() + nmin;
         int delta = e.getY();
-        if (delta >= 0 && delta > climit) delta = climit >= 0 ? climit : 0;
-        if (delta < 0 && delta < nlimit) delta = nlimit <= 0 ? nlimit : 0;
-// 		northPan.setPreferredSize(new Dimension(northPan.getPreferredSize().width,
-// 				northPan.getPreferredSize().height + delta
-// 		));
+        if (delta >= 0 && delta > climit) delta = Math.max(climit, 0);
+        if (delta < 0 && delta < nlimit) delta = Math.min(nlimit, 0);
         setNorthPreferredValue(getNorthPreferredValue() + delta);
-// 		updateUI();
         northPan.revalidate();
     }
 
@@ -1075,13 +1071,9 @@ public class JAdjustableBorderPanel extends JPanel {
         int climit = -centerPan.getHeight() + centerPan.getMinimumSize().height;
         int slimit = southPan.getHeight() - smin;
         int delta = e.getY();
-        if (delta >= 0 && delta > slimit) delta = slimit >= 0 ? slimit : 0;
-        if (delta < 0 && delta < climit) delta = climit <= 0 ? climit : 0;
-// 		southPan.setPreferredSize(new Dimension(southPan.getPreferredSize().width,
-// 				southPan.getPreferredSize().height - delta
-// 		));
+        if (delta >= 0 && delta > slimit) delta = Math.max(slimit, 0);
+        if (delta < 0 && delta < climit) delta = Math.min(climit, 0);
         setSouthPreferredValue(getSouthPreferredValue() - delta);
-// 		updateUI();
         southPan.revalidate();
     }
 
@@ -1096,11 +1088,8 @@ public class JAdjustableBorderPanel extends JPanel {
         int climit = -centerPan.getWidth() + centerPan.getMinimumSize().width;
         int elimit = eastPan.getWidth() - emin;
         int delta = e.getX();
-        if (delta >= 0 && delta > elimit) delta = elimit >= 0 ? elimit : 0;
-        if (delta < 0 && delta < climit) delta = climit <= 0 ? climit : 0;
-// 		eastPan.setPreferredSize(new Dimension(eastPan.getPreferredSize().width - delta,
-// 				eastPan.getPreferredSize().height
-//		));
+        if (delta >= 0 && delta > elimit) delta = Math.max(elimit, 0);
+        if (delta < 0 && delta < climit) delta = Math.min(climit, 0);
         setEastPreferredValue(getEastPreferredValue() - delta);
 // 		updateUI();
         eastPan.revalidate();
@@ -1117,13 +1106,9 @@ public class JAdjustableBorderPanel extends JPanel {
         int climit = centerPan.getWidth() - centerPan.getMinimumSize().width;
         int wlimit = -westPan.getWidth() + wmin;
         int delta = e.getX();
-        if (delta >= 0 && delta > climit) delta = climit >= 0 ? climit : 0;
-        if (delta < 0 && delta < wlimit) delta = wlimit <= 0 ? wlimit : 0;
-// 		westPan.setPreferredSize(new Dimension(westPan.getPreferredSize().width + delta,
-// 				westPan.getPreferredSize().height
-//		));
+        if (delta >= 0 && delta > climit) delta = Math.max(climit, 0);
+        if (delta < 0 && delta < wlimit) delta = Math.min(wlimit, 0);
         setWestPreferredValue(getWestPreferredValue() + delta);
-// 		updateUI();
         westPan.revalidate();
     }
 }

@@ -115,6 +115,7 @@ public final class ImageUtil {
      * @return 默认图片。
      * @deprecated 命名不规范，已经被 {@link #getDefaultImage()} 取代。
      */
+    @Deprecated
     public static Image defaultImage() {
         return getDefaultImage(null);
     }
@@ -127,6 +128,7 @@ public final class ImageUtil {
      * @throws NullPointerException 指定的入口参数为 <code> null </code>。
      * @deprecated 命名不规范，已经被 {@link #getDefaultImage(Size2D)} 取代。
      */
+    @Deprecated
     public static Image defaultImage(ImageSize imageSize) {
         return getDefaultImage(imageSize);
     }

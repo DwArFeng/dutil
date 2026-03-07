@@ -130,7 +130,7 @@ public final class ResourceUtil {
             return new UnmodifiableIterator(delegate.iterator());
         }
 
-        private class UnmodifiableIterator implements Iterator<Resource> {
+        private static class UnmodifiableIterator implements Iterator<Resource> {
 
             private final Iterator<Resource> delegateIterator;
 
@@ -273,8 +273,12 @@ public final class ResourceUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof ResourceHandler)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -615,8 +619,12 @@ public final class ResourceUtil {
         public boolean equals(Object o) {
             lock.readLock().lock();
             try {
-                if (o == this)
+                if (o == this) {
                     return true;
+                }
+                if (!(o instanceof ResourceHandler)) {
+                    return false;
+                }
                 return delegate.equals(o);
             } finally {
                 lock.readLock().unlock();
@@ -711,8 +719,12 @@ public final class ResourceUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof Resource)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -991,10 +1003,15 @@ public final class ResourceUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == this)
+            if (obj == this) {
                 return true;
-            if (obj == delegate)
+            }
+            if (obj == delegate) {
                 return true;
+            }
+            if (!(obj instanceof ResourceHandler)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 

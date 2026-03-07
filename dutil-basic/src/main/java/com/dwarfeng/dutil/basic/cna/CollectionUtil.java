@@ -271,6 +271,8 @@ public final class CollectionUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return list.containsAll(c);
@@ -405,7 +407,6 @@ public final class CollectionUtil {
         public String toString() {
             return list.toString();
         }
-
     }
 
     /**
@@ -541,7 +542,6 @@ public final class CollectionUtil {
         public Set<java.util.Map.Entry<K, V>> entrySet() {
             return map.entrySet();
         }
-
     }
 
     /**
@@ -633,7 +633,6 @@ public final class CollectionUtil {
         public T next() {
             return enumeration.nextElement();
         }
-
     }
 
     /**
@@ -672,7 +671,6 @@ public final class CollectionUtil {
         public T nextElement() {
             return iterator.next();
         }
-
     }
 
     /**
@@ -901,7 +899,6 @@ public final class CollectionUtil {
         public E next() {
             return delegate.next();
         }
-
     }
 
     /**
@@ -944,7 +941,6 @@ public final class CollectionUtil {
         public E next() {
             return generator.readOnly(delegate.next());
         }
-
     }
 
     /**
@@ -1039,7 +1035,6 @@ public final class CollectionUtil {
         public void add(E e) {
             throw new UnsupportedOperationException("add");
         }
-
     }
 
     /**
@@ -1139,7 +1134,6 @@ public final class CollectionUtil {
         public void add(E e) {
             throw new UnsupportedOperationException("add");
         }
-
     }
 
     /**
@@ -1282,7 +1276,6 @@ public final class CollectionUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -1431,10 +1424,15 @@ public final class CollectionUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof Set)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -1445,7 +1443,6 @@ public final class CollectionUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -1544,6 +1541,8 @@ public final class CollectionUtil {
         /**
          * {@inheritDoc}
          */
+        // 代理方法，忽略所有警告。
+        @SuppressWarnings("SlowListContainsAll")
         @Override
         public boolean containsAll(Collection<?> c) {
             return delegate.containsAll(c);
@@ -1674,10 +1673,15 @@ public final class CollectionUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof List)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -1688,7 +1692,6 @@ public final class CollectionUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -1759,10 +1762,15 @@ public final class CollectionUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof Map.Entry)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -1773,7 +1781,6 @@ public final class CollectionUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     /**
@@ -1916,10 +1923,15 @@ public final class CollectionUtil {
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == delegate)
+            if (obj == delegate) {
                 return true;
-            if (obj == this)
+            }
+            if (obj == this) {
                 return true;
+            }
+            if (!(obj instanceof Map)) {
+                return false;
+            }
             return delegate.equals(obj);
         }
 
@@ -1930,7 +1942,6 @@ public final class CollectionUtil {
         public String toString() {
             return delegate.toString();
         }
-
     }
 
     private CollectionUtil() {

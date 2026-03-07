@@ -210,7 +210,7 @@ public class ConfigModelDemo {
         }
 
         private void addListener() {
-            /**
+            /*
              * 向配置模型中添加观察器，当配置发生变化时做出相应的响应。
              */
             configModel.addObserver(observer);
@@ -239,7 +239,7 @@ public class ConfigModelDemo {
          */
         this.configModel = new DefaultConfigModel(ApperanceConfig.values());
 
-        /**
+        /*
          * 显示界面。
          */
         this.testFrame = new TestFrame();

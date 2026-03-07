@@ -27,7 +27,7 @@ public class DoubleSettingInfo extends NumberSettingInfo {
      * @throws IllegalArgumentException 指定的默认值不能通过自身检查。
      */
     public DoubleSettingInfo(String defaultValue) throws NullPointerException, IllegalArgumentException {
-        this(defaultValue, Interval.INTERVAL_REALNUMBER);
+        this(defaultValue, Interval.INTERVAL_REAL_NUMBER);
     }
 
     /**

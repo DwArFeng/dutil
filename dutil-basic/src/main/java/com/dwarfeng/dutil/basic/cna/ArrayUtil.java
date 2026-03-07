@@ -92,20 +92,19 @@ public final class ArrayUtil {
      * 如果元素数组为 <code>null</code> 则返回一个空的数组。
      *
      * @param objects 元素数组。
-     * @param t       返回的数组类型，比如<code> new Object[0]</code>。
+     * @param t       返回的数组类型，比如 <code>new Object[0]</code>。
      * @param <T>     泛型 T
      * @return 返回的数组泛型。
      * @deprecated 该方法性能太差，应该优先使用 {@link #getNonNull(Object[])};
      */
     public static <T> T[] getNotNull(Object[] objects, T[] t) {
-        ArrayList<Object> col = new ArrayList<>(objects.length);
-        if (objects != null) {
-            for (Object o : objects) {
-                if (o != null)
-                    col.add(o);
+        ArrayList<Object> list = new ArrayList<>(objects.length);
+        for (Object o : objects) {
+            if (o != null) {
+                list.add(o);
             }
         }
-        return col.toArray(t);
+        return list.toArray(t);
     }
 
     /**
@@ -120,14 +119,13 @@ public final class ArrayUtil {
      * @deprecated 该方法性能太差，且不符合 ArrayUtil 工具包的功能。
      */
     public static <T> Collection<T> getNotNull(T[] object) {
-        Collection<T> col = new Vector<>(object.length);
-        if (object != null) {
-            for (T o : object) {
-                if (o != null)
-                    col.add(o);
+        Collection<T> collection = new Vector<>(object.length);
+        for (T o : object) {
+            if (o != null) {
+                collection.add(o);
             }
         }
-        return col;
+        return collection;
     }
 
     /**
@@ -147,14 +145,15 @@ public final class ArrayUtil {
         int j = 0;
 
         for (T t : array) {
-            if (Objects.nonNull(t))
+            if (Objects.nonNull(t)) {
                 target[j++] = t;
+            }
         }
 
         // 由于 target 数组中只含有 T 类型元素，因此该类型转换安全。
         @SuppressWarnings("unchecked")
-        T[] dejavu = (T[]) Arrays.copyOf(target, j, array.getClass());
-        return dejavu;
+        T[] dejaVu = (T[]) Arrays.copyOf(target, j, array.getClass());
+        return dejaVu;
     }
 
     /**
@@ -272,7 +271,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Byte[0]);
+        target = getNonNull(target);
 
         byte[] bytes = new byte[target.length];
         for (int i = 0; i < target.length; i++) {
@@ -292,7 +291,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Short[0]);
+        target = getNonNull(target);
 
         short[] shorts = new short[target.length];
         for (int i = 0; i < target.length; i++) {
@@ -312,7 +311,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Integer[0]);
+        target = getNonNull(target);
 
         int[] ints = new int[target.length];
         for (int i = 0; i < target.length; i++) {
@@ -332,7 +331,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Float[0]);
+        target = getNonNull(target);
 
         float[] floats = new float[target.length];
         for (int i = 0; i < target.length; i++) {
@@ -352,7 +351,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Long[0]);
+        target = getNonNull(target);
 
         long[] longs = new long[target.length];
         for (int i = 0; i < target.length; i++) {
@@ -372,13 +371,13 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Character[0]);
+        target = getNonNull(target);
 
-        char[] charss = new char[target.length];
+        char[] chars = new char[target.length];
         for (int i = 0; i < target.length; i++) {
-            charss[i] = target[i];
+            chars[i] = target[i];
         }
-        return charss;
+        return chars;
     }
 
     /**
@@ -392,7 +391,7 @@ public final class ArrayUtil {
         if (target == null)
             throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_11));
 
-        target = getNotNull(target, new Boolean[0]);
+        target = getNonNull(target);
 
         boolean[] booleans = new boolean[target.length];
         for (int i = 0; i < target.length; i++) {

@@ -160,7 +160,7 @@ public class RunnerQueue<T extends Runnable> extends InnerThread {
     private boolean hasMoreRunnable() {
         queueLock.readLock().lock();
         try {
-            return queue.size() > 0;
+            return !queue.isEmpty();
         } finally {
             queueLock.readLock().unlock();
         }

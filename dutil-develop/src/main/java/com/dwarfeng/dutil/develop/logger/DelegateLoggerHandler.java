@@ -395,13 +395,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
     public boolean unuseAll(Collection<LoggerInfo> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
         return batchUnuse(c, true);
-        // boolean result = false;
-        // for (LoggerInfo loggerInfo : c) {
-        // if (unuseOne(loggerInfo, true)) {
-        // result = true;
-        // }
-        // }
-        // return result;
     }
 
     /**
@@ -427,13 +420,6 @@ public final class DelegateLoggerHandler implements LoggerHandler {
     public boolean unuseAllKey(Collection<String> c) {
         Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.DELEGATELOGGERHANDLER_2));
         return batchUnuseKey(c, true);
-        // boolean result = false;
-        // for (String key : c) {
-        // if (unuseOne(get(key), true)) {
-        // result = true;
-        // }
-        // }
-        // return result;
     }
 
     /**

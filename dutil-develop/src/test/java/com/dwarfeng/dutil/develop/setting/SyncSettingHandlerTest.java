@@ -9,9 +9,9 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 
-public class DefaultSettingHandlerTest {
+public class SyncSettingHandlerTest {
 
-    private static DefaultSettingHandler handler;
+    private static SettingHandler handler;
     private static TestSettingObserver observer;
 
     @BeforeClass
@@ -24,8 +24,8 @@ public class DefaultSettingHandlerTest {
 
     @Before
     public void setUp() {
-        handler = new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
-                Collections.newSetFromMap(new WeakHashMap<>()));
+        handler = SettingUtil.syncSettingHandler(new DefaultSettingHandler(new LinkedHashMap<>(), new LinkedHashMap<>(),
+                Collections.newSetFromMap(new WeakHashMap<>())));
         SettingUtil.putEnumItems(new SettingEnumItem[]{TestSettingEnumItem.ENTRY_1, TestSettingEnumItem.ENTRY_2,
                 TestSettingEnumItem.ENTRY_3, TestSettingEnumItem.ENTRY_4}, handler);
         observer = new TestSettingObserver();

@@ -1,0 +1,40 @@
+package com.dwarfeng.dutil.develop.cfg;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class DefaultConfigModelTest {
+
+    private final ConfigModel model = new DefaultConfigModel();
+
+    @Before
+    public void setUp() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+    }
+
+    @Test
+    public final void testRemoveAll() {
+        model.removeAll(Arrays.asList(TestExconfigEntries.SUCC_1.getConfigKey(), TestExconfigEntries.SUCC_2.getConfigKey()));
+
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
+    }
+
+    @Test
+    public final void testRetainAll() {
+        model.addAll(Arrays.asList(TestExconfigEntries.values()));
+        model.retainAll(Arrays.asList(TestExconfigEntries.SUCC_1.getConfigKey(), TestExconfigEntries.SUCC_2.getConfigKey()));
+
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_0.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_1.getConfigKey()));
+        assertTrue(model.containsKey(TestExconfigEntries.SUCC_2.getConfigKey()));
+        assertFalse(model.containsKey(TestExconfigEntries.SUCC_3.getConfigKey()));
+    }
+}
