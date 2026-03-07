@@ -1,5 +1,8 @@
 package com.dwarfeng.dutil.basic.str;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,10 +33,6 @@ public final class StringUtil {
      * 数字（包括浮点数）的正则表达式
      */
     private static final String REGEX_NUMERIC = "^[-\\+]?((\\d+\\.?\\d*)|(\\d*\\.?\\d+))$";
-
-    // 不能进行实例化
-    private StringUtil() {
-    }
 
     /**
      * 判断指定的文本是否是多行文本。
@@ -109,5 +108,9 @@ public final class StringUtil {
         Matcher m = p.matcher(string);
         // 进行正则匹配
         return m.matches();
+    }
+
+    private StringUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.STRINGUTIL_0));
     }
 }

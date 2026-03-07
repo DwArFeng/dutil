@@ -23,6 +23,7 @@ public enum ExceptionStringKey implements Name {
     CLASSUTIL_2("ClassUtil.2"), //
     CLASSUTIL_3("ClassUtil.3"), //
     CLASSUTIL_4("ClassUtil.4"), //
+    CLASSUTIL_5("ClassUtil.5"), //
     DUPLICATEIDEXCEPTION_0("DuplicateIdException.0"), //
     TOSTRINGCOMPARATOR_0("ToStringComparator.0"), //
     JADJUSTABLEBORDERPANEL_0("JAdjustableBorderPanel.0"), //
@@ -44,12 +45,15 @@ public enum ExceptionStringKey implements Name {
     STRINGINPUTSTREAM_2("StringInputStream.2"), //
     STRINGINPUTSTREAM_3("StringInputStream.3"), //
     STRINGINPUTSTREAM_4("StringInputStream.4"), //
+    IOUTIL_0("IOUtil.0"), //
+    STRINGUTIL_0("StringUtil.0"), //
     ARRAYUTIL_0("ArrayUtil.0"), //
     ARRAYUTIL_1("ArrayUtil.1"), //
     ARRAYUTIL_2("ArrayUtil.2"), //
     ARRAYUTIL_3("ArrayUtil.3"), //
     ARRAYUTIL_4("ArrayUtil.4"), //
     ARRAYUTIL_5("ArrayUtil.5"), //
+    ARRAYUTIL_6("ArrayUtil.6"), //
     FOTHALGEBRAUTIL_0("FothAlgebraUtil.0"), //
     FOTHALGEBRAUTIL_1("FothAlgebraUtil.1"), //
     FOTHALGEBRAUTIL_2("FothAlgebraUtil.2"), //
@@ -82,6 +86,7 @@ public enum ExceptionStringKey implements Name {
     COLLECTIONUTIL_20("CollectionUtil.20"), //
     COLLECTIONUTIL_21("CollectionUtil.21"), //
     COLLECTIONUTIL_22("CollectionUtil.22"), //
+    COLLECTIONUTIL_23("CollectionUtil.23"), //
     NameableComparator_0("NameableComparator.0"), //
     FothValueComparator_0("FothValueComparator.0"), //
     QuickFothVariable_0("QuickFothVariable.0"), //
@@ -153,11 +158,13 @@ public enum ExceptionStringKey implements Name {
     NUMBERUTIL_0("NumberUtil.0"), //
     NUMBERUTIL_1("NumberUtil.1"), //
     NUMBERUTIL_2("NumberUtil.2"), //
+    NUMBERUTIL_3("NumberUtil.3"), //
     StreamConfigLoader_0("StreamConfigLoader.0"), //
     StreamConfigSaver_0("StreamConfigSaver.0"), //
     ConfigKey_0("ConfigKey.0"), //
     SWINGUTIL_0("SwingUtil.0"), //
     SWINGUTIL_1("SwingUtil.1"), //
+    SWINGUTIL_2("SwingUtil.2"), //
     ConfigViewModel_0("ConfigViewModel.0"), //
     ConfigViewModel_1("ConfigViewModel.1"), //
     ConfigTablePanel_0("ConfigTablePanel.0"), //
@@ -201,6 +208,7 @@ public enum ExceptionStringKey implements Name {
     MODELUTIL_6("ModelUtil.6"), //
     MODELUTIL_7("ModelUtil.7"), //
     MODELUTIL_8("ModelUtil.8"), //
+    MODELUTIL_9("ModelUtil.9"), //
     ABSTRACTEXCONFIGMODEL_0("AbstractExconfigModel.0"), //
     DEFAULTEXCONFIGMODEL_0("DefaultExconfigModel.0"), //
     DEFAULTEXCONFIGMODEL_1("DefaultExconfigModel.1"), //
@@ -257,9 +265,11 @@ public enum ExceptionStringKey implements Name {
     XMLPROPRESOURCEI18NLOADER_2("XmlPropResourceI18nLoader.2"), //
     XMLPROPRESOURCEI18NLOADER_3("XmlPropResourceI18nLoader.3"), //
     THREADSAFEUTIL_0("ThreadSafeUtil.0"), //
+    THREADSAFEUTIL_1("ThreadSafeUtil.1"), //
     FILEUTIL_0("FileUtil.0"), //
     FILEUTIL_1("FileUtil.1"), //
     FILEUTIL_2("FileUtil.2"), //
+    FILEUTIL_3("FileUtil.3"), //
     INTERVAL_0("Interval.0"), //
     INTERVAL_1("Interval.1"), //
     INTERVAL_2("Interval.2"), //
@@ -268,6 +278,7 @@ public enum ExceptionStringKey implements Name {
     INTERVAL_5("Interval.5"), //
     INTERVAL_6("Interval.6"), //
     THREADUTIL_0("ThreadUtil.0"), //
+    THREADUTIL_1("ThreadUtil.1"), //
     ABSTRACTREFERENCEMODEL_0("AbstractReferenceModel.0"), //
     IMAGEUTIL_0("ImageUtil.0"), //
     IMAGEUTIL_1("ImageUtil.1"), //
@@ -278,6 +289,7 @@ public enum ExceptionStringKey implements Name {
     IMAGEUTIL_6("ImageUtil.6"), //
     IMAGEUTIL_7("ImageUtil.7"), //
     IMAGEUTIL_8("ImageUtil.8"), //
+    IMAGEUTIL_9("ImageUtil.9"), //
     BYTEBUFFERINPUTSTREAM_0("ByteBufferInputStream.0"), //
     BYTEBUFFEROUTPUTSTREAM_0("ByteBufferOutputStream.0"), //
     DEFAULTNAMEFILTER_0("DefaultNameFilter.0"), //
@@ -389,6 +401,7 @@ public enum ExceptionStringKey implements Name {
     BITUTIL_12("BitUtil.12"), //
     BITUTIL_13("BitUtil.13"), //
     BITUTIL_14("BitUtil.14"), //
+    BITUTIL_15("BitUtil.15"), //
 
     ;
 

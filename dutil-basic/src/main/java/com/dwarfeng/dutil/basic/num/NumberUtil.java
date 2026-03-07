@@ -28,10 +28,6 @@ import java.util.Objects;
  */
 public final class NumberUtil {
 
-    // 不能进行实例化。
-    private NumberUtil() {
-    }
-
     /**
      * 将 int 数据类型转化为 byte 数组。
      *
@@ -882,5 +878,9 @@ public final class NumberUtil {
             throws OutOfIntervalException {
         Objects.requireNonNull(interval, DwarfUtil.getExceptionString(ExceptionStringKey.NUMBERUTIL_2));
         requireInInterval(value, Interval.parseInterval(interval), message);
+    }
+
+    private NumberUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.NUMBERUTIL_3));
     }
 }

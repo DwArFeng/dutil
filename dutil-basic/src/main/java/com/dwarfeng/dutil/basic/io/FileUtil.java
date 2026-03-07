@@ -233,7 +233,7 @@ public final class FileUtil {
         }
     }
 
-    // 不允许实例化
     private FileUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.FILEUTIL_3));
     }
 }

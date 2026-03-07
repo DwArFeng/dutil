@@ -21,10 +21,6 @@ import java.util.*;
  */
 public final class ArrayUtil {
 
-    private ArrayUtil() {
-        // 不允许实例化。
-    }
-
     /**
      * 获取一个指定类型的空数组。
      *
@@ -717,5 +713,9 @@ public final class ArrayUtil {
         }
 
         return targetArray;
+    }
+
+    private ArrayUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.ARRAYUTIL_6));
     }
 }

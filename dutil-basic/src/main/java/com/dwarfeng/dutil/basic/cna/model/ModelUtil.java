@@ -4808,7 +4808,7 @@ public final class ModelUtil {
 
     }
 
-    // 禁止外部实例化。
     private ModelUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.MODELUTIL_9));
     }
 }

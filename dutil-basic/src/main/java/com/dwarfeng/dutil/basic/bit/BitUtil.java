@@ -460,6 +460,6 @@ public final class BitUtil {
     }
 
     private BitUtil() {
-        throw new IllegalStateException("禁止实例化");
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_15));
     }
 }

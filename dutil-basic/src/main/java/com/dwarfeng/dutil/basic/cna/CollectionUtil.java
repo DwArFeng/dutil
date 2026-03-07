@@ -21,10 +21,6 @@ import java.util.Map.Entry;
  */
 public final class CollectionUtil {
 
-    // 禁止外部实例化。
-    private CollectionUtil() {
-    }
-
     /**
      * 在指定集合的基础上获得不允许含有 <code>null</code> 元素的集合。
      *
@@ -1935,5 +1931,9 @@ public final class CollectionUtil {
             return delegate.toString();
         }
 
+    }
+
+    private CollectionUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_23));
     }
 }

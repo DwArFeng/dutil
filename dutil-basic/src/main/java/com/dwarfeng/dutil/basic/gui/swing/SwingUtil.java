@@ -76,7 +76,7 @@ public final class SwingUtil {
         }
     }
 
-    // 禁止外部实例化。
     private SwingUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.SWINGUTIL_2));
     }
 }

@@ -423,7 +423,7 @@ public final class ImageUtil {
         return getInternalImage(CommonIconLib.UNKNOWN_BLUE, DEFAULT_IMAGE, imageSize);
     }
 
-    // 禁止外部实例化
     private ImageUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.IMAGEUTIL_9));
     }
 }

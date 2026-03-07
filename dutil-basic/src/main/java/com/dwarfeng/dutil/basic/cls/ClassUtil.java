@@ -179,7 +179,7 @@ public final class ClassUtil {
         throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.CLASSUTIL_4));
     }
 
-    // 该类无法实例化
     private ClassUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.CLASSUTIL_5));
     }
 }

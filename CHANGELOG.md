@@ -4,6 +4,21 @@
 
 ### 功能构建
 
+- 优化部分工具类的结构和与初始化异常行为。
+  - com.dwarfeng.dutil.basic.bit.BitUtil。
+  - com.dwarfeng.dutil.basic.cls.ClassUtil。
+  - com.dwarfeng.dutil.basic.cna.ArrayUtil。
+  - com.dwarfeng.dutil.basic.cna.CollectionUtil。
+  - com.dwarfeng.dutil.basic.cna.model.ModelUtil。
+  - com.dwarfeng.dutil.basic.gui.awt.ImageUtil。
+  - com.dwarfeng.dutil.basic.gui.swing.SwingUtil。
+  - com.dwarfeng.dutil.basic.io.FileUtil。
+  - com.dwarfeng.dutil.basic.io.IOUtil。
+  - com.dwarfeng.dutil.basic.num.NumberUtil。
+  - com.dwarfeng.dutil.basic.str.StringUtil。
+  - com.dwarfeng.dutil.basic.threads.ThreadSafeUtil。
+  - com.dwarfeng.dutil.basic.threads.ThreadUtil。
+
 - 增加部分工具类。
   - com.dwarfeng.dutil.basic.bit.BitUtilTest。
 

@@ -1,5 +1,8 @@
 package com.dwarfeng.dutil.basic.io;
 
+import com.dwarfeng.dutil.basic.DwarfUtil;
+import com.dwarfeng.dutil.basic.ExceptionStringKey;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,7 +38,7 @@ public final class IOUtil {
         }
     }
 
-    // 禁止外部生成实例。
     private IOUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.IOUTIL_0));
     }
 }

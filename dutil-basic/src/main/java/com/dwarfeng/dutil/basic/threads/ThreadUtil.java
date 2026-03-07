@@ -220,7 +220,7 @@ public final class ThreadUtil {
 
     }
 
-    // 禁止外部实例化。
     private ThreadUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.THREADUTIL_1));
     }
 }

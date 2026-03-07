@@ -101,7 +101,7 @@ public final class ThreadSafeUtil {
         }
     }
 
-    // 禁止外部实例化。
     private ThreadSafeUtil() {
+        throw new IllegalStateException(DwarfUtil.getExceptionString(ExceptionStringKey.THREADSAFEUTIL_1));
     }
 }
