@@ -136,7 +136,7 @@ public final class CollectionUtil {
         @Override
         public boolean addAll(Collection<? extends E> c) {
             Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
-            if (CollectionUtil.conatinsNull(c)) {
+            if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
             }
             return set.addAll(c);
@@ -286,7 +286,7 @@ public final class CollectionUtil {
         @Override
         public boolean addAll(Collection<? extends E> c) {
             Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
-            if (CollectionUtil.conatinsNull(c)) {
+            if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
             }
             return list.addAll(c);
@@ -298,7 +298,7 @@ public final class CollectionUtil {
         @Override
         public boolean addAll(int index, Collection<? extends E> c) {
             Objects.requireNonNull(c, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_1));
-            if (CollectionUtil.conatinsNull(c)) {
+            if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_3));
             }
             return list.addAll(index, c);
@@ -508,7 +508,7 @@ public final class CollectionUtil {
         @Override
         public void putAll(Map<? extends K, ? extends V> m) {
             Objects.requireNonNull(m, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_7));
-            if (CollectionUtil.conatinsNull(m.keySet())) {
+            if (CollectionUtil.containsNull(m.keySet())) {
                 throw new NullPointerException(DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_6));
             }
             map.putAll(m);
@@ -554,14 +554,29 @@ public final class CollectionUtil {
      * @param collection 指定的集合。
      * @return 是否含有 <code>null</code>元素。
      * @throws NullPointerException 当入口参数为 <code>null</code>时。
+     * @since 0.4.1-beta
      */
-    public static boolean conatinsNull(Collection<?> collection) {
+    public static boolean containsNull(Collection<?> collection) {
         Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
         for (Object obj : collection) {
             if (Objects.isNull(obj))
                 return true;
         }
         return false;
+    }
+
+    /**
+     * 检查指定的集合中是否含有 <code>null</code>元素。
+     *
+     * @param collection 指定的集合。
+     * @return 是否含有 <code>null</code>元素。
+     * @throws NullPointerException 当入口参数为 <code>null</code>时。
+     * @deprecated 该方法拼写错误，请使用 {@link #containsNull(Collection)} 代替。
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    @Deprecated
+    public static boolean conatinsNull(Collection<?> collection) {
+        return containsNull(collection);
     }
 
     /**
@@ -577,7 +592,7 @@ public final class CollectionUtil {
      */
     public static void requireNotContainsNull(Collection<?> collection) {
         Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
-        if (conatinsNull(collection))
+        if (containsNull(collection))
             throw new NullPointerException();
     }
 
@@ -595,7 +610,7 @@ public final class CollectionUtil {
      */
     public static void requireNotContainsNull(Collection<?> collection, String message) {
         Objects.requireNonNull(collection, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_2));
-        if (conatinsNull(collection))
+        if (containsNull(collection))
             throw new NullPointerException(message);
     }
 

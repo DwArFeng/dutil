@@ -35,6 +35,9 @@
 
 ### Bug 修复
 
+- 修正部分类中方法名称的错误拼写。
+  - com.dwarfeng.dutil.basic.cna.CollectionUtil。
+
 - 修复部分类中的参数校验 bug。
   - com.dwarfeng.dutil.basic.cna.CollectionUtil。
 
