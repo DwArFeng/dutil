@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/VersionBlacklist.md。
+
 - 优化部分工具类的结构和与初始化异常行为。
   - com.dwarfeng.dutil.basic.bit.BitUtil。
   - com.dwarfeng.dutil.basic.cls.ClassUtil。
