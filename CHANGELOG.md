@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 添加部分部分工具类对应的测试类。
+  - com.dwarfeng.dutil.basic.cna.CollectionUtilTest。
+
 - `dutil-basic` 子模块优化 `CollectionUtil.insertByOrder` 搜索效率。
   - 对 `RandomAccess` 列表使用二分查找，否则使用顺序查找。
   - 新增 `CollectionUtil.OrderedInsertionSearcher` 接口及其内部实现。
