@@ -35,7 +35,8 @@
 
 ### Bug 修复
 
-- (无)
+- 修复部分类中的参数校验 bug。
+  - com.dwarfeng.dutil.basic.cna.CollectionUtil。
 
 ### 功能移除
 

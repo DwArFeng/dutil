@@ -1284,7 +1284,7 @@ public final class CollectionUtil {
      * @throws NullPointerException 入口参数为 <code>null</code>。
      */
     public static <E> Set<E> readOnlySet(Set<E> set, ReadOnlyGenerator<E> generator) {
-        Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_0));
+        Objects.requireNonNull(set, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_0));
         Objects.requireNonNull(generator, DwarfUtil.getExceptionString(ExceptionStringKey.COLLECTIONUTIL_17));
         return new ReadOnlySet<>(set, generator);
     }
