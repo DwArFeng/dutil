@@ -373,7 +373,22 @@ public enum ExceptionStringKey implements Name {
     MAPPINGTABLEMODEL_8("MappingTableModel.8"), //
     MAPREUSEPOOL_0("MapReusePool.0"), //
     MAPREUSEPOOL_1("MapReusePool.1"), //
-    MAPREUSEPOOL_2("MapReusePool.2"),//
+    MAPREUSEPOOL_2("MapReusePool.2"), //
+    BITUTIL_0("BitUtil.0"), //
+    BITUTIL_1("BitUtil.1"), //
+    BITUTIL_2("BitUtil.2"), //
+    BITUTIL_3("BitUtil.3"), //
+    BITUTIL_4("BitUtil.4"), //
+    BITUTIL_5("BitUtil.5"), //
+    BITUTIL_6("BitUtil.6"), //
+    BITUTIL_7("BitUtil.7"), //
+    BITUTIL_8("BitUtil.8"), //
+    BITUTIL_9("BitUtil.9"), //
+    BITUTIL_10("BitUtil.10"), //
+    BITUTIL_11("BitUtil.11"), //
+    BITUTIL_12("BitUtil.12"), //
+    BITUTIL_13("BitUtil.13"), //
+    BITUTIL_14("BitUtil.14"), //
 
     ;
 

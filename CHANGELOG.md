@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 增加部分工具类。
+  - com.dwarfeng.dutil.basic.bit.BitUtilTest。
+
 - 添加部分部分工具类对应的测试类。
   - com.dwarfeng.dutil.basic.cna.CollectionUtilTest。
 
