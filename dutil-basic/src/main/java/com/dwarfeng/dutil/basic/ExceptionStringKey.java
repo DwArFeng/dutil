@@ -402,6 +402,11 @@ public enum ExceptionStringKey implements Name {
     BITUTIL_13("BitUtil.13"), //
     BITUTIL_14("BitUtil.14"), //
     BITUTIL_15("BitUtil.15"), //
+    TIMEUTIL_0("TimeUtil.0"), //
+    TIMEUTIL_1("TimeUtil.1"), //
+    TIMEUTIL_2("TimeUtil.2"), //
+    TIMEUTIL_3("TimeUtil.3"), //
+    TIMEUTIL_4("TimeUtil.4"), //
 
     ;
 

@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- 增加部分工具类。
+  - com.dwarfeng.dutil.basic.time.TimeUtil。
+
 - 依赖升级。
   - 升级 `log4j2` 依赖版本为 `2.25.4` 以规避漏洞。
 
