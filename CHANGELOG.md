@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- Wiki 编写。
+  - docs/wiki/zh-CN/InstallBySourceCode.md。
+
 - 优化部分国际化配置文件的注释格式。
   - i18n/exception_string.properties。
   - i18n/exception_string_en.properties。
