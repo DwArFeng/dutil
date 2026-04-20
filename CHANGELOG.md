@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 优化部分国际化配置文件的注释格式。
+  - i18n/exception_string.properties。
+  - i18n/exception_string_en.properties。
+  - i18n/exception_string_zh.properties。
+
 - 增加部分工具类。
   - com.dwarfeng.dutil.basic.time.TimeUtil。
 
