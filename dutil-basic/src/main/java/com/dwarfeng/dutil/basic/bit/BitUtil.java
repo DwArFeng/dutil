@@ -154,6 +154,7 @@ public final class BitUtil {
      * @return 位值，0 或 1。
      * @throws IllegalArgumentException 若 data 为 null、bitOffset 为负数、或 bitOffset 超出数组位范围。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static int getBit(byte[] data, int bitOffset) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));
@@ -180,6 +181,7 @@ public final class BitUtil {
      * @param value     位值，true 表示 1，false 表示 0。
      * @throws IllegalArgumentException 若 data 为 null、bitOffset 为负数、或 bitOffset 超出数组位范围。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static void setBit(byte[] data, int bitOffset, boolean value) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));
@@ -211,6 +213,7 @@ public final class BitUtil {
      * @return 提取的无符号整数值。
      * @throws IllegalArgumentException 若 data 为 null、参数为负数、bitLength 不在 1–32、或范围越界。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static int getBitsAsInt(byte[] data, int bitOffset, int bitLength) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));
@@ -243,6 +246,7 @@ public final class BitUtil {
      * @return 提取的无符号长整数值。
      * @throws IllegalArgumentException 若 data 为 null、参数为负数、bitLength 不在 1–64、或范围越界。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static long getBitsAsLong(byte[] data, int bitOffset, int bitLength) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));
@@ -275,6 +279,7 @@ public final class BitUtil {
      * @param bitLength 位长度，范围 1 至 32。
      * @throws IllegalArgumentException 若 data 为 null、参数为负数、bitLength 不在 1–32、或范围越界。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static void setBitsFromInt(byte[] data, int bitOffset, int value, int bitLength) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));
@@ -308,6 +313,7 @@ public final class BitUtil {
      * @param bitLength 位长度，范围 1 至 64。
      * @throws IllegalArgumentException 若 data 为 null、参数为负数、bitLength 不在 1–64、或范围越界。
      */
+    @SuppressWarnings("DuplicatedCode")
     public static void setBitsFromLong(byte[] data, int bitOffset, long value, int bitLength) {
         if (data == null) {
             throw new IllegalArgumentException(DwarfUtil.getExceptionString(ExceptionStringKey.BITUTIL_7));

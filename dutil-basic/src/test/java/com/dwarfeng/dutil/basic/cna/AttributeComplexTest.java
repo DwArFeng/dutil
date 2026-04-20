@@ -116,6 +116,8 @@ public class AttributeComplexTest {
         assertEquals((Integer) 12450, attributeComplex.get("key.c", Integer.class));
     }
 
+    // 由于该测试本身就是测试类型转换异常，因此忽略相关警告。
+    @SuppressWarnings("AssertBetweenInconvertibleTypes")
     @Test(expected = ClassCastException.class)
     public final void testGetStringClassOfTException() {
         assertEquals(true, attributeComplex.get("key.a", Integer.class));
@@ -129,6 +131,7 @@ public class AttributeComplexTest {
         assertEquals((Integer) 12450, attributeComplex.get(new DefaultName("key.c"), Integer.class));
     }
 
+    @SuppressWarnings("EqualsWithItself")
     @Test
     public final void testEqualsObject() {
         assertEquals(attributeComplex, attributeComplex);
