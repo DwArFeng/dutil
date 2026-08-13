@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
         http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
@@ -15,75 +15,75 @@
     <packaging>pom</packaging>
 
     <name>dutil</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/DwArFeng/dutil</url>
 
     <properties>
         <!-- 进行工程编码声明 -->
         <!-- 进行 JDK 版本声明 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>25</maven.compiler.release>
         <!-- 进行资源的统一声明 -->
         <!-- 进行版本声明 -->
         <!-- 集中定义依赖版本号 -->
-        <junit.version>4.13.2</junit.version>
-        <dom4j.version>2.1.3</dom4j.version>
-        <log4j2.version>2.25.4</log4j2.version>
+        <junit.version>6.1.2</junit.version>
+        <log4j2.version>2.26.1</log4j2.version>
+        <slf4j.version>2.0.18</slf4j.version>
         <!-- Maven 插件版本声明 -->
-        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+        <maven-resources-plugin.version>3.4.0</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version>
+        <!-- Surefire 参数定义 -->
+        <project.surefire.skip>true</project.surefire.skip>
     </properties>
 
     <!-- 声明资源的坐标 -->
     <!-- 只定义依赖的版本，并不实际依赖 -->
     <dependencyManagement>
         <dependencies>
+            <!-- 单元测试 -->
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
                 <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>${dom4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>${log4j2.version}</version>
-            </dependency>
+            <!-- 日志处理 -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
                 <version>${log4j2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j2-impl</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
             <!-- 程序自身组件 -->
             <dependency>
                 <groupId>com.dwarfeng</groupId>
+                <artifactId>dutil-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
                 <artifactId>dutil-basic</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
-                <artifactId>dutil-demo</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dwarfeng</groupId>
-                <artifactId>dutil-detool</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dwarfeng</groupId>
-                <artifactId>dutil-develop</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.dwarfeng</groupId>
-                <artifactId>dutil-struct</artifactId>
-                <version>2.0.0.a-SNAPSHOT</version>
+                <artifactId>dutil-task</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -98,8 +98,28 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -111,10 +131,8 @@
     </build>
 
     <modules>
+        <module>dutil-base</module>
         <module>dutil-basic</module>
-        <module>dutil-demo</module>
-        <module>dutil-detool</module>
-        <module>dutil-develop</module>
-        <module>dutil-struct</module>
+        <module>dutil-task</module>
     </modules>
 </project>
