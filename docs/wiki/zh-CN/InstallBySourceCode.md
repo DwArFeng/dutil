@@ -32,6 +32,15 @@ git tag --sort=-creatordate -l
 git checkout version-tag-here
 ```
 
+## 环境要求
+
+本项目基于 JDK 25 构建（`maven.compiler.release=25`），并通过 `maven-enforcer-plugin` 对构建环境进行强制校验：
+
+- JDK 版本：`[25, 26)`
+- Maven 版本：`[3.9.16, )`
+
+请确保您的构建环境满足上述要求，否则项目将无法正常构建。
+
 ## 尝试安装
 
 使用 maven 进行安装：

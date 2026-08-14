@@ -4,6 +4,13 @@
 
 ### 功能构建
 
+- 更新 README.md。
+
+- Wiki 更新。
+  - docs/wiki/zh-CN/InstallBySourceCode.md。
+  - docs/wiki/zh-CN/Introduction.md。
+  - docs/wiki/zh-CN/VersionBlacklist.md。
+
 - 增加依赖。
   - 增加依赖 `jetbrains-annotations` 以应用其新功能，版本为 `26.1.0`。
 

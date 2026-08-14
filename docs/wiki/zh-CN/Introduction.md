@@ -20,8 +20,8 @@ Dutil (DwArFeng's java func) 是 DwArFeng 在编写 Java 程序时总结的一�
 我总结了我写过的程序，抽取了其中最常用或者实现起来很复杂的类，把它们做成工具包，以便于下一次使用。
 这个包中的类有可能是最常用的，也有可能是不常用 - 但是实现起来很复杂的类。
 
-该工具包采用多模块结构，常用工具包被封装在 `com.dwarfeng.dutil.basic` 包中，其它的不同的专用包被分别封装在其它的包中，
-而每个工具子包都打包成相应的 jar 包。
+该工具包采用多模块结构，基础机制被封装在 `com.dwarfeng.dutil.base` 包中，常用工具被封装在 `com.dwarfeng.dutil.basic` 包中，
+任务调度工具被封装在 `com.dwarfeng.dutil.task` 包中，而每个模块都打包成相应的 jar 包。
 
 当用户想使用常用的工具包时，只需要在 `pom.xml` 导入相关的依赖即可。
 
@@ -40,13 +40,11 @@ wiki 为项目的开发人员为本项目编写的详细文档，包含不同语
 
 Dutil 包含一些基本的，用于各种程序中的快捷的或者具有功能性的工具包，也含有用于数学、物理学等其它方面的功能 强大的工具包。
 
-| 包名称           | 主要功能               |    进度     |
-|:--------------|:-------------------|:---------:|
-| dutil.basic   | 基础包：基本的通用性工具以及类型定义 | 初步完善，稳定开发 |
-| dutil.detool  | 调试专用包：目前还没有完善      |   没有完善    |
-| dutil.demo    | 示例包：正在完善           |   正在完善    |
-| dutil.develop | 开发工具包：以完成多个开发模块    |   稳定开发    |
-| dutil.dstruc  | 数据结构工具包：正在完善       |   正在完善    |
+| 包名称         | 主要功能                         |
+|:------------|:-----------------------------|
+| dutil-base  | 基础机制模块：国际化消息等模块内部共享的基础能力 |
+| dutil-basic | 基础工具模块：集合、并发、IO、模型、数字、字符串等通用工具 |
+| dutil-task  | 任务调度模块：任务执行、任务调度、重试等能力      |
 
 ## 安装说明
 
@@ -55,13 +53,13 @@ Dutil 包含一些基本的，用于各种程序中的快捷的或者具有功�
    使用 git 进行源码下载。
 
    ```shell
-   git git@github.com:DwArFeng/dutil.git
+   git clone git@github.com:DwArFeng/dutil.git
    ```
 
    对于中国用户，可以使用 gitee 进行高速下载。
 
    ```shell
-   git@gitee.com:dwarfeng/dutil.git
+   git clone git@gitee.com:dwarfeng/dutil.git
    ```
 
 2. 项目安装。
@@ -71,9 +69,11 @@ Dutil 包含一些基本的，用于各种程序中的快捷的或者具有功�
    mvn clean source:jar install
    ```
 
+   本项目基于 JDK 25 构建（构建环境要求：JDK `[25, 26)`，Maven `[3.9.16, )`）。
+
 3. 项目部署。
 
-   该项目使用了 `2.8.2` 版本的 `maven-deploy-plugin`，如果您有属于自己的 maven 依赖仓库，
+   该项目使用了 `3.1.4` 版本的 `maven-deploy-plugin`，如果您有属于自己的 maven 依赖仓库，
    可以在妥善配置 maven 的 `setting.xml` 之后，进入项目根目录，运行 maven 部署指令。
    ```
    mvn clean source:jar deploy
