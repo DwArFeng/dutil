@@ -1,6 +1,7 @@
 module com.dwarfeng.dutil.task {
 
     requires com.dwarfeng.dutil.base;
+    requires static org.jetbrains.annotations;
 
     exports com.dwarfeng.dutil.task.stack;
     exports com.dwarfeng.dutil.task.stack.event;

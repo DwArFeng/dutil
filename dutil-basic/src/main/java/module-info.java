@@ -2,6 +2,7 @@ module com.dwarfeng.dutil.basic {
 
     requires com.dwarfeng.dutil.base;
     requires org.slf4j;
+    requires static org.jetbrains.annotations;
 
     exports com.dwarfeng.dutil.basic.stack.builder;
     exports com.dwarfeng.dutil.basic.stack.collection;
