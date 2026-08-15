@@ -24,11 +24,9 @@ public class SyncOutputStreamTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws IOException {
         try {
             syncOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             syncOut = null;
             out = null;

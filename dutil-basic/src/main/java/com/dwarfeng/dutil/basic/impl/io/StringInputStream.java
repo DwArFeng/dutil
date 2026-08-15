@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.basic.impl.io;
 
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -107,7 +108,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b) {
+    public int read(byte @NotNull [] b) {
         Objects.requireNonNull(b, BasicMessages.message(BasicMessageKey.STRING_INPUT_STREAM_BUFFER_REQUIRED));
 
         int length = b.length + pos > bytes.length ? bytes.length - pos : b.length;
@@ -127,7 +128,7 @@ public class StringInputStream extends InputStream {
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b, int off, int len) {
+    public int read(byte @NotNull [] b, int off, int len) {
         Objects.requireNonNull(b, BasicMessages.message(BasicMessageKey.STRING_INPUT_STREAM_BUFFER_REQUIRED));
 
         if (off < 0 || len < 0 || len > b.length - off) {

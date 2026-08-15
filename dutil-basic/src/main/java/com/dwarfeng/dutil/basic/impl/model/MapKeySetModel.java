@@ -6,6 +6,7 @@ import com.dwarfeng.dutil.basic.sdk.model.AbstractSetModel;
 import com.dwarfeng.dutil.basic.stack.model.KeySetModel;
 import com.dwarfeng.dutil.basic.stack.model.WithKey;
 import com.dwarfeng.dutil.basic.stack.model.event.SetObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -76,7 +77,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public Iterator<V> iterator() {
+    public @NotNull Iterator<V> iterator() {
         return new KeySetIterator(map.values().iterator());
     }
 
@@ -121,7 +122,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return map.values().toArray();
     }
 
@@ -129,7 +130,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <T> T @NotNull [] toArray(T @NotNull [] a) {
         return map.values().toArray(a);
     }
 
@@ -167,7 +168,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_KEY_SET_MODEL_COLLECTION_REQUIRED));
         return map.values().containsAll(c);
     }
@@ -176,7 +177,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(Collection<? extends V> c) {
+    public boolean addAll(@NotNull Collection<? extends V> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_KEY_SET_MODEL_COLLECTION_REQUIRED));
         boolean aFlag = false;
         for (V v : c) {
@@ -190,7 +191,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_KEY_SET_MODEL_COLLECTION_REQUIRED));
         return batchRemove(c, true);
     }
@@ -199,7 +200,7 @@ public class MapKeySetModel<K, V extends WithKey<K>> extends AbstractSetModel<V>
      * {@inheritDoc}
      */
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_KEY_SET_MODEL_COLLECTION_REQUIRED));
         return batchRemove(c, false);
     }

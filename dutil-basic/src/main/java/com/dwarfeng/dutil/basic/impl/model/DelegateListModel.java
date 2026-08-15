@@ -5,6 +5,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.sdk.model.AbstractListModel;
 
 import com.dwarfeng.dutil.basic.stack.model.event.ListObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -72,7 +73,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public Iterator<E> iterator() {
+    public @NotNull Iterator<E> iterator() {
         return new InnerIterator(delegate.iterator());
     }
 
@@ -126,7 +127,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return delegate.toArray();
     }
 
@@ -134,7 +135,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <T> T @NotNull [] toArray(T @NotNull [] a) {
         return delegate.toArray(a);
     }
 
@@ -173,7 +174,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
     // 代理方法，忽略所有警告。
     @SuppressWarnings("SlowListContainsAll")
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
         return delegate.containsAll(c);
     }
@@ -182,7 +183,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(Collection<? extends E> c) {
+    public boolean addAll(@NotNull Collection<? extends E> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
         boolean aFlag = false;
         for (E e : c) {
@@ -197,7 +198,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      */
     @SuppressWarnings("DuplicatedCode")
     @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
+    public boolean addAll(int index, @NotNull Collection<? extends E> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
         int size = delegate.size();
         int i = 0;
@@ -211,7 +212,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
         return batchRemove(c, true);
     }
@@ -220,7 +221,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull Collection<?> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
         return batchRemove(c, false);
     }
@@ -308,7 +309,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public ListIterator<E> listIterator() {
+    public @NotNull ListIterator<E> listIterator() {
         return new InnerListIterator(delegate.listIterator(), 0);
     }
 
@@ -316,7 +317,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public ListIterator<E> listIterator(int index) {
+    public @NotNull ListIterator<E> listIterator(int index) {
         return new InnerListIterator(delegate.listIterator(index), index);
     }
 
@@ -430,7 +431,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public @NotNull List<E> subList(int fromIndex, int toIndex) {
         return new SubList(fromIndex, delegate.subList(fromIndex, toIndex));
     }
 
@@ -472,7 +473,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return new SubIterator(subDelegate.iterator());
         }
 
@@ -526,7 +527,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return subDelegate.toArray();
         }
 
@@ -534,7 +535,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return subDelegate.toArray(a);
         }
 
@@ -571,7 +572,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
             return new HashSet<>(subDelegate).containsAll(c);
         }
@@ -580,7 +581,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
             boolean aFlag = false;
             for (E e : c) {
@@ -595,7 +596,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          */
         @SuppressWarnings("DuplicatedCode")
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
             int size = subDelegate.size();
             int i = 0;
@@ -609,7 +610,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, true);
         }
@@ -618,7 +619,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.LIST_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, false);
         }
@@ -708,7 +709,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             return new SubListIterator(subDelegate.listIterator(), 0);
         }
 
@@ -716,7 +717,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             return new SubListIterator(subDelegate.listIterator(index), index);
         }
 
@@ -831,7 +832,7 @@ public class DelegateListModel<E> extends AbstractListModel<E> {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             return new SubList(offset + fromIndex, subDelegate.subList(fromIndex, toIndex));
         }
 

@@ -30,6 +30,7 @@ public class DelegateListModelTest {
         assertEquals(model.hashCode(), list.hashCode());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testSize() {
         assertEquals(4, model.size());
@@ -39,6 +40,7 @@ public class DelegateListModelTest {
         assertEquals(0, model.size());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testIsEmpty() {
         assertFalse(model.isEmpty());
@@ -147,6 +149,7 @@ public class DelegateListModelTest {
         assertArrayEquals(new Object[]{0, 2}, obv.removeIndexes.toArray());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testClear() {
         model.clear();

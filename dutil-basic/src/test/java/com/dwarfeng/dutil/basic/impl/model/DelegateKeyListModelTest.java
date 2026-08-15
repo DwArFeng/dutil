@@ -104,6 +104,7 @@ public class DelegateKeyListModelTest {
         assertEquals(model.hashCode(), list.hashCode());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testSize() {
         assertEquals(5, model.size());
@@ -111,6 +112,7 @@ public class DelegateKeyListModelTest {
         assertEquals(0, model.size());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testIsEmpty() {
         assertFalse(model.isEmpty());
@@ -238,6 +240,7 @@ public class DelegateKeyListModelTest {
         assertEquals(WithKeyFixture.ELE_5, obv.removeElements.get(1));
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testClear() {
         model.clear();

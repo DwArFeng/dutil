@@ -5,6 +5,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.sdk.model.AbstractSetModel;
 
 import com.dwarfeng.dutil.basic.stack.model.event.SetObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -72,7 +73,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public Iterator<E> iterator() {
+    public @NotNull Iterator<E> iterator() {
         return new InnerIterator(delegate.iterator());
     }
 
@@ -118,7 +119,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return delegate.toArray();
     }
 
@@ -126,7 +127,7 @@ public class DelegateSetModel<E> extends AbstractSetModel<E> {
      * {@inheritDoc}
      */
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <T> T @NotNull [] toArray(T @NotNull [] a) {
         return delegate.toArray(a);
     }
 

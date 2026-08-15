@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.basic.stack.number;
 
+import java.io.Serial;
+
 /**
  * 代表一个数超过一个区间的异常。
  *
@@ -7,6 +9,9 @@ package com.dwarfeng.dutil.basic.stack.number;
  * @since 0.1.3-beta
  */
 public class OutOfIntervalException extends RuntimeException {
+
+    @Serial
+    private static final long serialVersionUID = 8368555059267474868L;
 
     public OutOfIntervalException() {
     }
@@ -23,8 +28,9 @@ public class OutOfIntervalException extends RuntimeException {
         super(message, cause);
     }
 
-    public OutOfIntervalException(String message, Throwable cause, boolean enableSuppression,
-                                  boolean writableStackTrace) {
+    public OutOfIntervalException(
+            String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace
+    ) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

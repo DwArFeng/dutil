@@ -325,7 +325,6 @@ public final class CT {
             case TYPE_1 -> multiLine1(prefix, string);
             case TYPE_2 -> multiLine2(prefix, string);
             case TYPE_3 -> multiLine3(prefix, string);
-            default -> String.format("%s\t%s", prefix, string);
         };
     }
 

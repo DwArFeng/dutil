@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 
 import com.dwarfeng.dutil.basic.stack.concurrent.ExternalThreadSafe;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class SyncInputStream extends FilterInputStream implements ExternalThread
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b) throws IOException {
+    public int read(byte @NotNull [] b) throws IOException {
         lock.lock();
         try {
             return super.read(b);
@@ -77,7 +78,7 @@ public class SyncInputStream extends FilterInputStream implements ExternalThread
      * {@inheritDoc}
      */
     @Override
-    public int read(byte[] b, int off, int len) throws IOException {
+    public int read(byte @NotNull [] b, int off, int len) throws IOException {
         lock.lock();
         try {
             return super.read(b, off, len);

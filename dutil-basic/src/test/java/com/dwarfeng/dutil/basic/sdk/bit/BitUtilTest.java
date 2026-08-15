@@ -42,65 +42,47 @@ public class BitUtilTest {
 
     @Test
     public void testCopyBits_sourceNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(null, 0, new byte[1], 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(null, 0, new byte[1], 0, 8));
     }
 
     @Test
     public void testCopyBits_destNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], 0, null, 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], 0, null, 0, 8));
     }
 
     @Test
     public void testCopyBits_sourceStartBitNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], -1, new byte[1], 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], -1, new byte[1], 0, 8));
     }
 
     @Test
     public void testCopyBits_destStartBitNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], 0, new byte[1], -1, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], 0, new byte[1], -1, 8));
     }
 
     @Test
     public void testCopyBits_bitLengthNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], 0, new byte[1], 0, -1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], 0, new byte[1], 0, -1));
     }
 
     @Test
     public void testCopyBits_sourceLengthInsufficient() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], 0, new byte[2], 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], 0, new byte[2], 0, 16));
     }
 
     @Test
     public void testCopyBits_destLengthInsufficient() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[2], 0, new byte[1], 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[2], 0, new byte[1], 0, 16));
     }
 
     @Test
     public void testCopyBits_sourceLengthExceedByOne() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[1], 0, new byte[2], 0, 9);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[1], 0, new byte[2], 0, 9));
     }
 
     @Test
     public void testCopyBits_destLengthExceedByOne() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.copyBits(new byte[2], 0, new byte[1], 0, 9);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.copyBits(new byte[2], 0, new byte[1], 0, 9));
     }
 
     // endregion
@@ -267,23 +249,17 @@ public class BitUtilTest {
 
     @Test
     public void testGetBit_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBit(null, 0);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBit(null, 0));
     }
 
     @Test
     public void testGetBit_bitOffsetNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBit(new byte[1], -1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBit(new byte[1], -1));
     }
 
     @Test
     public void testGetBit_bitOffsetOutOfRange() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBit(new byte[1], 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBit(new byte[1], 8));
     }
 
     // endregion
@@ -313,23 +289,17 @@ public class BitUtilTest {
 
     @Test
     public void testSetBit_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBit(null, 0, true);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBit(null, 0, true));
     }
 
     @Test
     public void testSetBit_bitOffsetNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBit(new byte[1], -1, true);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBit(new byte[1], -1, true));
     }
 
     @Test
     public void testSetBit_bitOffsetOutOfRange() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBit(new byte[1], 8, true);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBit(new byte[1], 8, true));
     }
 
     // endregion
@@ -362,37 +332,27 @@ public class BitUtilTest {
 
     @Test
     public void testGetBitsAsInt_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsInt(null, 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsInt(null, 0, 8));
     }
 
     @Test
     public void testGetBitsAsInt_bitOffsetNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsInt(new byte[1], -1, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsInt(new byte[1], -1, 8));
     }
 
     @Test
     public void testGetBitsAsInt_bitLengthZero() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsInt(new byte[4], 0, 0);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsInt(new byte[4], 0, 0));
     }
 
     @Test
     public void testGetBitsAsInt_bitLengthExceeds32() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsInt(new byte[4], 0, 33);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsInt(new byte[4], 0, 33));
     }
 
     @Test
     public void testGetBitsAsInt_rangeExceeded() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsInt(new byte[1], 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsInt(new byte[1], 0, 16));
     }
 
     // endregion
@@ -416,30 +376,22 @@ public class BitUtilTest {
 
     @Test
     public void testGetBitsAsLong_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsLong(null, 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsLong(null, 0, 8));
     }
 
     @Test
     public void testGetBitsAsLong_bitLengthZero() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsLong(new byte[8], 0, 0);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsLong(new byte[8], 0, 0));
     }
 
     @Test
     public void testGetBitsAsLong_bitLengthExceeds64() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsLong(new byte[8], 0, 65);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsLong(new byte[8], 0, 65));
     }
 
     @Test
     public void testGetBitsAsLong_rangeExceeded() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.getBitsAsLong(new byte[1], 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.getBitsAsLong(new byte[1], 0, 16));
     }
 
     // endregion
@@ -462,23 +414,17 @@ public class BitUtilTest {
 
     @Test
     public void testSetBitsFromInt_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBitsFromInt(null, 0, 0, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBitsFromInt(null, 0, 0, 8));
     }
 
     @Test
     public void testSetBitsFromInt_bitLengthInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBitsFromInt(new byte[4], 0, 0, 0);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBitsFromInt(new byte[4], 0, 0, 0));
     }
 
     @Test
     public void testSetBitsFromInt_rangeExceeded() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBitsFromInt(new byte[1], 0, 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBitsFromInt(new byte[1], 0, 0, 16));
     }
 
     // endregion
@@ -494,16 +440,12 @@ public class BitUtilTest {
 
     @Test
     public void testSetBitsFromLong_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBitsFromLong(null, 0, 0L, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBitsFromLong(null, 0, 0L, 8));
     }
 
     @Test
     public void testSetBitsFromLong_rangeExceeded() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.setBitsFromLong(new byte[1], 0, 0L, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.setBitsFromLong(new byte[1], 0, 0L, 16));
     }
 
     // endregion
@@ -521,30 +463,22 @@ public class BitUtilTest {
 
     @Test
     public void testAnd_aNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.and(null, new byte[1], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.and(null, new byte[1], new byte[1]));
     }
 
     @Test
     public void testAnd_bNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.and(new byte[1], null, new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.and(new byte[1], null, new byte[1]));
     }
 
     @Test
     public void testAnd_destNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.and(new byte[1], new byte[1], null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.and(new byte[1], new byte[1], null));
     }
 
     @Test
     public void testAnd_lengthMismatch() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.and(new byte[1], new byte[2], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.and(new byte[1], new byte[2], new byte[1]));
     }
 
     @Test
@@ -575,16 +509,12 @@ public class BitUtilTest {
 
     @Test
     public void testOr_aNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.or(null, new byte[1], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.or(null, new byte[1], new byte[1]));
     }
 
     @Test
     public void testOr_lengthMismatch() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.or(new byte[1], new byte[2], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.or(new byte[1], new byte[2], new byte[1]));
     }
 
     // endregion
@@ -602,16 +532,12 @@ public class BitUtilTest {
 
     @Test
     public void testXor_aNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.xor(null, new byte[1], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.xor(null, new byte[1], new byte[1]));
     }
 
     @Test
     public void testXor_lengthMismatch() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.xor(new byte[1], new byte[2], new byte[1]);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.xor(new byte[1], new byte[2], new byte[1]));
     }
 
     // endregion
@@ -633,30 +559,22 @@ public class BitUtilTest {
 
     @Test
     public void testCountSetBits_dataNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.countSetBits(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.countSetBits(null));
     }
 
     @Test
     public void testCountSetBits_bitOffsetNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.countSetBits(new byte[1], -1, 8);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.countSetBits(new byte[1], -1, 8));
     }
 
     @Test
     public void testCountSetBits_bitLengthNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.countSetBits(new byte[1], 0, -1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.countSetBits(new byte[1], 0, -1));
     }
 
     @Test
     public void testCountSetBits_rangeExceeded() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BitUtil.countSetBits(new byte[1], 0, 16);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BitUtil.countSetBits(new byte[1], 0, 16));
     }
 
     // endregion

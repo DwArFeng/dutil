@@ -17,7 +17,7 @@ public class LongNumberValue implements NumberValue {
     /**
      * 数字值。
      */
-    protected long value;
+    protected final long value;
 
     /**
      * 生成一个具有指定的数值的 Long 数字值对象。

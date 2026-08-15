@@ -3,6 +3,7 @@ package com.dwarfeng.dutil.basic.impl.string;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.stack.string.Name;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -53,7 +54,7 @@ public record DefaultName(String name) implements Name {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return this.name;
     }
 }

@@ -10,6 +10,7 @@ import com.dwarfeng.dutil.basic.stack.model.event.ListObserver;
 import com.dwarfeng.dutil.basic.stack.model.event.MapObserver;
 import com.dwarfeng.dutil.basic.stack.model.event.ReferenceObserver;
 import com.dwarfeng.dutil.basic.stack.model.event.SetObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -72,7 +73,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return CollectionUtil.unmodifiableIterator(delegate.iterator());
         }
 
@@ -80,7 +81,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegate.toArray();
         }
 
@@ -88,7 +89,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegate.toArray(a);
         }
 
@@ -114,7 +115,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -122,7 +123,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -130,7 +131,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -138,7 +139,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -146,7 +147,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -210,7 +211,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             return CollectionUtil.unmodifiableListIterator(delegate.listIterator());
         }
 
@@ -218,7 +219,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             return CollectionUtil.unmodifiableListIterator(delegate.listIterator(index));
         }
 
@@ -226,7 +227,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             return Collections.unmodifiableList(delegate.subList(fromIndex, toIndex));
         }
 
@@ -282,7 +283,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -333,7 +334,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -341,7 +342,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             @SuppressWarnings("unchecked")
             E[] eArray = (E[]) delegate.toArray();
             return ArrayUtil.readOnlyArray(eArray, generator);
@@ -352,7 +353,7 @@ public final class ModelUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
         }
@@ -379,7 +380,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -387,7 +388,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -395,7 +396,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -403,7 +404,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -411,7 +412,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -475,7 +476,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             return CollectionUtil.readOnlyListIterator(delegate.listIterator(), generator);
         }
 
@@ -483,7 +484,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             return CollectionUtil.readOnlyListIterator(delegate.listIterator(index), generator);
         }
 
@@ -491,7 +492,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             return CollectionUtil.readOnlyList(delegate.subList(fromIndex, toIndex), generator);
         }
 
@@ -555,7 +556,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -686,7 +687,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             lock.readLock().lock();
             try {
                 return delegate.iterator();
@@ -699,7 +700,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             lock.readLock().lock();
             try {
                 return delegate.toArray();
@@ -712,7 +713,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             lock.readLock().lock();
             try {
                 return delegate.toArray(a);
@@ -753,7 +754,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             lock.readLock().lock();
             try {
                 return delegate.containsAll(c);
@@ -766,7 +767,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(c);
@@ -779,7 +780,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(index, c);
@@ -792,7 +793,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.removeAll(c);
@@ -805,7 +806,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.retainAll(c);
@@ -937,7 +938,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             lock.readLock().lock();
             try {
                 return delegate.listIterator();
@@ -950,7 +951,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             lock.readLock().lock();
             try {
                 return delegate.listIterator(index);
@@ -963,7 +964,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             lock.readLock().lock();
             try {
                 return delegate.subList(fromIndex, toIndex);
@@ -976,7 +977,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             lock.readLock().lock();
             try {
                 return delegate.toString();
@@ -1112,7 +1113,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             lock.readLock().lock();
             try {
                 return delegate.iterator();
@@ -1125,7 +1126,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             lock.readLock().lock();
             try {
                 return delegate.toArray();
@@ -1138,7 +1139,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             lock.readLock().lock();
             try {
                 return delegate.toArray(a);
@@ -1177,7 +1178,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             lock.readLock().lock();
             try {
                 return delegate.containsAll(c);
@@ -1190,7 +1191,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(c);
@@ -1203,7 +1204,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.retainAll(c);
@@ -1216,7 +1217,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.removeAll(c);
@@ -1343,7 +1344,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return CollectionUtil.unmodifiableIterator(delegate.iterator());
         }
 
@@ -1351,7 +1352,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegate.toArray();
         }
 
@@ -1359,7 +1360,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegate.toArray(a);
         }
 
@@ -1383,7 +1384,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -1391,7 +1392,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1399,7 +1400,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -1407,7 +1408,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -1439,7 +1440,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -1522,7 +1523,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -1530,7 +1531,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             @SuppressWarnings("unchecked")
             E[] eArray = (E[]) delegate.toArray();
             return ArrayUtil.readOnlyArray(eArray, generator);
@@ -1541,7 +1542,7 @@ public final class ModelUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
         }
@@ -1566,7 +1567,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -1574,7 +1575,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1582,7 +1583,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -1590,7 +1591,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -1630,7 +1631,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -1814,7 +1815,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public void putAll(Map<? extends K, ? extends V> m) {
+        public void putAll(@NotNull Map<? extends K, ? extends V> m) {
             lock.writeLock().lock();
             try {
                 delegate.putAll(m);
@@ -1840,7 +1841,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<K> keySet() {
+        public @NotNull Set<K> keySet() {
             lock.readLock().lock();
             try {
                 return delegate.keySet();
@@ -1853,7 +1854,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Collection<V> values() {
+        public @NotNull Collection<V> values() {
             lock.readLock().lock();
             try {
                 return delegate.values();
@@ -1866,7 +1867,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<java.util.Map.Entry<K, V>> entrySet() {
+        public @NotNull Set<java.util.Map.Entry<K, V>> entrySet() {
             lock.readLock().lock();
             try {
                 return delegate.entrySet();
@@ -1981,7 +1982,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public void putAll(Map<? extends K, ? extends V> m) {
+        public void putAll(@NotNull Map<? extends K, ? extends V> m) {
             throw new UnsupportedOperationException("putAll");
         }
 
@@ -1997,7 +1998,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<K> keySet() {
+        public @NotNull Set<K> keySet() {
             return Collections.unmodifiableSet(delegate.keySet());
         }
 
@@ -2005,7 +2006,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Collection<V> values() {
+        public @NotNull Collection<V> values() {
             return Collections.unmodifiableCollection(delegate.values());
         }
 
@@ -2013,7 +2014,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<Entry<K, V>> entrySet() {
+        public @NotNull Set<Entry<K, V>> entrySet() {
             return Collections.unmodifiableSet(delegate.entrySet());
         }
 
@@ -2069,7 +2070,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -2188,7 +2189,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public void putAll(Map<? extends K, ? extends V> m) {
+        public void putAll(@NotNull Map<? extends K, ? extends V> m) {
             throw new UnsupportedOperationException("putAll");
         }
 
@@ -2204,7 +2205,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<K> keySet() {
+        public @NotNull Set<K> keySet() {
             return CollectionUtil.readOnlySet(delegate.keySet(), keyGen);
         }
 
@@ -2212,7 +2213,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Collection<V> values() {
+        public @NotNull Collection<V> values() {
             return CollectionUtil.readOnlyCollection(delegate.values(), valueGen);
         }
 
@@ -2220,7 +2221,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<Entry<K, V>> entrySet() {
+        public @NotNull Set<Entry<K, V>> entrySet() {
             return CollectionUtil.readOnlySet(
                     delegate.entrySet(), element -> CollectionUtil.readOnlyMapEntry(element, keyGen, valueGen)
             );
@@ -2254,7 +2255,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -2451,7 +2452,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<V> subList(int fromIndex, int toIndex) {
+        public @NotNull List<V> subList(int fromIndex, int toIndex) {
             lock.readLock().lock();
             try {
                 return delegate.subList(fromIndex, toIndex);
@@ -2503,7 +2504,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             lock.readLock().lock();
             try {
                 return delegate.iterator();
@@ -2516,7 +2517,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             lock.readLock().lock();
             try {
                 return delegate.toArray();
@@ -2529,7 +2530,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             lock.readLock().lock();
             try {
                 return delegate.toArray(a);
@@ -2570,7 +2571,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             lock.readLock().lock();
             try {
                 return delegate.containsAll(c);
@@ -2583,7 +2584,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(c);
@@ -2596,7 +2597,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends V> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends V> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(index, c);
@@ -2609,7 +2610,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.removeAll(c);
@@ -2622,7 +2623,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.retainAll(c);
@@ -2754,7 +2755,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator() {
+        public @NotNull ListIterator<V> listIterator() {
             lock.readLock().lock();
             try {
                 return delegate.listIterator();
@@ -2767,7 +2768,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator(int index) {
+        public @NotNull ListIterator<V> listIterator(int index) {
             lock.readLock().lock();
             try {
                 return delegate.listIterator(index);
@@ -2826,7 +2827,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             return CollectionUtil.unmodifiableIterator(delegate.iterator());
         }
 
@@ -2834,7 +2835,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegate.toArray();
         }
 
@@ -2842,7 +2843,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegate.toArray(a);
         }
 
@@ -2868,7 +2869,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -2876,7 +2877,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -2884,7 +2885,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends V> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -2892,7 +2893,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -2900,7 +2901,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -2964,7 +2965,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator() {
+        public @NotNull ListIterator<V> listIterator() {
             return CollectionUtil.unmodifiableListIterator(delegate.listIterator());
         }
 
@@ -2972,7 +2973,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator(int index) {
+        public @NotNull ListIterator<V> listIterator(int index) {
             return CollectionUtil.unmodifiableListIterator(delegate.listIterator(index));
         }
 
@@ -2980,7 +2981,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<V> subList(int fromIndex, int toIndex) {
+        public @NotNull List<V> subList(int fromIndex, int toIndex) {
             return delegate.subList(fromIndex, toIndex);
         }
 
@@ -3100,7 +3101,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -3155,7 +3156,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -3163,7 +3164,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             Object[] array = delegate.toArray();
             Object[] targetArray = new Object[array.length];
             for (int i = 0; i < array.length; i++) {
@@ -3180,7 +3181,7 @@ public final class ModelUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((V[]) tArray), generator);
         }
@@ -3207,7 +3208,7 @@ public final class ModelUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -3215,7 +3216,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -3223,7 +3224,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends V> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -3231,7 +3232,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -3239,7 +3240,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -3303,7 +3304,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator() {
+        public @NotNull ListIterator<V> listIterator() {
             return CollectionUtil.readOnlyListIterator(delegate.listIterator(), generator);
         }
 
@@ -3311,7 +3312,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<V> listIterator(int index) {
+        public @NotNull ListIterator<V> listIterator(int index) {
             return CollectionUtil.readOnlyListIterator(delegate.listIterator(index), generator);
         }
 
@@ -3319,7 +3320,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<V> subList(int fromIndex, int toIndex) {
+        public @NotNull List<V> subList(int fromIndex, int toIndex) {
             return CollectionUtil.readOnlyList(delegate.subList(fromIndex, toIndex), generator);
         }
 
@@ -3447,7 +3448,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -3656,7 +3657,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             lock.readLock().lock();
             try {
                 return delegate.iterator();
@@ -3669,7 +3670,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             lock.readLock().lock();
             try {
                 return delegate.toArray();
@@ -3682,7 +3683,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             lock.readLock().lock();
             try {
                 return delegate.toArray(a);
@@ -3721,7 +3722,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             lock.readLock().lock();
             try {
                 return delegate.containsAll(c);
@@ -3734,7 +3735,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             lock.writeLock().lock();
             try {
                 return delegate.addAll(c);
@@ -3747,7 +3748,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.retainAll(c);
@@ -3760,7 +3761,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             lock.writeLock().lock();
             try {
                 return delegate.removeAll(c);
@@ -3887,7 +3888,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             return CollectionUtil.unmodifiableIterator(delegate.iterator());
         }
 
@@ -3895,7 +3896,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegate.toArray();
         }
 
@@ -3903,7 +3904,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegate.toArray(a);
         }
 
@@ -3927,7 +3928,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -3935,7 +3936,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -3943,7 +3944,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -3951,7 +3952,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -4031,7 +4032,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -4086,7 +4087,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -4094,7 +4095,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             Object[] array = delegate.toArray();
             Object[] targetArray = new Object[array.length];
             for (int i = 0; i < array.length; i++) {
@@ -4111,7 +4112,7 @@ public final class ModelUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((V[]) tArray), generator);
         }
@@ -4136,7 +4137,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -4144,7 +4145,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -4152,7 +4153,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -4160,7 +4161,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -4280,7 +4281,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -4437,7 +4438,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             lock.readLock().lock();
             try {
                 return delegate.toString();
@@ -4539,7 +4540,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -4647,7 +4648,7 @@ public final class ModelUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 

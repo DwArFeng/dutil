@@ -33,6 +33,7 @@ public class DelegateMapModelTest {
         assertEquals(5, model.size());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testIsEmpty() {
         assertFalse(model.isEmpty());
@@ -109,6 +110,7 @@ public class DelegateMapModelTest {
         assertEquals("7", obv.putValueList.getFirst());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testClear() {
         model.clear();
@@ -239,7 +241,7 @@ public class DelegateMapModelTest {
     @FunctionalInterface
     private interface ViewTest<T> {
 
-        void run(T view) throws Throwable;
+        void run(T view);
     }
 
     private static final class EntrySetViewFixture {
@@ -267,12 +269,14 @@ public class DelegateMapModelTest {
             assertEquals(set.hashCode(), entrySet.hashCode());
         }
 
+        @SuppressWarnings("ConstantValue")
         void verifySize() {
             assertEquals(5, entrySet.size());
             entrySet.clear();
             assertEquals(0, entrySet.size());
         }
 
+        @SuppressWarnings("ConstantValue")
         void verifyIsEmpty() {
             assertFalse(entrySet.isEmpty());
             entrySet.clear();
@@ -347,10 +351,12 @@ public class DelegateMapModelTest {
             assertFalse(entrySet.containsAll(Arrays.asList(entry1, entry2, entry3, entry4, entry5, entry6)));
         }
 
+        @SuppressWarnings("DataFlowIssue")
         void verifyAddAll() {
             assertThrows(UnsupportedOperationException.class, () -> entrySet.addAll(null));
         }
 
+        @SuppressWarnings("SlowAbstractSetRemoveAll")
         void verifyRemoveAll() {
             Map.Entry<String, String> entry1 = new AbstractMap.SimpleEntry<>("A", "1");
             Map.Entry<String, String> entry2 = new AbstractMap.SimpleEntry<>("B", "2");
@@ -417,6 +423,7 @@ public class DelegateMapModelTest {
             assertEquals(5, keySet.size());
         }
 
+        @SuppressWarnings("ConstantValue")
         void verifyIsEmpty() {
             assertFalse(keySet.isEmpty());
             keySet.clear();
@@ -474,6 +481,7 @@ public class DelegateMapModelTest {
             assertThrows(UnsupportedOperationException.class, () -> keySet.addAll(Arrays.asList("A", "B", "C", "D", "E")));
         }
 
+        @SuppressWarnings("SlowAbstractSetRemoveAll")
         void verifyRemoveAll() {
             assertTrue(keySet.removeAll(Arrays.asList("B", "C", "D")));
             assertArrayEquals(new Object[]{"A", "E"}, keySet.toArray());
@@ -494,6 +502,7 @@ public class DelegateMapModelTest {
             assertEquals("5", viewObserver.removeValueList.get(1));
         }
 
+        @SuppressWarnings("ConstantValue")
         void verifyClear() {
             keySet.clear();
             assertEquals(0, keySet.size());
@@ -530,6 +539,7 @@ public class DelegateMapModelTest {
             assertEquals(5, values.size());
         }
 
+        @SuppressWarnings("ConstantValue")
         void verifyIsEmpty() {
             assertFalse(values.isEmpty());
             values.clear();

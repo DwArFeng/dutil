@@ -1,5 +1,8 @@
 package com.dwarfeng.dutil.basic.impl.collection;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serial;
 import java.util.*;
 
 /**
@@ -9,6 +12,9 @@ import java.util.*;
  * @since 0.2.0-beta
  */
 public class OrderedProperties extends Properties {
+
+    @Serial
+    private static final long serialVersionUID = 7952545049846222155L;
 
     private final LinkedHashSet<Object> keys = new LinkedHashSet<>();
 
@@ -33,7 +39,7 @@ public class OrderedProperties extends Properties {
      * {@inheritDoc}
      */
     @Override
-    public Set<Object> keySet() {
+    public @NotNull Set<Object> keySet() {
         return keys;
     }
 

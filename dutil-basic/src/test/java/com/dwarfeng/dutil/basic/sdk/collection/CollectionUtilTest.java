@@ -34,9 +34,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testNonNullSetNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.nonNullSet(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.nonNullSet(null));
     }
 
     @Test
@@ -183,9 +181,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testNonNullListNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.nonNullList(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.nonNullList(null));
     }
 
     @Test
@@ -392,9 +388,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testNonNullMapNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.nonNullMap(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.nonNullMap(null));
     }
 
     @Test
@@ -501,9 +495,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testContainsNullNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.containsNull(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.containsNull(null));
     }
 
     // endregion
@@ -518,16 +510,12 @@ public class CollectionUtilTest {
 
     @Test
     public void testRequireNotContainsNullWithNull() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.requireNotContainsNull(Arrays.asList("a", null, "c"));
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.requireNotContainsNull(Arrays.asList("a", null, "c")));
     }
 
     @Test
     public void testRequireNotContainsNullNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.requireNotContainsNull(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.requireNotContainsNull(null));
     }
 
     @Test
@@ -537,9 +525,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testRequireNotContainsNullWithMessageAndNull() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.requireNotContainsNull(Arrays.asList("a", null), "custom message");
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.requireNotContainsNull(Arrays.asList("a", null), "custom message"));
     }
 
     @Test
@@ -570,9 +556,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testEnumeration2IteratorNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.enumeration2Iterator(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.enumeration2Iterator(null));
     }
 
     // endregion
@@ -593,9 +577,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testIterator2EnumerationNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.iterator2Enumeration(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.iterator2Enumeration(null));
     }
 
     // endregion
@@ -622,16 +604,12 @@ public class CollectionUtilTest {
 
     @Test
     public void testContactIteratorFirstNull() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.contactIterator(null, Collections.singletonList("a").iterator());
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.contactIterator(null, Collections.singletonList("a").iterator()));
     }
 
     @Test
     public void testContactIteratorSecondNull() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.contactIterator(Collections.singletonList("a").iterator(), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.contactIterator(Collections.singletonList("a").iterator(), null));
     }
 
     @SuppressWarnings("RedundantCollectionOperation")
@@ -714,16 +692,12 @@ public class CollectionUtilTest {
 
     @Test
     public void testInsertByOrderNullList() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.insertByOrder(null, 1, Integer::compareTo);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.insertByOrder(null, 1, Integer::compareTo));
     }
 
     @Test
     public void testInsertByOrderNullComparator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.insertByOrder(new ArrayList<>(), 1, null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.insertByOrder(new ArrayList<>(), 1, null));
     }
 
     @Test
@@ -758,11 +732,9 @@ public class CollectionUtilTest {
 
     @Test
     public void testInsertByOrderNullSearcher() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.insertByOrder(
-                    new ArrayList<>(Arrays.asList(1, 2, 3)), 2, Integer::compareTo, null
-            );
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.insertByOrder(
+                new ArrayList<>(Arrays.asList(1, 2, 3)), 2, Integer::compareTo, null
+        ));
     }
 
     @Test
@@ -809,9 +781,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testUnmodifiableIteratorNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.unmodifiableIterator(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.unmodifiableIterator(null));
     }
 
     // endregion
@@ -831,9 +801,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyIteratorNullIterator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyIterator(null, str -> str);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyIterator(null, str -> str));
     }
 
     @Test
@@ -848,9 +816,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyIteratorNullGenerator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyIterator(Collections.singletonList("a").iterator(), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyIterator(Collections.singletonList("a").iterator(), null));
     }
 
     // endregion
@@ -898,9 +864,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testUnmodifiableListIteratorNullParameter() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.unmodifiableListIterator(null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.unmodifiableListIterator(null));
     }
 
     @Test
@@ -961,17 +925,13 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyListIteratorNullListIterator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyListIterator(null, str -> str);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyListIterator(null, str -> str));
     }
 
     @Test
     public void testReadOnlyListIteratorNullGenerator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyListIterator(
-                    new ArrayList<>(Arrays.asList("a", "b")).listIterator(), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyListIterator(
+                new ArrayList<>(Arrays.asList("a", "b")).listIterator(), null));
     }
 
     @Test
@@ -1057,16 +1017,12 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyCollectionNullCollection() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyCollection(null, str -> str);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyCollection(null, str -> str));
     }
 
     @Test
     public void testReadOnlyCollectionNullGenerator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyCollection(new ArrayList<>(), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyCollection(new ArrayList<>(), null));
     }
 
     @SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
@@ -1161,17 +1117,13 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlySetNullSet() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlySet(null, str -> str);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlySet(null, str -> str));
     }
 
     @SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
     @Test
     public void testReadOnlySetNullGenerator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlySet(new HashSet<>(Arrays.asList("a")), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlySet(new HashSet<>(Arrays.asList("a")), null));
     }
 
     @Test
@@ -1313,17 +1265,13 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyListNullList() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyList(null, str -> str);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyList(null, str -> str));
     }
 
     @SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
     @Test
     public void testReadOnlyListNullGenerator() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyList(new ArrayList<>(Arrays.asList("a")), null);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyList(new ArrayList<>(Arrays.asList("a")), null));
     }
 
     @Test
@@ -1512,9 +1460,7 @@ public class CollectionUtilTest {
 
     @Test
     public void testReadOnlyMapNullMap() {
-        assertThrows(NullPointerException.class, () -> {
-            CollectionUtil.readOnlyMap(null, k -> k, v -> v);
-        });
+        assertThrows(NullPointerException.class, () -> CollectionUtil.readOnlyMap(null, k -> k, v -> v));
     }
 
     @Test

@@ -63,7 +63,7 @@ public class DefaultTaskExecutorTest {
     }
 
     @Test
-    public void testFailure() throws Exception {
+    public void testFailure() {
         IllegalArgumentException expected = new IllegalArgumentException("failed");
 
         try (TaskExecutor executor = TaskExecutors.virtualThreads()) {
@@ -101,9 +101,9 @@ public class DefaultTaskExecutorTest {
     }
 
     @Test
-    public void testTimeout() throws Exception {
+    public void testTimeout() {
         try (TaskExecutor executor = TaskExecutors.virtualThreads()) {
-            TaskHandle<String> handle = executor.submit(context -> {
+            TaskHandle<String> handle = executor.submit(_ -> {
                 Thread.sleep(Duration.ofSeconds(10));
                 return "late";
             }, new TaskExecutionOptions("timeout-task", Duration.ofMillis(50)));

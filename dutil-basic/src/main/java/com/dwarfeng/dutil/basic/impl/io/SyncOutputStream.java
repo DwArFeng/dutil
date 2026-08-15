@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 
 import com.dwarfeng.dutil.basic.stack.concurrent.ExternalThreadSafe;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FilterOutputStream;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class SyncOutputStream extends FilterOutputStream implements ExternalThre
      * {@inheritDoc}
      */
     @Override
-    public void write(byte[] b) throws IOException {
+    public void write(byte @NotNull [] b) throws IOException {
         lock.lock();
         try {
             super.write(b);
@@ -77,7 +78,7 @@ public class SyncOutputStream extends FilterOutputStream implements ExternalThre
      * {@inheritDoc}
      */
     @Override
-    public void write(byte[] b, int off, int len) throws IOException {
+    public void write(byte @NotNull [] b, int off, int len) throws IOException {
         lock.lock();
         try {
             super.write(b, off, len);

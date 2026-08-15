@@ -5,6 +5,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.sdk.model.AbstractMapModel;
 
 import com.dwarfeng.dutil.basic.stack.model.event.MapObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -118,7 +119,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
      * {@inheritDoc}
      */
     @Override
-    public void putAll(Map<? extends K, ? extends V> m) {
+    public void putAll(@NotNull Map<? extends K, ? extends V> m) {
         Objects.requireNonNull(m, BasicMessages.message(BasicMessageKey.MAP_MODEL_MAP_REQUIRED));
         for (Map.Entry<? extends K, ? extends V> entry : m.entrySet()) {
             put(entry.getKey(), entry.getValue());
@@ -138,8 +139,24 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
      * {@inheritDoc}
      */
     @Override
-    public Set<K> keySet() {
+    public @NotNull Set<K> keySet() {
         return new KeySet(delegate.keySet());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public @NotNull Collection<V> values() {
+        return new Values(delegate.values());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public @NotNull Set<java.util.Map.Entry<K, V>> entrySet() {
+        return new EntrySet(delegate.entrySet());
     }
 
     private class KeySet implements Set<K> {
@@ -178,7 +195,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<K> iterator() {
+        public @NotNull Iterator<K> iterator() {
             return new KeySetIterator(delegateKeySet.iterator());
         }
 
@@ -224,7 +241,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegateKeySet.toArray();
         }
 
@@ -232,7 +249,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegateKeySet.toArray(a);
         }
 
@@ -266,7 +283,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return delegateKeySet.containsAll(c);
         }
@@ -275,7 +292,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends K> c) {
+        public boolean addAll(@NotNull Collection<? extends K> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -283,7 +300,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, true);
         }
@@ -292,7 +309,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, false);
         }
@@ -354,14 +371,6 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<V> values() {
-        return new Values(delegate.values());
-    }
-
     private class Values implements Collection<V> {
 
         private final Collection<V> delegateValues;
@@ -398,7 +407,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<V> iterator() {
+        public @NotNull Iterator<V> iterator() {
             return new ValuesIterator(delegateValues.iterator());
         }
 
@@ -448,7 +457,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return delegateValues.toArray();
         }
 
@@ -456,7 +465,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return delegateValues.toArray(a);
         }
 
@@ -494,7 +503,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return delegateValues.containsAll(c);
         }
@@ -503,7 +512,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends V> c) {
+        public boolean addAll(@NotNull Collection<? extends V> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             throw new UnsupportedOperationException("addAll");
         }
@@ -512,7 +521,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, true);
         }
@@ -521,7 +530,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             return batchRemove(c, false);
         }
 
@@ -575,14 +584,6 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<java.util.Map.Entry<K, V>> entrySet() {
-        return new EntrySet(delegate.entrySet());
-    }
-
     private class EntrySet implements Set<Map.Entry<K, V>> {
 
         private final Set<Map.Entry<K, V>> delegateEntrySet;
@@ -619,7 +620,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<java.util.Map.Entry<K, V>> iterator() {
+        public @NotNull Iterator<java.util.Map.Entry<K, V>> iterator() {
             return new EntryIterator(delegateEntrySet.iterator());
         }
 
@@ -666,7 +667,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             Object[] objs = delegateEntrySet.toArray();
             Object[] dejaVu = new Object[objs.length];
             for (int i = 0; i < objs.length; i++) {
@@ -682,7 +683,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             Object[] objs = delegateEntrySet.toArray();
             @SuppressWarnings("unchecked")
             T[] r = a.length >= objs.length ? a
@@ -728,7 +729,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return delegateEntrySet.containsAll(c);
         }
@@ -737,7 +738,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends java.util.Map.Entry<K, V>> c) {
+        public boolean addAll(@NotNull Collection<? extends java.util.Map.Entry<K, V>> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -745,7 +746,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, true);
         }
@@ -754,7 +755,7 @@ public class DelegateMapModel<K, V> extends AbstractMapModel<K, V> {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_MODEL_COLLECTION_REQUIRED));
             return batchRemove(c, false);
         }

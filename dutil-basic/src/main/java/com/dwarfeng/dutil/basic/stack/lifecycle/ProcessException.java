@@ -1,5 +1,7 @@
 package com.dwarfeng.dutil.basic.stack.lifecycle;
 
+import java.io.Serial;
+
 /**
  * 过程失败异常。
  *
@@ -12,12 +14,16 @@ package com.dwarfeng.dutil.basic.stack.lifecycle;
  */
 public class ProcessException extends Exception {
 
+    @Serial
+    private static final long serialVersionUID = -1364232108717443750L;
+
     public ProcessException() {
         super();
     }
 
-    public ProcessException(String message, Throwable cause, boolean enableSuppression,
-                            boolean writableStackTrace) {
+    public ProcessException(
+            String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace
+    ) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

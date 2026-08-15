@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 
 import com.dwarfeng.dutil.basic.stack.function.Filter;
+import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -345,7 +346,7 @@ public record Interval(BoundaryType leftBoundaryType, BoundaryType rightBoundary
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return (leftBoundaryType == BoundaryType.CLOSED ? "[ " : "( ") +
                 (leftValue == null ? "-∞" : leftValue.toString()) +
                 " , " +

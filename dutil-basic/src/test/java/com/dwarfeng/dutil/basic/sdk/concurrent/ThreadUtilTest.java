@@ -15,8 +15,6 @@ public class ThreadUtilTest {
 
     @Test
     public void testUnmodifiableLock_1() {
-        assertThrows(NullPointerException.class, () -> {
-            ThreadUtil.unmodifiableLock(null);
-        });
+        assertThrows(NullPointerException.class, () -> ThreadUtil.unmodifiableLock(null));
     }
 }

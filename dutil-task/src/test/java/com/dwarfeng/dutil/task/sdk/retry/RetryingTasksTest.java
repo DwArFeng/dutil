@@ -36,7 +36,7 @@ public class RetryingTasksTest {
     }
 
     @Test
-    public void testRetryPredicateStopsExecution() throws Exception {
+    public void testRetryPredicateStopsExecution() {
         IllegalArgumentException expected = new IllegalArgumentException("stop");
         AtomicInteger attempts = new AtomicInteger();
 

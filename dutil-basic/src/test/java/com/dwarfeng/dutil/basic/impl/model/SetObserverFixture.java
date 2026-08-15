@@ -7,8 +7,8 @@ import java.util.List;
 
 class SetObserverFixture<T> implements SetObserver<T> {
 
-    public List<T> addedList = new ArrayList<>();
-    public List<T> removedList = new ArrayList<>();
+    public final List<T> addedList = new ArrayList<>();
+    public final List<T> removedList = new ArrayList<>();
     public int cleared = 0;
 
     @Override

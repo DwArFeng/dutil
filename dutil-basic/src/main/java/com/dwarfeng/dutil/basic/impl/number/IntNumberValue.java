@@ -17,7 +17,7 @@ public class IntNumberValue implements NumberValue {
     /**
      * 数字值。
      */
-    protected int value;
+    protected final int value;
 
     /**
      * 生成一个具有指定的数值的 Integer 数字值对象。

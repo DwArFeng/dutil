@@ -5,6 +5,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 
 import com.dwarfeng.dutil.basic.stack.function.ReadOnlyGenerator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -77,7 +78,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return set.iterator();
         }
 
@@ -85,7 +86,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return set.toArray();
         }
 
@@ -93,7 +94,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return set.toArray(a);
         }
 
@@ -118,7 +119,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return set.containsAll(c);
         }
 
@@ -126,7 +127,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.COLLECTION_ELEMENT_REQUIRED));
             if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(BasicMessages.message(BasicMessageKey.COLLECTION_CONTAINS_NULL));
@@ -138,7 +139,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             return set.retainAll(c);
         }
 
@@ -146,7 +147,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             return set.removeAll(c);
         }
 
@@ -162,7 +163,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return set.toString();
         }
     }
@@ -221,7 +222,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return list.iterator();
         }
 
@@ -229,7 +230,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             return list.toArray();
         }
 
@@ -237,7 +238,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             return list.toArray(a);
         }
 
@@ -264,7 +265,7 @@ public final class CollectionUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return list.containsAll(c);
         }
 
@@ -272,7 +273,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.COLLECTION_ELEMENT_REQUIRED));
             if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(BasicMessages.message(BasicMessageKey.COLLECTION_CONTAINS_NULL));
@@ -284,7 +285,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.COLLECTION_ELEMENT_REQUIRED));
             if (CollectionUtil.containsNull(c)) {
                 throw new NullPointerException(BasicMessages.message(BasicMessageKey.COLLECTION_CONTAINS_NULL));
@@ -296,7 +297,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             return list.removeAll(c);
         }
 
@@ -304,7 +305,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             return list.retainAll(c);
         }
 
@@ -370,7 +371,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             return list.listIterator();
         }
 
@@ -378,7 +379,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             return list.listIterator(index);
         }
 
@@ -386,7 +387,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             return new NonNullList<>(list.subList(fromIndex, toIndex));
         }
 
@@ -394,7 +395,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return list.toString();
         }
     }
@@ -487,7 +488,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public void putAll(Map<? extends K, ? extends V> m) {
+        public void putAll(@NotNull Map<? extends K, ? extends V> m) {
             Objects.requireNonNull(m, BasicMessages.message(BasicMessageKey.COLLECTION_SOURCE_MAP_REQUIRED));
             if (CollectionUtil.containsNull(m.keySet())) {
                 throw new NullPointerException(BasicMessages.message(BasicMessageKey.COLLECTION_KEY_REQUIRED));
@@ -507,7 +508,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<K> keySet() {
+        public @NotNull Set<K> keySet() {
             return map.keySet();
         }
 
@@ -515,7 +516,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Collection<V> values() {
+        public @NotNull Collection<V> values() {
             return map.values();
         }
 
@@ -523,7 +524,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<Entry<K, V>> entrySet() {
+        public @NotNull Set<Entry<K, V>> entrySet() {
             return map.entrySet();
         }
     }
@@ -1096,7 +1097,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -1104,7 +1105,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             @SuppressWarnings("unchecked")
             E[] eArray = (E[]) delegate.toArray();
             return ArrayUtil.readOnlyArray(eArray, generator);
@@ -1115,7 +1116,7 @@ public final class CollectionUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
         }
@@ -1140,7 +1141,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -1148,7 +1149,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1156,7 +1157,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -1164,7 +1165,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -1180,7 +1181,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -1230,7 +1231,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -1238,7 +1239,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             @SuppressWarnings("unchecked")
             E[] eArray = (E[]) delegate.toArray();
             return ArrayUtil.readOnlyArray(eArray, generator);
@@ -1249,7 +1250,7 @@ public final class CollectionUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
         }
@@ -1274,7 +1275,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -1282,7 +1283,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1290,7 +1291,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -1298,7 +1299,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -1339,7 +1340,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -1389,7 +1390,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Iterator<E> iterator() {
+        public @NotNull Iterator<E> iterator() {
             return CollectionUtil.readOnlyIterator(delegate.iterator(), generator);
         }
 
@@ -1397,7 +1398,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Object[] toArray() {
+        public Object @NotNull [] toArray() {
             @SuppressWarnings("unchecked")
             E[] eArray = (E[]) delegate.toArray();
             return ArrayUtil.readOnlyArray(eArray, generator);
@@ -1408,7 +1409,7 @@ public final class CollectionUtil {
          */
         @SuppressWarnings("unchecked")
         @Override
-        public <T> T[] toArray(T[] a) {
+        public <T> T @NotNull [] toArray(T @NotNull [] a) {
             T[] tArray = delegate.toArray(a);
             return (T[]) ArrayUtil.readOnlyArray(((E[]) tArray), generator);
         }
@@ -1435,7 +1436,7 @@ public final class CollectionUtil {
         // 代理方法，忽略所有警告。
         @SuppressWarnings("SlowListContainsAll")
         @Override
-        public boolean containsAll(Collection<?> c) {
+        public boolean containsAll(@NotNull Collection<?> c) {
             return delegate.containsAll(c);
         }
 
@@ -1443,7 +1444,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
+        public boolean addAll(@NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1451,7 +1452,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(int index, @NotNull Collection<? extends E> c) {
             throw new UnsupportedOperationException("addAll");
         }
 
@@ -1459,7 +1460,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean removeAll(Collection<?> c) {
+        public boolean removeAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("removeAll");
         }
 
@@ -1467,7 +1468,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean retainAll(Collection<?> c) {
+        public boolean retainAll(@NotNull Collection<?> c) {
             throw new UnsupportedOperationException("retainAll");
         }
 
@@ -1531,7 +1532,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator() {
+        public @NotNull ListIterator<E> listIterator() {
             return readOnlyListIterator(delegate.listIterator(), generator);
         }
 
@@ -1539,7 +1540,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public ListIterator<E> listIterator(int index) {
+        public @NotNull ListIterator<E> listIterator(int index) {
             return readOnlyListIterator(delegate.listIterator(index), generator);
         }
 
@@ -1547,7 +1548,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public List<E> subList(int fromIndex, int toIndex) {
+        public @NotNull List<E> subList(int fromIndex, int toIndex) {
             return new ReadOnlyList<>(delegate.subList(fromIndex, toIndex), generator);
         }
 
@@ -1580,7 +1581,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -1660,7 +1661,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }
@@ -1747,7 +1748,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public void putAll(Map<? extends K, ? extends V> m) {
+        public void putAll(@NotNull Map<? extends K, ? extends V> m) {
             throw new UnsupportedOperationException("putAll");
         }
 
@@ -1763,7 +1764,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<K> keySet() {
+        public @NotNull Set<K> keySet() {
             return readOnlySet(delegate.keySet(), keyGen);
         }
 
@@ -1771,7 +1772,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Collection<V> values() {
+        public @NotNull Collection<V> values() {
             return readOnlyCollection(delegate.values(), valueGen);
         }
 
@@ -1779,7 +1780,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public Set<Entry<K, V>> entrySet() {
+        public @NotNull Set<Entry<K, V>> entrySet() {
             return readOnlySet(delegate.entrySet(), element -> readOnlyMapEntry(element, keyGen, valueGen));
         }
 
@@ -1812,7 +1813,7 @@ public final class CollectionUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
     }

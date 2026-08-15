@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.stack.concurrent.ExternalReadWriteThreadSafe;
 import com.dwarfeng.dutil.basic.stack.concurrent.ExternalThreadSafe;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -142,7 +143,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public boolean tryLock(long time, TimeUnit unit) {
+        public boolean tryLock(long time, @NotNull TimeUnit unit) {
             throw new UnsupportedOperationException("tryLock");
         }
 
@@ -158,7 +159,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public Condition newCondition() {
+        public @NotNull Condition newCondition() {
             throw new UnsupportedOperationException("newCondition");
         }
 
@@ -185,7 +186,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return delegate.toString();
         }
 
@@ -209,7 +210,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public Lock readLock() {
+        public @NotNull Lock readLock() {
             return unmodifiableLock(delegate.readLock());
         }
 
@@ -217,7 +218,7 @@ public final class ThreadUtil {
          * {@inheritDoc}
          */
         @Override
-        public Lock writeLock() {
+        public @NotNull Lock writeLock() {
             return unmodifiableLock(delegate.writeLock());
         }
 

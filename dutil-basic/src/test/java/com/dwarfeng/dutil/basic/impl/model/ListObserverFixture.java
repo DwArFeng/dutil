@@ -7,17 +7,17 @@ import java.util.List;
 
 class ListObserverFixture<T> implements ListObserver<T> {
 
-    public List<Integer> removeIndexes = new ArrayList<>();
-    public List<T> removeElements = new ArrayList<>();
+    public final List<Integer> removeIndexes = new ArrayList<>();
+    public final List<T> removeElements = new ArrayList<>();
 
     public int clearedCount = 0;
 
-    public List<Integer> changedIndexes = new ArrayList<>();
-    public List<T> changedOldElements = new ArrayList<>();
-    public List<T> changedNewElements = new ArrayList<>();
+    public final List<Integer> changedIndexes = new ArrayList<>();
+    public final List<T> changedOldElements = new ArrayList<>();
+    public final List<T> changedNewElements = new ArrayList<>();
 
-    public List<Integer> addedIndexes = new ArrayList<>();
-    public List<T> addedElements = new ArrayList<>();
+    public final List<Integer> addedIndexes = new ArrayList<>();
+    public final List<T> addedElements = new ArrayList<>();
 
     @Override
     public void fireRemoved(int index, T element) {

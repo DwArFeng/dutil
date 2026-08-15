@@ -1,6 +1,7 @@
 package com.dwarfeng.dutil.basic.impl.collection.tree;
 
 import com.dwarfeng.dutil.basic.stack.collection.tree.Tree;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -135,7 +136,7 @@ public interface UnorderedTree<E> extends Tree<E> {
      * {@inheritDoc}
      */
     @Override
-    Iterator<E> iterator();
+    @NotNull Iterator<E> iterator();
 
     /**
      * {@inheritDoc}

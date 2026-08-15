@@ -11,6 +11,7 @@ import com.dwarfeng.dutil.task.stack.event.TaskEvent;
 import com.dwarfeng.dutil.task.stack.event.TaskListener;
 import com.dwarfeng.dutil.task.stack.event.TaskSubscription;
 import com.dwarfeng.dutil.task.stack.executor.TaskHandle;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -208,7 +209,8 @@ public final class DefaultTaskHandle<T> implements TaskHandle<T> {
     }
 
     @Override
-    public T get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+    public T get(long timeout, @NotNull TimeUnit unit) throws InterruptedException, ExecutionException,
+            TimeoutException {
         return valueFuture.get(timeout, unit);
     }
 }

@@ -4,6 +4,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 
 import com.dwarfeng.dutil.basic.sdk.number.NumberUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -72,7 +73,7 @@ public final class ByteBufferOutputStream extends OutputStream {
      * {@inheritDoc}
      */
     @Override
-    public void write(byte[] b) throws IOException {
+    public void write(byte @NotNull [] b) throws IOException {
         try {
             byteBuffer.put(b);
         } catch (Exception e) {
@@ -84,7 +85,7 @@ public final class ByteBufferOutputStream extends OutputStream {
      * {@inheritDoc}
      */
     @Override
-    public void write(byte[] b, int off, int len) throws IOException {
+    public void write(byte @NotNull [] b, int off, int len) throws IOException {
         try {
             byteBuffer.put(b, off, len);
         } catch (Exception e) {

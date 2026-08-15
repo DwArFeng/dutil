@@ -2,6 +2,7 @@ package com.dwarfeng.dutil.basic.sdk.concurrent;
 
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessageKey;
 import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadFactory;
@@ -68,7 +69,7 @@ public final class NumberedThreadFactory implements ThreadFactory {
      * {@inheritDoc}
      */
     @Override
-    public Thread newThread(Runnable r) {
+    public Thread newThread(@NotNull Runnable r) {
         return delegate.newThread(Objects.requireNonNull(r, "r"));
     }
 }

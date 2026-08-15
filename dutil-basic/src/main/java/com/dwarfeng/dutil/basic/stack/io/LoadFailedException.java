@@ -2,6 +2,8 @@ package com.dwarfeng.dutil.basic.stack.io;
 
 import com.dwarfeng.dutil.basic.stack.lifecycle.ProcessException;
 
+import java.io.Serial;
+
 /**
  * 读取失败异常。
  *
@@ -9,6 +11,9 @@ import com.dwarfeng.dutil.basic.stack.lifecycle.ProcessException;
  * @since 0.0.2-beta
  */
 public class LoadFailedException extends ProcessException {
+
+    @Serial
+    private static final long serialVersionUID = -8470646904081841007L;
 
     public LoadFailedException() {
         super();

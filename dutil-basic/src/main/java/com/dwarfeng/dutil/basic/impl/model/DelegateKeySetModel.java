@@ -5,6 +5,7 @@ import com.dwarfeng.dutil.basic.internal.i18n.BasicMessages;
 import com.dwarfeng.dutil.basic.stack.model.KeySetModel;
 import com.dwarfeng.dutil.basic.stack.model.WithKey;
 import com.dwarfeng.dutil.basic.stack.model.event.SetObserver;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -151,7 +152,7 @@ public class DelegateKeySetModel<K, V extends WithKey<K>> extends DelegateSetMod
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(Collection<? extends V> c) {
+    public boolean addAll(@NotNull Collection<? extends V> c) {
         Objects.requireNonNull(c, BasicMessages.message(BasicMessageKey.MAP_KEY_SET_MODEL_COLLECTION_REQUIRED));
         boolean aFlag = false;
         for (V v : c) {

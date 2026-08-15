@@ -50,8 +50,6 @@ public class DefaultReferenceModelTest {
 
     @Test
     public void testGetObservers2() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            model.getObservers().add(new ReferenceObserverFixture<>());
-        });
+        assertThrows(UnsupportedOperationException.class, () -> model.getObservers().add(new ReferenceObserverFixture<>()));
     }
 }

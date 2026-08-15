@@ -22,11 +22,9 @@ public class SyncInputStreamTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown() throws IOException {
         try {
             syncIn.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             syncIn = null;
             in = null;
@@ -44,7 +42,7 @@ public class SyncInputStreamTest {
     @Test
     public final void testReadByteArray() throws IOException {
         byte[] bs = new byte[4];
-        syncIn.read(bs);
+        int _ = syncIn.read(bs);
         String str = new String(bs);
         assertEquals("0123", str);
     }
@@ -52,7 +50,7 @@ public class SyncInputStreamTest {
     @Test
     public final void testReadByteArrayIntInt() throws IOException {
         byte[] bs = new byte[4];
-        syncIn.read(bs, 0, 3);
+        int _ = syncIn.read(bs, 0, 3);
         assertEquals(0, bs[3]);
         bs[3] = "3".getBytes()[0];
         String str = new String(bs);
@@ -61,9 +59,9 @@ public class SyncInputStreamTest {
 
     @Test
     public final void testSkip() throws IOException {
-        syncIn.skip(3);
+        long _ = syncIn.skip(3);
         byte[] bs = new byte[4];
-        syncIn.read(bs);
+        int _ = syncIn.read(bs);
         String str = new String(bs);
         assertEquals("3456", str);
     }
@@ -74,7 +72,7 @@ public class SyncInputStreamTest {
     }
 
     @Test
-    public final void testMarkAndReset() throws IOException {
+    public final void testMarkAndReset() {
         assertThrows(IOException.class, () -> {
             try {
                 syncIn.skip(3);

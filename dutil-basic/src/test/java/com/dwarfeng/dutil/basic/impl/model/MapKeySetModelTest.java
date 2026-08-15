@@ -38,6 +38,7 @@ public class MapKeySetModelTest {
         assertEquals(5, model.size());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testIsEmpty() {
         assertFalse(model.isEmpty());
@@ -112,6 +113,7 @@ public class MapKeySetModelTest {
         assertEquals(7, model.size());
     }
 
+    @SuppressWarnings("SlowAbstractSetRemoveAll")
     @Test
     public void testRemoveAll() {
         assertTrue(model.removeAll(Arrays.asList(WithKeyFixture.ELE_2, WithKeyFixture.ELE_3, WithKeyFixture.ELE_4)));
@@ -133,6 +135,7 @@ public class MapKeySetModelTest {
         assertEquals(WithKeyFixture.ELE_5, obv.removedList.get(1));
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public void testClear() {
         model.clear();

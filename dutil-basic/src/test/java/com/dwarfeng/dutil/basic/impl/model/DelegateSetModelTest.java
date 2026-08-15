@@ -32,6 +32,7 @@ public class DelegateSetModelTest {
         assertEquals(4, model.size());
     }
 
+    @SuppressWarnings("ConstantValue")
     @Test
     public final void testIsEmpty() {
         assertFalse(model.isEmpty());
@@ -91,11 +92,10 @@ public class DelegateSetModelTest {
         assertFalse(model.containsAll(Arrays.asList("0", "1", "2", "4")));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Test
     public final void testContainsAllWithException() {
-        assertThrows(NullPointerException.class, () -> {
-            model.containsAll(null);
-        });
+        assertThrows(NullPointerException.class, () -> model.containsAll(null));
     }
 
     @Test
@@ -104,11 +104,10 @@ public class DelegateSetModelTest {
         assertArrayEquals(new String[]{"0", "1", "2", "3", "4", "5"}, model.toArray(new String[0]));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Test
     public final void testAddAllWithException() {
-        assertThrows(NullPointerException.class, () -> {
-            model.addAll(null);
-        });
+        assertThrows(NullPointerException.class, () -> model.addAll(null));
     }
 
     @Test
@@ -119,11 +118,10 @@ public class DelegateSetModelTest {
         assertEquals("2", obv.removedList.get(1));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Test
     public final void testRemoveAllWithException() {
-        assertThrows(NullPointerException.class, () -> {
-            model.removeAll(null);
-        });
+        assertThrows(NullPointerException.class, () -> model.removeAll(null));
     }
 
     @Test
@@ -134,11 +132,10 @@ public class DelegateSetModelTest {
         assertEquals("3", obv.removedList.get(1));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Test
     public final void testRetainAllWithException() {
-        assertThrows(NullPointerException.class, () -> {
-            model.retainAll(null);
-        });
+        assertThrows(NullPointerException.class, () -> model.retainAll(null));
     }
 
     @Test
